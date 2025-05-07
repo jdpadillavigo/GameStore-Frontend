@@ -1,54 +1,37 @@
-# React + TypeScript + Vite
+<h1 align="center">Game Store</h1>
+<p align="center">
+  <a>
+    <img src="https://img.shields.io/badge/release-v1.0.0-C71610" alt="Latest release"/>
+  </a>
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## <picture><img src= "./src/assets/images/readme/arrow.gif" width= 20px></picture> About
 
-Currently, two official plugins are available:
+This project is a modern web app for browsing and purchasing video games.  
+It features a clean UI, responsive design and a smooth user experience.  
+Built with **React**, **TypeScript**, and **Vite** for fast performance and strong developer experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## <picture><img src= "./src/assets/images/readme/arrow.gif" width= 20px></picture> Getting started
 
-## Expanding the ESLint configuration
+### Prerequisites
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Make sure you have the following installed on your system:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Installation
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. **Clone the repository**:  
+  Run the following command in your terminal:  
+  `git clone <repository-url>`
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+2. **Install the dependencies**:  
+  Navigate into the project folder and run:  
+  `npm install`
+
+3. **Start the development server**:  
+  Once the installation is complete, launch the server with:  
+  `npm run dev`
+
+That's it — the project is now up and running!

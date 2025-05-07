@@ -5,3 +5,8 @@
     overflow-x: hidden;
     background: #fff;
 }
+
+.home-page__slider {
+    width: 100%;
+    margin: 0;
+}

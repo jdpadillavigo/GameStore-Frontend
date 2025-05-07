@@ -1,8 +1,15 @@
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 
-function Navbar() {
+const Navbar = () => {
   return (
     <div className="navbar">
+      <Link to="/explorar">Explorar</Link>
+      <Link to="/categorias">Categorías</Link>
+      <Link to="/">Inicio</Link>
+      <Link to="/plataforma">Plataforma</Link>
+      <Link to="/ofertas">Ofertas Especiales</Link>
+      <input type="text" placeholder='Buscar' />
     </div>
   );
 }
