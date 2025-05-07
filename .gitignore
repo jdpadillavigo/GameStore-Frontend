@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+#Para proximo uso react/vite
+src
+eslint.config.js
+eslint.config.js
+index.html
+*.json
+vite.config.ts
