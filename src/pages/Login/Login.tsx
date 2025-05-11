@@ -1,20 +1,33 @@
 import React, { useState } from 'react';
 import './Login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [mensaje, setMensaje] = useState('');
-
-  const datos = localStorage.getItem('usuarioRegistrado');
-  const usuario = datos ? JSON.parse(datos) : null;
+  const navigate = useNavigate();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
 
+    const datos = localStorage.getItem('usuarioRegistrado');
+    const usuario = datos ? JSON.parse(datos) : null;
+
     if (usuario && email === usuario.email && password === usuario.password) {
+      const esAdmin = usuario.nombre.startsWith('Admin');
+
       setMensaje('Inicio de sesión exitoso ✅');
+
+      // Guardar rol simulado
+      localStorage.setItem('rol', esAdmin ? 'admin' : 'usuario');
+
+      // Redirigir a inicio si es admin
+      if (esAdmin) {
+        setTimeout(() => {
+          navigate('/');
+        }, 1000); // pequeña espera para ver el mensaje
+      }
     } else {
       setMensaje('Correo o contraseña incorrectos ❌');
     }
@@ -24,8 +37,10 @@ const Login: React.FC = () => {
     <div className="login-container">
       <form className="login-form" onSubmit={handleLogin}>
         <h2>Iniciar sesión</h2>
+
         {mensaje && <p className="mensaje">{mensaje}</p>}
-        <label htmlFor="email">Nombre de usuario o Correo:</label>
+
+        <label htmlFor="email">Correo electrónico:</label>
         <input
           type="email"
           id="email"
@@ -46,6 +61,7 @@ const Login: React.FC = () => {
         />
 
         <button type="submit">Entrar</button>
+
         <p className="link">
           ¿No tienes cuenta? <Link to="/register">Regístrate</Link>
         </p>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Register.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Register: React.FC = () => {
   const [nombre, setNombre] = useState('');
@@ -9,10 +9,12 @@ const Register: React.FC = () => {
   const [confirmar, setConfirmar] = useState('');
   const [country, setCountry] = useState('');
   const [mensaje, setMensaje] = useState('');
+  const navigate = useNavigate();
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Validaciones
     if (!nombre || !email || !password || !confirmar || !country) {
       setMensaje('Por favor, completa todos los campos');
       return;
@@ -23,14 +25,22 @@ const Register: React.FC = () => {
       return;
     }
 
+    // Guardar usuario simulado en localStorage
     const nuevoUsuario = { nombre, email, password, country };
     localStorage.setItem('usuarioRegistrado', JSON.stringify(nuevoUsuario));
     setMensaje('✅ ¡Usuario registrado exitosamente!');
+
+    // Limpiar campos
     setNombre('');
     setEmail('');
     setPassword('');
     setConfirmar('');
     setCountry('');
+
+    // Redirigir al login después de 1 segundo
+    setTimeout(() => {
+      navigate('/login');
+    }, 1000);
   };
 
   return (
@@ -108,6 +118,7 @@ const Register: React.FC = () => {
 };
 
 export default Register;
+
 
 
 
