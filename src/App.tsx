@@ -12,6 +12,7 @@ import Login from './pages/Login/Login'
 
 import './App.css'
 import Register from './pages/Register/Register'
+import RestContraseña from './pages/ReestablecerContraseña/RestContraseña'
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path='/ofertas' element={<SpecialOffers />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/restcontraseña' element={<RestContraseña />} />
         </Routes>
       </main>
     </div>
