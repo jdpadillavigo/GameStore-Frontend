@@ -9,6 +9,8 @@ const Navbar = () => {
       <Link to="/">Inicio</Link>
       <Link to="/plataforma">Plataforma</Link>
       <Link to="/ofertas">Ofertas Especiales</Link>
+      <Link to="/Login">Iniciar Sesión</Link>
+      
       <input type="text" placeholder='Buscar' />
     </div>
   );
