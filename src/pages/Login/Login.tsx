@@ -1,0 +1,74 @@
+import React, { useState } from 'react';
+import './Login.css';
+import { Link, useNavigate } from 'react-router-dom';
+
+const Login: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [mensaje, setMensaje] = useState('');
+  const navigate = useNavigate();
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const datos = localStorage.getItem('usuarioRegistrado');
+    const usuario = datos ? JSON.parse(datos) : null;
+
+    if (usuario && email === usuario.email && password === usuario.password) {
+      const esAdmin = usuario.nombre.startsWith('Admin');
+
+      setMensaje('Inicio de sesión exitoso ✅');
+
+      // Guardar rol simulado
+      localStorage.setItem('rol', esAdmin ? 'admin' : 'usuario');
+
+      // Redirigir a inicio si es admin
+      if (esAdmin) {
+        setTimeout(() => {
+          navigate('/');
+        }, 1000); // pequeña espera para ver el mensaje
+      }
+    } else {
+      setMensaje('Correo o contraseña incorrectos ❌');
+    }
+  };
+
+  return (
+    <div className="login-container">
+      <form className="login-form" onSubmit={handleLogin}>
+        <h2>Iniciar sesión</h2>
+
+        {mensaje && <p className="mensaje">{mensaje}</p>}
+
+        <label htmlFor="email">Correo electrónico:</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="correo@ejemplo.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+
+        <label htmlFor="password">Contraseña:</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="••••••••"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+
+        <button type="submit">Entrar</button>
+
+        <p className="link">
+          ¿No tienes cuenta? <Link to="/register">Regístrate</Link>
+        </p>
+      </form>
+    </div>
+  );
+};
+
+export default Login;
+

@@ -7,8 +7,12 @@ import Explore from './pages/Explore/Explore'
 import Categories from './pages/Categories/Categories'
 import Platform from './pages/Platform/Platform'
 import SpecialOffers from './pages/SpecialOffers/SpecialOffers'
+import Login from './pages/Login/Login'
+
 
 import './App.css'
+import Register from './pages/Register/Register'
+
 
 function App() {
   return (
@@ -21,6 +25,8 @@ function App() {
           <Route path='/categorias' element={<Categories />} />
           <Route path='/plataforma' element={<Platform />} />
           <Route path='/ofertas' element={<SpecialOffers />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
         </Routes>
       </main>
     </div>
