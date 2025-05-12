@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 
 const RestContraseña: React.FC = () => {
   const [email, setEmail] = useState('');
-  const [nuevaContraseña, setNewPassword] = useState('');
-  const [confirmarContraseña, setConfirmPassword] = useState('');
+  const [nuevaContraseña, setNuevaContraseña] = useState('');
+  const [confirmarContraseña, setConfirmContraseña] = useState('');
   const [error, setError] = useState('');
-  const [mensaje, setMessage] = useState('');
+  const [mensaje, setMensaje] = useState('');
   const navegador = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -24,10 +24,9 @@ const RestContraseña: React.FC = () => {
     }
 
     
-    setMessage("Restablecimiento de contraseña exitoso");
+    setMensaje("Restablecimiento de contraseña exitoso");
     setError('');
 
-   
    
       navegador('/login');
     
@@ -52,13 +51,13 @@ const RestContraseña: React.FC = () => {
             type="contraseña"
             placeholder="Contraseña Nueva"
             value={nuevaContraseña}
-            onChange={(e) => setNewPassword(e.target.value)}
+            onChange={(e) => setNuevaContraseña(e.target.value)}
           />
           <input
             type="contraseña"
             placeholder="Confirmar Contraseña Nueva"
             value={confirmarContraseña}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={(e) => setConfirmContraseña(e.target.value)}
           />
           <button type="submit">Enviar Correo Electrónico</button>
         </form>

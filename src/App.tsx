@@ -13,6 +13,7 @@ import Login from './pages/Login/Login'
 import './App.css'
 import Register from './pages/Register/Register'
 import RestContraseña from './pages/ReestablecerContraseña/RestContraseña'
+import Confirmation  from './pages/Confirmacion/Confirmacion'
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/restcontraseña' element={<RestContraseña />} />
+           <Route path='/confirmacion' element={<Confirmation />} />
         </Routes>
       </main>
     </div>

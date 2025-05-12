@@ -5,45 +5,48 @@ import { Link, useNavigate } from 'react-router-dom';
 const Register: React.FC = () => {
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [contraseña, setContraseña] = useState('');
   const [confirmar, setConfirmar] = useState('');
-  const [country, setCountry] = useState('');
+  const [pais, setPais] = useState('');
   const [mensaje, setMensaje] = useState('');
-  const navigate = useNavigate();
+  const navegador = useNavigate();
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validaciones
-    if (!nombre || !email || !password || !confirmar || !country) {
+    if (!nombre || !email || !contraseña|| !confirmar || !pais) {
       setMensaje('Por favor, completa todos los campos');
       return;
     }
 
-    if (password !== confirmar) {
+    if (contraseña !== confirmar) {
       setMensaje('Las contraseñas no coinciden');
       return;
     }
 
-    // Guardar usuario simulado en localStorage
-    const nuevoUsuario = { nombre, email, password, country };
+    const codigo = Math.floor(100000 + Math.random() * 900000).toString();
+
+    const nuevoUsuario = { nombre, email, contraseña, pais };
     localStorage.setItem('usuarioRegistrado', JSON.stringify(nuevoUsuario));
+    localStorage.setItem('codigoConfirmacion', codigo); 
+
+    console.log('Código de confirmación enviado (simulado):', codigo); 
+
+
     setMensaje('✅ ¡Usuario registrado exitosamente!');
 
-    // Limpiar campos
     setNombre('');
     setEmail('');
-    setPassword('');
+    setContraseña('');
     setConfirmar('');
-    setCountry('');
+    setPais('');
 
-    // Redirigir al login después de 1 segundo
     setTimeout(() => {
-      navigate('/login');
+      navegador('/confirmacion');
     }, 1000);
-  };
+     };
 
-  return (
+    return (
     <div className="register-container">
       <form className="register-form" onSubmit={handleRegister}>
         <h2>Registrarse</h2>
@@ -72,8 +75,8 @@ const Register: React.FC = () => {
         <input
           type="password"
           id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={contraseña}
+          onChange={(e) => setContraseña(e.target.value)}
           placeholder="••••••••"
           required
         />
@@ -91,8 +94,8 @@ const Register: React.FC = () => {
         <label htmlFor="country">País</label>
         <select
           id="country"
-          value={country}
-          onChange={(e) => setCountry(e.target.value)}
+          value={pais}
+          onChange={(e) => setPais(e.target.value)}
           required
         >
           <option value="">Selecciona tu país</option>
@@ -118,7 +121,6 @@ const Register: React.FC = () => {
 };
 
 export default Register;
-
 
 
 
