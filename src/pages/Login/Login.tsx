@@ -65,10 +65,14 @@ const Login: React.FC = () => {
         <p className="link">
           ¿No tienes cuenta? <Link to="/register">Regístrate</Link>
         </p>
+
+        <div className="forgot-password">
+               <Link to="/restcontraseña">¿Olvidaste tu contraseña?</Link>
+        </div>
       </form>
     </div>
   );
-};
+   };
 
 export default Login;
 

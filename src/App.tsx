@@ -9,6 +9,8 @@ import Platform from './pages/Platform/Platform'
 import SpecialOffers from './pages/SpecialOffers/SpecialOffers'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
+import RestContraseña from './pages/ReestablecerContraseña/RestContraseña'
+import Confirmation  from './pages/Confirmacion/Confirmacion'
 import './App.css'
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
           <Route path='/ofertas' element={<SpecialOffers />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/restcontraseña' element={<RestContraseña />} />
+           <Route path='/confirmacion' element={<Confirmation />} />
         </Routes>
       </main>
     </div>
