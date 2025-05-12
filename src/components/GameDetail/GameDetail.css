@@ -1,0 +1,106 @@
+.game-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.game-detail__header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.game-detail__header h1 {
+  font-size: 2rem;
+  color: #C71610;
+  font-weight: bold;
+}
+
+.game-detail__header p {
+  font-size: 1rem;
+  color: #333;
+}
+
+.game-detail__image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.game-detail__description {
+  font-size: 1rem;
+  color: #333;
+  text-align: justify;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.game-detail__trailer {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.game-detail__button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.game-detail__buy-button {
+  background-color: #C71610;
+  color: white;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.game-detail__buy-button:hover {
+  background-color: #a4150c;
+}
+
+.game-detail__buy-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.game-detail__reviews {
+  margin-top: 30px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.game-detail__reviews h2 {
+  color: #C71610;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.game-detail__review {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.game-detail__review p {
+  color: #333;
+}
+
+.game-detail__review .review-author {
+  font-weight: bold;
+  color: #C71610;
+}
