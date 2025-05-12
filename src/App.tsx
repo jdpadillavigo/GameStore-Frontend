@@ -8,11 +8,8 @@ import Categories from './pages/Categories/Categories'
 import Platform from './pages/Platform/Platform'
 import SpecialOffers from './pages/SpecialOffers/SpecialOffers'
 import Login from './pages/Login/Login'
-
-
-import './App.css'
 import Register from './pages/Register/Register'
-
+import './App.css'
 
 function App() {
   return (
