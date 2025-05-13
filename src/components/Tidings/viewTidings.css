@@ -1,0 +1,9 @@
+.vistaNoticia{
+    display: flex;
+}
+.noticia-container {
+    width: 75%;
+}
+.filter-container {
+    width: 25%;
+}
