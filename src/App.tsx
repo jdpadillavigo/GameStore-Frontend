@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Routes, Route} from 'react-router-dom'
 
 import Navbar from './components/Navbar/Navbar'
@@ -8,29 +7,37 @@ import Categories from './pages/Categories/Categories'
 import Platform from './pages/Platform/Platform'
 import SpecialOffers from './pages/SpecialOffers/SpecialOffers'
 import Login from './pages/Login/Login'
+import Register from './pages/Register/Register'
+import ResetPassword from './pages/ResetPassword/ResetPassword'
+import Confirmation  from './pages/Confirmation/Confirmation'
+import GameDetail from './pages/GameDetail/GameDetail';
 
+import { CartProvider } from './components/CartContext/CartContext';
 
 import './App.css'
-import Register from './pages/Register/Register'
-
 
 function App() {
   return (
     <div className="app-container">
-      <Navbar />
-      <main className="main-content">
-        <Routes>
-          <Route path='/' element={<Home/>} />
-          <Route path='/explorar' element={<Explore />} />
-          <Route path='/categorias' element={<Categories />} />
-          <Route path='/plataforma' element={<Platform />} />
-          <Route path='/ofertas' element={<SpecialOffers />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-        </Routes>
-      </main>
+      <CartProvider>
+        <Navbar />
+        <main className="main-content">
+          <Routes>
+            <Route path='/' element={<Home/>} />
+            <Route path='/explorar' element={<Explore />} />
+            <Route path='/categorias' element={<Categories />} />
+            <Route path='/plataforma' element={<Platform />} />
+            <Route path='/ofertas' element={<SpecialOffers />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/restcontra' element={<ResetPassword />} />
+            <Route path='/confirmacion' element={<Confirmation />} />
+            <Route path="/game/:gameId" element={<GameDetail />} />
+          </Routes>
+        </main>
+      </CartProvider>
     </div>
   )
 }
 
-export default App
+export default App;

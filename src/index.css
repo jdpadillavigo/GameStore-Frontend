@@ -1,5 +1,5 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Roboto, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
   /* color-scheme: light dark; */
   /* color: rgba(255, 255, 255, 0.87); */
@@ -9,6 +9,13 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --font-size-subtitle: 1.3rem;
+  --font-size-paragraph: 1.1rem;
+
+  --main-color: darkred;
+  --secondary-color: red;
+  --blue-color: #007bff;
 }
 
 body {
@@ -23,5 +30,14 @@ body {
   :root {
     color: black;
     background-color: #ffffff;
+  }
+}
+
+
+/* Responsive */
+@media (max-width: 480px) {
+  :root {
+    --font-size-subtitle: 1.1rem;
+    --font-size-paragraph: 0.9rem;
   }
 }
