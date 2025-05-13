@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Confirmacion.css'; 
+import './Confirmation.css'; 
 
 const Confirmation: React.FC = () => {
   const [confirmacionCodigo, setConfirmacionCodigo] = useState('');

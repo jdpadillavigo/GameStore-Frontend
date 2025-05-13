@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './Login.css';
 import { Link, useNavigate } from 'react-router-dom';
+import './Login.css';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -67,7 +67,7 @@ const Login: React.FC = () => {
         </p>
 
         <div className="forgot-password">
-               <Link to="/restcontraseña">¿Olvidaste tu contraseña?</Link>
+          <Link to="/restcontra">¿Olvidaste tu contraseña?</Link>
         </div>
       </form>
     </div>

@@ -29,8 +29,12 @@
     margin-top: 20px;
 }
 
+.home-page__content__grid a {
+    text-decoration: none;
+}
+
 .home-page__content__grid__game {
-    background-color: darkred;
+    background-color: var(--main-color);
     border-radius: 8px;
     overflow: hidden;
     height: 280px;

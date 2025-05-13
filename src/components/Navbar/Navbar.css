@@ -15,7 +15,7 @@
 .navbar a {
     text-decoration: none;
     text-align: center;
-    color: darkred;
+    color: var(--main-color);
     font-weight: 600;
     height: 50%;
     width: 120px;
@@ -27,7 +27,7 @@
 }
 
 .navbar a:hover {
-    color: red;
+    color: var(--secondary-color);
 }
 
 .navbar__search-login {
@@ -47,7 +47,7 @@
     padding-inline: 15px;
     width: 450px;
     font-size: var(--font-size-paragraph);
-    color: darkred;
+    color: var(--main-color);
     transition: box-shadow 0.3s ease;
 }
 
@@ -58,11 +58,11 @@
 
 .navbar__search-login input::placeholder {
     font-size: var(--font-size-paragraph);
-    color: darkred;
+    color: var(--main-color);
 }
 
 .navbar__search-login input::selection {
-    background-color: darkred;
+    background-color: var(--main-color);
     color: white;
 }
 
