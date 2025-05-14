@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './RestContraseña.css';
 import { useNavigate } from 'react-router-dom'; 
+import './ResetPassword.css';
 
-const RestContraseña: React.FC = () => {
+const ResetPassword: React.FC = () => {
   const [email, setEmail] = useState('');
   const [nuevaContraseña, setNuevaContraseña] = useState('');
   const [confirmarContraseña, setConfirmContraseña] = useState('');
@@ -28,14 +28,14 @@ const RestContraseña: React.FC = () => {
     setError('');
 
    
-      navegador('/login');
+    navegador('/login');
     
   };
 
   return (
     <div className="restcontraseña-container">
       <div className="card">
-        <h1>Restablece Tu Contraseña</h1>
+        <h1>Restablece tu contraseña</h1>
         <p>
              Ingrese la dirección de correo electrónico verificada de su cuenta de usuario 
             y le enviaremos un mensaje de confirmación de restablecimiento de contraseña.
@@ -43,23 +43,23 @@ const RestContraseña: React.FC = () => {
         <form onSubmit={handleSubmit}>
           <input
             type="email"
-            placeholder="Correo Electrónico"
+            placeholder="Correo electrónico"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="contraseña"
-            placeholder="Contraseña Nueva"
+            placeholder="Contraseña nueva"
             value={nuevaContraseña}
             onChange={(e) => setNuevaContraseña(e.target.value)}
           />
           <input
             type="contraseña"
-            placeholder="Confirmar Contraseña Nueva"
+            placeholder="Confirmar contraseña nueva"
             value={confirmarContraseña}
             onChange={(e) => setConfirmContraseña(e.target.value)}
           />
-          <button type="submit">Enviar Correo Electrónico</button>
+          <button type="submit">Enviar correo electrónico</button>
         </form>
         {error && <div className="error">{error}</div>}
         {mensaje && <div className="success">{mensaje}</div>}
@@ -68,4 +68,4 @@ const RestContraseña: React.FC = () => {
   );
 };
 
-export default RestContraseña;
+export default ResetPassword;

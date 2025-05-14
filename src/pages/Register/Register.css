@@ -25,7 +25,7 @@
   font-weight: 600;
   margin-top: 1rem;
   display: block;
-  color: #333;
+  color: black;
 }
 
 .register-form input {
@@ -41,17 +41,18 @@
   margin-top: 1.8rem;
   width: 100%;
   padding: 0.7rem;
-  background-color: #c71610;
+  background-color: var(--main-color);
   color: white;
   border: none;
   border-radius: 8px;
   font-weight: bold;
   font-size: 1rem;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .register-form button:hover {
-  background-color: red;
+  background-color: var(--secondary-color);
 }
 
 .link {
@@ -61,7 +62,7 @@
 }
 
 .link a {
-  color: #007bff;
+  color: var(--blue-color);
   text-decoration: none;
 }
 
@@ -73,7 +74,7 @@
   margin-top: 1rem;
   text-align: center;
   font-weight: bold;
-  color: #333;
+  color: black;
 }
 
 

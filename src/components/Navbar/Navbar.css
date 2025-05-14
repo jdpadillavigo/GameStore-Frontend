@@ -15,25 +15,68 @@
 .navbar a {
     text-decoration: none;
     text-align: center;
-    color: black;
-    height: 100%;
+    color: var(--main-color);
+    font-weight: 600;
+    height: 50%;
     width: 120px;
     border-right: 1px solid rgba(0, 0, 0, 0.3);
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: color 0.3s ease;
 }
 
 .navbar a:hover {
-    font-weight: 600;
+    color: var(--secondary-color);
 }
 
-.navbar input {
+.navbar__search-login {
+    display: flex;
+    justify-content: right;
+    place-items: center;
     position: absolute;
-    right: 20px;
+    right: 0;
+    gap: 15px;
+    margin-right: 15px;
+}
+
+.navbar__search-login input {
     height: 50px;
     border: 1px solid black;
     border-radius: 23px;
-    padding-left: 15px;
-    width: 30%;
+    padding-inline: 15px;
+    width: 450px;
+    font-size: var(--font-size-paragraph);
+    color: var(--main-color);
+    transition: box-shadow 0.3s ease;
+}
+
+.navbar__search-login input:hover,
+.navbar__search-login input:focus {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.navbar__search-login input::placeholder {
+    font-size: var(--font-size-paragraph);
+    color: var(--main-color);
+}
+
+.navbar__search-login input::selection {
+    background-color: var(--main-color);
+    color: white;
+}
+
+.navbar__search-login a {
+    font-size: 3rem;
+    border: 0;
+    width: fit-content;
+    height: fit-content;
+}
+
+
+/* Responsive */
+@media (max-width: 480px) {
+    .navbar {
+        height: 60px;
+    }
 }

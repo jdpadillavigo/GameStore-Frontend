@@ -12,6 +12,10 @@
 
   --font-size-subtitle: 1.3rem;
   --font-size-paragraph: 1.1rem;
+
+  --main-color: darkred;
+  --secondary-color: red;
+  --blue-color: #007bff;
 }
 
 body {
