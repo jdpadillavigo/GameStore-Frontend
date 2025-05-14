@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Confirmation.css'; 
+import './Confirmation.css';
 
 const Confirmation: React.FC = () => {
   const [confirmacionCodigo, setConfirmacionCodigo] = useState('');
@@ -14,9 +14,10 @@ const Confirmation: React.FC = () => {
 
     if (confirmacionCodigo === codigoEsperado) {
       setMensaje('✅ Código de confirmación válido');
+      localStorage.setItem('usuarioVerificado', 'true');
       setTimeout(() => {
-        localStorage.removeItem('codigoConfirmacion'); 
-        navigate('/');
+        localStorage.removeItem('codigoConfirmacion');
+        navigate('/login');
       }, 1000);
     } else {
       setMensaje('❌ Código de confirmación incorrecto');

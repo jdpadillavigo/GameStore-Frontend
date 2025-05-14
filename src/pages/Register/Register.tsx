@@ -14,7 +14,7 @@ const Register: React.FC = () => {
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!nombre || !email || !contraseña|| !confirmar || !pais) {
+    if (!nombre || !email || !contraseña || !confirmar || !pais) {
       setMensaje('Por favor, completa todos los campos');
       return;
     }
@@ -28,10 +28,10 @@ const Register: React.FC = () => {
 
     const nuevoUsuario = { nombre, email, contraseña, pais };
     localStorage.setItem('usuarioRegistrado', JSON.stringify(nuevoUsuario));
-    localStorage.setItem('codigoConfirmacion', codigo); 
+    localStorage.setItem('codigoConfirmacion', codigo);
 
-    console.log('Código de confirmación enviado (simulado):', codigo); 
-
+    console.log('Código de confirmación enviado (simulado):', codigo);
+    alert(`Código de confirmación enviado al correo: ${codigo}`);
 
     setMensaje('✅ ¡Usuario registrado exitosamente!');
 
@@ -44,9 +44,9 @@ const Register: React.FC = () => {
     setTimeout(() => {
       navegador('/confirmacion');
     }, 1000);
-     };
+  };
 
-    return (
+  return (
     <div className="register-container">
       <form className="register-form" onSubmit={handleRegister}>
         <h2>Registrarse</h2>
@@ -121,7 +121,3 @@ const Register: React.FC = () => {
 };
 
 export default Register;
-
-
-
-

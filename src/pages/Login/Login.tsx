@@ -14,20 +14,26 @@ const Login: React.FC = () => {
     const datos = localStorage.getItem('usuarioRegistrado');
     const usuario = datos ? JSON.parse(datos) : null;
 
-    if (usuario && email === usuario.email && password === usuario.password) {
+    if (!usuario) {
+      setMensaje('Usuario no registrado');
+      return;
+    }
+
+    const verificado = localStorage.getItem('usuarioVerificado') === 'true';
+    if (!verificado) {
+      setMensaje('Debes verificar tu correo antes de iniciar sesión ❗');
+      return;
+    }
+
+    if (usuario && email === usuario.email && password === usuario.contraseña) {
       const esAdmin = usuario.nombre.startsWith('Admin');
 
       setMensaje('Inicio de sesión exitoso ✅');
-
-      // Guardar rol simulado
       localStorage.setItem('rol', esAdmin ? 'admin' : 'usuario');
 
-      // Redirigir a inicio si es admin
-      if (esAdmin) {
-        setTimeout(() => {
-          navigate('/');
-        }, 1000); // pequeña espera para ver el mensaje
-      }
+      setTimeout(() => {
+        navigate('/');
+      }, 1000);
     } else {
       setMensaje('Correo o contraseña incorrectos ❌');
     }
@@ -72,7 +78,6 @@ const Login: React.FC = () => {
       </form>
     </div>
   );
-   };
+};
 
 export default Login;
-
