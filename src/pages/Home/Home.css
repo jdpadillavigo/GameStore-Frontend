@@ -37,7 +37,7 @@
     background-color: var(--main-color);
     border-radius: 8px;
     overflow: hidden;
-    height: 280px;
+    height: 275px;
     transition: transform 0.3s ease;
 }
 
@@ -48,7 +48,7 @@
 
 .home-page__content__grid__game img {
     width: 100%;
-    height: 230px;
+    height: 225px;
     object-fit: cover;
 }
 
@@ -62,19 +62,29 @@
 /* Responsive */
 @media (max-width: 2240px) {
     .home-page__content__grid {
-        grid-template-columns: repeat(3, 400px);
+        grid-template-columns: repeat(2, 650px);
+    }
+
+    .home-page__content__grid__game {
+        height: 415px;
+    }
+
+    .home-page__content__grid__game img {
+        height: 365px;
     }
 }
 
-@media (max-width: 1340px) {
+@media (max-width: 1419px) {
     .home-page__content__grid {
-        grid-template-columns: repeat(2, 400px);
+        grid-template-columns: repeat(1, 650px);
     }
-}
 
-@media (max-width: 920px) {
-    .home-page__content__grid {
-        grid-template-columns: repeat(1, 400px);
+    .home-page__content__grid__game {
+        height: 415px;
+    }
+
+    .home-page__content__grid__game img {
+        height: 365px;
     }
 }
 
@@ -84,38 +94,58 @@
     }
 }
 
-@media (max-width: 480px) {
-    .home-page {
-        margin-top: 60px;
-    }
-
+@media (max-width: 739px) {
     .home-page__content__grid {
-        grid-template-columns: repeat(1, 83.2vw);
+        grid-template-columns: repeat(1, 88vw);
     }
 
     .home-page__content__grid__game {
-        height: 58.335vw;
+        height: 56vw;
     }
 
+    .home-page__content__grid__game img {
+        height: 88%;
+    }
+}
+
+@media (max-width: 700px) {
+    .home-page__content__grid__game img {
+        height: 86%;
+    }
+}
+
+@media (max-width: 600px) {
     .home-page__content__grid__game img {
         height: 84%;
     }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 500px) {
     .home-page__content__grid__game img {
         height: 82%;
     }
 }
 
-@media (max-width: 376px) {
+@media (max-width: 480px) {
+    .home-page {
+        margin-top: 60px;
+    }
+}
+
+@media (max-width: 420px) {
     .home-page__content__grid__game img {
         height: 80%;
     }
 }
 
-@media (max-width: 344px) {
+@media (max-width: 370px) {
     .home-page__content__grid__game img {
         height: 78%;
+    }
+}
+
+@media (max-width: 320px) {
+    .home-page__content__grid__game img {
+        height: 76%;
     }
 }

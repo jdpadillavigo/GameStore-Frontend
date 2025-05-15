@@ -12,6 +12,11 @@ import ResetPassword from './pages/ResetPassword/ResetPassword'
 import Confirmation  from './pages/Confirmation/Confirmation'
 import GameDetail from './pages/GameDetail/GameDetail';
 
+import Users from './pages/AdminPages/Users/Users'
+import Games from './pages/AdminPages/Games/Games'
+import News from './pages/AdminPages/News/News'
+import Stats from './pages/AdminPages/Stats/Stats'
+
 import { CartProvider } from './components/CartContext/CartContext';
 
 import './App.css'
@@ -33,6 +38,11 @@ function App() {
             <Route path='/restcontra' element={<ResetPassword />} />
             <Route path='/confirmacion' element={<Confirmation />} />
             <Route path="/game/:gameId" element={<GameDetail />} />
+
+            <Route path='/a/usuarios' element={<Users />} />
+            <Route path='/a/juegos' element={<Games />} />
+            <Route path='/a/noticias' element={<News />} />
+            <Route path='/a/estadisticas' element={<Stats />} />
           </Routes>
         </main>
       </CartProvider>
