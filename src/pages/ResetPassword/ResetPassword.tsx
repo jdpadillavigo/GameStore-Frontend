@@ -13,22 +13,24 @@ const ResetPassword: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (nuevaContraseña !== confirmarContraseña) {
-      setError("Las contraseñas no coinciden.");
-      return;
-    }
-
     if (!email || !nuevaContraseña || !confirmarContraseña) {
       setError("Todos los campos son obligatorios.");
       return;
     }
 
-    const datos = localStorage.getItem('usuarioRegistrado');
-    const usuario = datos ? JSON.parse(datos) : null;
+    if (nuevaContraseña !== confirmarContraseña) {
+      setError("Las contraseñas no coinciden.");
+      return;
+    }
 
-    if (usuario && usuario.email === email) {
-      usuario.contraseña = nuevaContraseña;
-      localStorage.setItem('usuarioRegistrado', JSON.stringify(usuario));
+    const datos = localStorage.getItem('usuariosRegistrados');
+    const listaUsuarios = datos ? JSON.parse(datos) : [];
+
+    const indice = listaUsuarios.findIndex((u: any) => u.email === email);
+
+    if (indice !== -1) {
+      listaUsuarios[indice].contraseña = nuevaContraseña;
+      localStorage.setItem('usuariosRegistrados', JSON.stringify(listaUsuarios));
       setMensaje("Restablecimiento de contraseña exitoso ✅");
       setError('');
       setTimeout(() => {
@@ -47,7 +49,7 @@ const ResetPassword: React.FC = () => {
           Ingrese la dirección de correo electrónico verificada de su cuenta de usuario y le
           enviaremos un mensaje de confirmación de restablecimiento de contraseña.
         </p>
-        <form onSubmit={handleSubmit}>
+        <form>
           <input
             type="email"
             placeholder="Correo electrónico"
@@ -66,7 +68,7 @@ const ResetPassword: React.FC = () => {
             value={confirmarContraseña}
             onChange={(e) => setConfirmContraseña(e.target.value)}
           />
-          <button type="submit">Enviar correo electrónico</button>
+          <button type="button" onClick={handleSubmit}>Enviar correo electrónico</button>
         </form>
         {error && <div className="error">{error}</div>}
         {mensaje && <div className="success">{mensaje}</div>}

@@ -1,3 +1,4 @@
+// Register.tsx
 import React, { useState } from 'react';
 import './Register.css';
 import { Link, useNavigate } from 'react-router-dom';
@@ -11,9 +12,7 @@ const Register: React.FC = () => {
   const [mensaje, setMensaje] = useState('');
   const navegador = useNavigate();
 
-  const handleRegister = (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const handleRegister = () => {
     if (!nombre || !email || !contraseña || !confirmar || !pais) {
       setMensaje('Por favor, completa todos los campos');
       return;
@@ -25,14 +24,16 @@ const Register: React.FC = () => {
     }
 
     const codigo = Math.floor(100000 + Math.random() * 900000).toString();
+    const rol = nombre.startsWith('Admin') ? 'admin' : 'usuario';
+    const nuevoUsuario = { nombre, email, contraseña, pais, rol, verificado: false };
 
-    const nuevoUsuario = { nombre, email, contraseña, pais };
-    localStorage.setItem('usuarioRegistrado', JSON.stringify(nuevoUsuario));
+    const usuariosExistentes = JSON.parse(localStorage.getItem('usuariosRegistrados') || '[]');
+    usuariosExistentes.push(nuevoUsuario);
+    localStorage.setItem('usuariosRegistrados', JSON.stringify(usuariosExistentes));
     localStorage.setItem('codigoConfirmacion', codigo);
+    localStorage.setItem('emailConfirmacion', email);
 
-    console.log('Código de confirmación enviado (simulado):', codigo);
     alert(`Código de confirmación enviado al correo: ${codigo}`);
-
     setMensaje('✅ ¡Usuario registrado exitosamente!');
 
     setNombre('');
@@ -48,56 +49,19 @@ const Register: React.FC = () => {
 
   return (
     <div className="register-container">
-      <form className="register-form" onSubmit={handleRegister}>
+      <form className="register-form">
         <h2>Registrarse</h2>
 
         <label htmlFor="nombre">Nombre de usuario</label>
-        <input
-          type="text"
-          id="nombre"
-          value={nombre}
-          onChange={(e) => setNombre(e.target.value)}
-          placeholder="Escribe tu nombre de usuario"
-          required
-        />
-
+        <input type="text" id="nombre" value={nombre} onChange={(e) => setNombre(e.target.value)} placeholder="Escribe tu nombre de usuario" required />
         <label htmlFor="email">Correo electrónico</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="correo@ejemplo.com"
-          required
-        />
-
+        <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="correo@ejemplo.com" required />
         <label htmlFor="password">Contraseña</label>
-        <input
-          type="password"
-          id="password"
-          value={contraseña}
-          onChange={(e) => setContraseña(e.target.value)}
-          placeholder="••••••••"
-          required
-        />
-
+        <input type="password" id="password" value={contraseña} onChange={(e) => setContraseña(e.target.value)} placeholder="••••••••" required />
         <label htmlFor="confirmar">Confirmar contraseña</label>
-        <input
-          type="password"
-          id="confirmar"
-          value={confirmar}
-          onChange={(e) => setConfirmar(e.target.value)}
-          placeholder="••••••••"
-          required
-        />
-
+        <input type="password" id="confirmar" value={confirmar} onChange={(e) => setConfirmar(e.target.value)} placeholder="••••••••" required />
         <label htmlFor="country">País</label>
-        <select
-          id="country"
-          value={pais}
-          onChange={(e) => setPais(e.target.value)}
-          required
-        >
+        <select id="country" value={pais} onChange={(e) => setPais(e.target.value)} required>
           <option value="">Selecciona tu país</option>
           <option value="Perú">Perú</option>
           <option value="México">México</option>
@@ -110,7 +74,7 @@ const Register: React.FC = () => {
 
         {mensaje && <p className="mensaje">{mensaje}</p>}
 
-        <button type="submit">Crear cuenta</button>
+        <button type="button" onClick={handleRegister}>Crear cuenta</button>
 
         <p className="link">
           ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
