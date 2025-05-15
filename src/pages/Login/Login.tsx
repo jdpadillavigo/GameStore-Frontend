@@ -1,3 +1,4 @@
+// Login.tsx
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
@@ -8,29 +9,23 @@ const Login: React.FC = () => {
   const [mensaje, setMensaje] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const datos = localStorage.getItem('usuarioRegistrado');
-    const usuario = datos ? JSON.parse(datos) : null;
+  const handleLogin = () => {
+    const usuarios = JSON.parse(localStorage.getItem('usuariosRegistrados') || '[]');
+    const usuario = usuarios.find((u: any) => u.email === email);
 
     if (!usuario) {
       setMensaje('Usuario no registrado');
       return;
     }
 
-    const verificado = localStorage.getItem('usuarioVerificado') === 'true';
-    if (!verificado) {
+    if (!usuario.verificado) {
       setMensaje('Debes verificar tu correo antes de iniciar sesión ❗');
       return;
     }
 
-    if (usuario && email === usuario.email && password === usuario.contraseña) {
-      const esAdmin = usuario.nombre.startsWith('Admin');
-
+    if (usuario.contraseña === password) {
+      localStorage.setItem('rol', usuario.rol);
       setMensaje('Inicio de sesión exitoso ✅');
-      localStorage.setItem('rol', esAdmin ? 'admin' : 'usuario');
-
       setTimeout(() => {
         navigate('/');
       }, 1000);
@@ -41,7 +36,7 @@ const Login: React.FC = () => {
 
   return (
     <div className="login-container">
-      <form className="login-form" onSubmit={handleLogin}>
+      <form className="login-form">
         <h2>Iniciar sesión</h2>
 
         {mensaje && <p className="mensaje">{mensaje}</p>}
@@ -66,7 +61,7 @@ const Login: React.FC = () => {
           required
         />
 
-        <button type="submit">Entrar</button>
+        <button type="button" onClick={handleLogin}>Entrar</button>
 
         <p className="link">
           ¿No tienes cuenta? <Link to="/register">Regístrate</Link>
