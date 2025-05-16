@@ -64,7 +64,7 @@
   cursor: pointer;
   text-transform: uppercase;
   font-weight: bold;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .game-detail__buy-button:hover {

@@ -1,7 +1,6 @@
-// Register.tsx
 import React, { useState } from 'react';
-import './Register.css';
 import { Link, useNavigate } from 'react-router-dom';
+import './Register.css';
 
 const Register: React.FC = () => {
   const [nombre, setNombre] = useState('');
