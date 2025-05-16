@@ -9,7 +9,7 @@ import SpecialOffers from './pages/SpecialOffers/SpecialOffers'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
-import Verification from './pages/Verification/Verification'
+import Verification from './pages/Confirmation/Confirmation'
 import GameDetail from './pages/GameDetail/GameDetail';
 
 import Users from './pages/AdminPages/Users/Users'
