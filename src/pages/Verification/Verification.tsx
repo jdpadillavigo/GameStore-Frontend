@@ -1,9 +1,9 @@
 // Confirmation.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Confirmation.css';
+import './Verification.css';
 
-const Confirmation: React.FC = () => {
+const Verification: React.FC = () => {
   const [confirmacionCodigo, setConfirmacionCodigo] = useState('');
   const [mensaje, setMensaje] = useState('');
   const navigate = useNavigate();
@@ -55,4 +55,4 @@ const Confirmation: React.FC = () => {
   );
 };
 
-export default Confirmation;
+export default Verification;

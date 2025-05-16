@@ -9,7 +9,7 @@ import SpecialOffers from './pages/SpecialOffers/SpecialOffers'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
-import Confirmation  from './pages/Confirmation/Confirmation'
+import Verification from './pages/Verification/Verification'
 import GameDetail from './pages/GameDetail/GameDetail';
 
 import { CartProvider } from './components/CartContext/CartContext';
@@ -31,7 +31,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/restcontra' element={<ResetPassword />} />
-            <Route path='/confirmacion' element={<Confirmation />} />
+            <Route path='/verificacion' element={<Verification />} />
             <Route path="/game/:gameId" element={<GameDetail />} />
           </Routes>
         </main>

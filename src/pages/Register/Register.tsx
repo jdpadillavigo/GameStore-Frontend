@@ -43,7 +43,7 @@ const Register: React.FC = () => {
     setPais('');
 
     setTimeout(() => {
-      navegador('/confirmacion');
+      navegador('/verificacion');
     }, 1000);
   };
 
