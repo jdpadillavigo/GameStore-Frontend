@@ -1,4 +1,3 @@
-// Login.tsx
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Login.css';
@@ -13,8 +12,10 @@ const Login: React.FC = () => {
     const usuarios = JSON.parse(localStorage.getItem('usuariosRegistrados') || '[]');
     const usuario = usuarios.find((u: any) => u.email === email);
 
-    if (!usuario) {
-      setMensaje('Usuario no registrado');
+    if (usuario) {
+      localStorage.setItem('usuarioLogueado', JSON.stringify(usuario));
+    } else {
+      setMensaje('Usuario no registrado ❗');
       return;
     }
 
@@ -27,7 +28,11 @@ const Login: React.FC = () => {
       localStorage.setItem('rol', usuario.rol);
       setMensaje('Inicio de sesión exitoso ✅');
       setTimeout(() => {
-        navigate('/');
+        if (usuario.rol === 'usuario') {
+          navigate('/');
+        } else {
+          navigate('/a/usuarios');
+        }
       }, 1000);
     } else {
       setMensaje('Correo o contraseña incorrectos ❌');
@@ -39,7 +44,7 @@ const Login: React.FC = () => {
       <form className="login-form">
         <h2>Iniciar sesión</h2>
 
-        {mensaje && <p className="mensaje">{mensaje}</p>}
+        {mensaje && <p className="login-form__mensaje">{mensaje}</p>}
 
         <label htmlFor="email">Correo electrónico:</label>
         <input
@@ -63,11 +68,11 @@ const Login: React.FC = () => {
 
         <button type="button" onClick={handleLogin}>Entrar</button>
 
-        <p className="link">
+        <p className="login-form__link">
           ¿No tienes cuenta? <Link to="/register">Regístrate</Link>
         </p>
 
-        <div className="forgot-password">
+        <div className="login-form__forgot-password">
           <Link to="/restcontra">¿Olvidaste tu contraseña?</Link>
         </div>
       </form>

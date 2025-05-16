@@ -4,20 +4,37 @@ import { FaUserCircle } from 'react-icons/fa';
 import './Navbar.css';
 
 const Navbar = () => {
+  interface Usuario {
+    nombre: string;
+    email: string;
+    contraseña: string;
+    pais: string;
+    rol: string;
+    verificado: boolean;
+  }
+
   const [rol, setRol] = useState(localStorage.getItem('rol') || 'usuario');
-  const [usuario, setUsuario] = useState<{ nombre: string } | null>(null);
+  const [usuario, setUsuario] = useState<Usuario | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const datos = localStorage.getItem('usuarioRegistrado');
-    if (datos) {
-      setUsuario(JSON.parse(datos));
+    const datosUsuario = localStorage.getItem('usuarioLogueado');
+    const rolUsuario = localStorage.getItem('rol');
+
+    if (datosUsuario) {
+      setUsuario(JSON.parse(datosUsuario));
+    }
+
+    if (rolUsuario) {
+      setRol(rolUsuario);
     }
   }, []);
 
   const handleLogout = () => {
-    setRol('usuario');
+    localStorage.removeItem('usuarioLogueado');
     setUsuario(null);
+    localStorage.setItem('rol', 'usuario');
+    setRol('usuario');
     navigate("/");
   };
 
