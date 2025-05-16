@@ -12,9 +12,7 @@ const Login: React.FC = () => {
     const usuarios = JSON.parse(localStorage.getItem('usuariosRegistrados') || '[]');
     const usuario = usuarios.find((u: any) => u.email === email);
 
-    if (usuario) {
-      localStorage.setItem('usuarioLogueado', JSON.stringify(usuario));
-    } else {
+    if (!usuario) {
       setMensaje('Usuario no registrado ❗');
       return;
     }
@@ -25,6 +23,7 @@ const Login: React.FC = () => {
     }
 
     if (usuario.contraseña === password) {
+      localStorage.setItem('usuarioLogueado', JSON.stringify(usuario));
       localStorage.setItem('rol', usuario.rol);
       setMensaje('Inicio de sesión exitoso ✅');
       setTimeout(() => {
@@ -33,6 +32,7 @@ const Login: React.FC = () => {
         } else {
           navigate('/a/usuarios');
         }
+        window.location.reload();
       }, 1000);
     } else {
       setMensaje('Correo o contraseña incorrectos ❌');
