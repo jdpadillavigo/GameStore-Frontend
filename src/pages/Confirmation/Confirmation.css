@@ -36,7 +36,7 @@
 }
 
 .confirmation-form input {
-  width: 100%;
+  width: 95%;
   padding: 0.5rem;
   margin-top: 0.3rem;
   border: 1px solid #ccc;
@@ -48,4 +48,14 @@
   margin-top: 1.5rem;
   width: 100%;
   padding: 0.7rem;
+  cursor: pointer;
+  background-color: var(--main-color);
+  color: white;
+  transition: background-color 0.3s ease;
+  border: 0;
+  border-radius: 8px;
+}
+
+.confirmation-form button:hover {
+  background-color: var(--secondary-color);
 }

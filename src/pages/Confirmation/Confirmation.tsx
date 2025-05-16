@@ -1,22 +1,30 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Confirmation.css'; 
+import './Confirmation.css';
 
 const Confirmation: React.FC = () => {
   const [confirmacionCodigo, setConfirmacionCodigo] = useState('');
   const [mensaje, setMensaje] = useState('');
   const navigate = useNavigate();
 
-  const handleConfirm = (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const handleConfirm = () => {
     const codigoEsperado = localStorage.getItem('codigoConfirmacion');
+    const email = localStorage.getItem('emailConfirmacion');
 
-    if (confirmacionCodigo === codigoEsperado) {
+    const usuarios = JSON.parse(localStorage.getItem('usuariosRegistrados') || '[]');
+
+    if (confirmacionCodigo === codigoEsperado && email) {
+      const actualizados = usuarios.map((u: any) =>
+        u.email === email ? { ...u, verificado: true } : u
+      );
+
+      localStorage.setItem('usuariosRegistrados', JSON.stringify(actualizados));
+      localStorage.removeItem('codigoConfirmacion');
+      localStorage.removeItem('emailConfirmacion');
       setMensaje('✅ Código de confirmación válido');
+
       setTimeout(() => {
-        localStorage.removeItem('codigoConfirmacion'); 
-        navigate('/');
+        navigate('/login');
       }, 1000);
     } else {
       setMensaje('❌ Código de confirmación incorrecto');
@@ -25,7 +33,7 @@ const Confirmation: React.FC = () => {
 
   return (
     <div className="confirmation-container">
-      <form className="confirmation-form" onSubmit={handleConfirm}>
+      <form className="confirmation-form">
         <h2>Por favor, confirma tu identidad</h2>
         <p>Te enviamos un código de confirmación. Ingrésalo a continuación:</p>
 
@@ -40,7 +48,7 @@ const Confirmation: React.FC = () => {
           onChange={(e) => setConfirmacionCodigo(e.target.value)}
           required
         />
-        <button type="submit">Verificar código de confirmación</button>
+        <button type="button" onClick={handleConfirm}>Verificar código de confirmación</button>
       </form>
     </div>
   );

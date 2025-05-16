@@ -8,26 +8,32 @@ const Login: React.FC = () => {
   const [mensaje, setMensaje] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleLogin = () => {
+    const usuarios = JSON.parse(localStorage.getItem('usuariosRegistrados') || '[]');
+    const usuario = usuarios.find((u: any) => u.email === email);
 
-    const datos = localStorage.getItem('usuarioRegistrado');
-    const usuario = datos ? JSON.parse(datos) : null;
+    if (!usuario) {
+      setMensaje('Usuario no registrado ❗');
+      return;
+    }
 
-    if (usuario && email === usuario.email && password === usuario.password) {
-      const esAdmin = usuario.nombre.startsWith('Admin');
+    if (!usuario.verificado) {
+      setMensaje('Debes verificar tu correo antes de iniciar sesión ❗');
+      return;
+    }
 
+    if (usuario.contraseña === password) {
+      localStorage.setItem('usuarioLogueado', JSON.stringify(usuario));
+      localStorage.setItem('rol', usuario.rol);
       setMensaje('Inicio de sesión exitoso ✅');
-
-      // Guardar rol simulado
-      localStorage.setItem('rol', esAdmin ? 'admin' : 'usuario');
-
-      // Redirigir a inicio si es admin
-      if (esAdmin) {
-        setTimeout(() => {
+      setTimeout(() => {
+        if (usuario.rol === 'usuario') {
           navigate('/');
-        }, 1000); // pequeña espera para ver el mensaje
-      }
+        } else {
+          navigate('/a/usuarios');
+        }
+        window.location.reload();
+      }, 1000);
     } else {
       setMensaje('Correo o contraseña incorrectos ❌');
     }
@@ -35,10 +41,10 @@ const Login: React.FC = () => {
 
   return (
     <div className="login-container">
-      <form className="login-form" onSubmit={handleLogin}>
+      <form className="login-form">
         <h2>Iniciar sesión</h2>
 
-        {mensaje && <p className="mensaje">{mensaje}</p>}
+        {mensaje && <p className="login-form__mensaje">{mensaje}</p>}
 
         <label htmlFor="email">Correo electrónico:</label>
         <input
@@ -60,19 +66,18 @@ const Login: React.FC = () => {
           required
         />
 
-        <button type="submit">Entrar</button>
+        <button type="button" onClick={handleLogin}>Entrar</button>
 
-        <p className="link">
+        <p className="login-form__link">
           ¿No tienes cuenta? <Link to="/register">Regístrate</Link>
         </p>
 
-        <div className="forgot-password">
+        <div className="login-form__forgot-password">
           <Link to="/restcontra">¿Olvidaste tu contraseña?</Link>
         </div>
       </form>
     </div>
   );
-   };
+};
 
 export default Login;
-

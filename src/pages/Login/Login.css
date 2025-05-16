@@ -50,25 +50,27 @@
   background-color: var(--secondary-color);
 }
 
-.mensaje {
+.login-form__mensaje {
   text-align: center;
   margin-top: 1rem;
   font-weight: bold;
   color: green;
 }
 
-.forgot-password {
-  text-align: right;
-  margin-top: -10px;
-  margin-bottom: 15px;
-}
-
-.forgot-password a {
-  color: var(--blue-color);
+.login-form__link a,
+.login-form__forgot-password a {
   text-decoration: none;
+  color: var(--blue-color);
   font-size: 0.9rem;
 }
 
-.forgot-password a:hover {
+.login-form__link a:hover,
+.login-form__forgot-password a:hover {
   text-decoration: underline;
+}
+
+.login-form__forgot-password {
+  text-align: right;
+  margin-top: -10px;
+  margin-bottom: 15px;
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import './ResetPassword.css';
 
 const ResetPassword: React.FC = () => {
@@ -13,23 +13,32 @@ const ResetPassword: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (nuevaContraseña !== confirmarContraseña) {
-      setError("Las contraseñas no coinciden.");
-      return;
-    }
-
     if (!email || !nuevaContraseña || !confirmarContraseña) {
       setError("Todos los campos son obligatorios.");
       return;
     }
 
-    
-    setMensaje("Restablecimiento de contraseña exitoso");
-    setError('');
+    if (nuevaContraseña !== confirmarContraseña) {
+      setError("Las contraseñas no coinciden.");
+      return;
+    }
 
-   
-    navegador('/login');
-    
+    const datos = localStorage.getItem('usuariosRegistrados');
+    const listaUsuarios = datos ? JSON.parse(datos) : [];
+
+    const indice = listaUsuarios.findIndex((u: any) => u.email === email);
+
+    if (indice !== -1) {
+      listaUsuarios[indice].contraseña = nuevaContraseña;
+      localStorage.setItem('usuariosRegistrados', JSON.stringify(listaUsuarios));
+      setMensaje("Restablecimiento de contraseña exitoso ✅");
+      setError('');
+      setTimeout(() => {
+        navegador('/login');
+      }, 1000);
+    } else {
+      setError("No se encontró ningún usuario con ese correo.");
+    }
   };
 
   return (
@@ -37,10 +46,10 @@ const ResetPassword: React.FC = () => {
       <div className="card">
         <h1>Restablece tu contraseña</h1>
         <p>
-             Ingrese la dirección de correo electrónico verificada de su cuenta de usuario 
-            y le enviaremos un mensaje de confirmación de restablecimiento de contraseña.
+          Ingrese la dirección de correo electrónico verificada de su cuenta de usuario y le
+          enviaremos un mensaje de confirmación de restablecimiento de contraseña.
         </p>
-        <form onSubmit={handleSubmit}>
+        <form>
           <input
             type="email"
             placeholder="Correo electrónico"
@@ -48,18 +57,18 @@ const ResetPassword: React.FC = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
-            type="contraseña"
+            type="password"
             placeholder="Contraseña nueva"
             value={nuevaContraseña}
             onChange={(e) => setNuevaContraseña(e.target.value)}
           />
           <input
-            type="contraseña"
+            type="password"
             placeholder="Confirmar contraseña nueva"
             value={confirmarContraseña}
             onChange={(e) => setConfirmContraseña(e.target.value)}
           />
-          <button type="submit">Enviar correo electrónico</button>
+          <button type="button" onClick={handleSubmit}>Enviar correo electrónico</button>
         </form>
         {error && <div className="error">{error}</div>}
         {mensaje && <div className="success">{mensaje}</div>}
