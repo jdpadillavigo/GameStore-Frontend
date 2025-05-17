@@ -12,15 +12,13 @@ export interface nota {
 interface listaNoticiasProps {
     listaNotas : nota[]
 }
-
-const ListaNoticias = (props: listaNoticiasProps ) => {
+const ListaNoticias = (props : listaNoticiasProps ) => {
     return <div>
-        {props.listaNotas.map((elemento : nota)=> {
+        {props.listaNotas.map((elemento : nota) => {
             return (
                 <div className="noticia">
                     <div className="contenido_nota">
                         <div className="titulo_nota">{elemento.title}</div>
-                        <br></br>
                         <br></br>
                         <div className="categoria_nota"> Redactado por {elemento.autor}</div>
                         <div className="extra_nota"> Hace {elemento.dias} dias - {elemento.categoria}</div>
