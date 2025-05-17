@@ -8,7 +8,7 @@
 
 .confirmation-form {
   background-color: #ffffff;
-  padding: 2rem;
+  padding: 32px;
   border-radius: 12px;
   width: 350px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
@@ -16,38 +16,38 @@
 
 .confirmation-form h2 {
   text-align: center;
-  margin-bottom: 1.2rem;
-  font-size: 1.8rem;
+  margin-bottom: 19.2px; 
+  font-size: 28.8px;      
   color: black;
 }
 
 .confirmation-form p {
-  font-size: 0.95rem;
+  font-size: 15.2px;       
   text-align: center;
-  margin-bottom: 1.2rem;
+  margin-bottom: 19.2px;   
   color: black;
 }
 
 .confirmation-form label {
   font-weight: 600;
   display: block;
-  margin-top: 1rem;
+  margin-top: 16px;        
   color: black;
 }
 
 .confirmation-form input {
   width: 95%;
-  padding: 0.5rem;
-  margin-top: 0.3rem;
+  padding: 8px;           
+  margin-top: 4.8px;       
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 16px;        
 }
 
 .confirmation-form button {
-  margin-top: 1.5rem;
+  margin-top: 24px;        
   width: 100%;
-  padding: 0.7rem;
+  padding: 11.2px;         
   cursor: pointer;
   background-color: var(--main-color);
   color: white;
