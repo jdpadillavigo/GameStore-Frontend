@@ -18,10 +18,10 @@ setTotalUsuarios(soloUsuarios.length);
  return (
 
   <div className="Stats-container">
-   <h2 className="Stats-title">Estadísticas</h2>
+   <h1 className="Stats-title">Estadísticas</h1>
    <div className="Card-users">
-    <p>Total de usuarios registrados</p>
-    <h1>{totalUsuarios}</h1>
+    <p className="Stats-title2">Total De Usuarios Registrados</p>
+    <h1 className="Totalusers">{totalUsuarios}</h1>
    </div>
   </div>
 
