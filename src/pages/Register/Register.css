@@ -1,17 +1,20 @@
 .register-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   min-height: 100vh;
   background-color: #f4f4f4;
+  padding: 2rem;
+  margin-top: 80px; /* ✅ evita que el navbar lo tape */
 }
 
 .register-form {
-  background-color: #ffffff;
+  background-color: white;
   padding: 2rem;
   border-radius: 12px;
   width: 350px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .register-form h2 {
@@ -28,13 +31,26 @@
   color: black;
 }
 
-.register-form input {
+.register-form input,
+.register-form select {
   width: 100%;
   padding: 0.5rem;
   margin-top: 0.3rem;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+
+.register-form select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23000' d='M2 0L0 2h4L2 0zm0 5L0 3h4l-2 2z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem center;
+  background-size: 0.65rem auto;
+  padding-right: 2rem;
 }
 
 .register-form button {
