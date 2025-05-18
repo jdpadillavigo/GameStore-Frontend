@@ -1,17 +1,23 @@
 import "./viewTidings.css"
 import ListaNoticias, { nota } from '../../components/Tidings/listaTidings'
-import FilterTidings from "./filterTidings"
+import FilterTidings, { typeCategory } from "./filterTidings"
 
 interface Reg {
-    registro : nota[]
+    registros : nota[]
+    categorias : typeCategory[]
+    categoriaSeleccionada : string
+    setCategoriaSeleccionada : (categoria: string) => void
 }
-
 const VerNoticias = (props : Reg) => {
     return <div className='vistaNoticia'>
         <div className='noticia-container'>
-            <ListaNoticias listaNotas={props.registro}/>
+            <ListaNoticias listaNotas={props.registros}/>
         </div>
-        <FilterTidings />
+        <FilterTidings
+            items={props.categorias}
+            categoriaSeleccionada={props.categoriaSeleccionada}
+            setCategoriaSeleccionada={props.setCategoriaSeleccionada}
+        />
     </div>
 }
 export default VerNoticias

@@ -26,11 +26,12 @@ const Login: React.FC = () => {
       localStorage.setItem('usuarioLogueado', JSON.stringify(usuario));
       localStorage.setItem('rol', usuario.rol);
       setMensaje('Inicio de sesión exitoso ✅');
+      
       setTimeout(() => {
         if (usuario.rol === 'usuario') {
-          navigate('/');
-        } else {
           navigate('/a/usuarios');
+        } else {
+          navigate('/');
         }
         window.location.reload();
       }, 1000);

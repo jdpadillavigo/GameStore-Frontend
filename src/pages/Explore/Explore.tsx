@@ -3,9 +3,10 @@ import portadaNoticias from "../../assets/images/noticia/Portada_noticias.jpg"
 import { nota } from '../../components/Tidings/listaTidings'
 import { useState } from 'react'
 import VerNoticias from '../../components/Tidings/viewTidings'
+import { typeCategory } from '../../components/Tidings/filterTidings';
 
 const Explore = () => {
-  const [lista,setLista] = useState<nota[]>([
+  const listaDeNoticias = [
     {
       id: 1,
       title: "Las suscripciones vitalicias ya no duran toda la vida y el mejor ejemplo llega de la mano de una empresa de VPN",
@@ -19,7 +20,8 @@ const Explore = () => {
       categoria: "Tecnologia",
       autor: "Abelardo González",
       dias: 1
-    },{
+    },
+    {
       id: 3,
       title: "Cómo una serie fue capaz de redefinir el lore de todo un juego y ser (casi) tan famosa como él",
       categoria: "League of Legends",
@@ -36,7 +38,7 @@ const Explore = () => {
     {
       id: 5,
       title: "Willyrex estaría reuniendo a Los Vengadores del streaming para un último baile de Karmaland",
-      categoria: "Streamers",
+      categoria: "Entretenimiento",
       autor: "José A. Mateo Albuerne",
       dias: 1
     },
@@ -50,16 +52,38 @@ const Explore = () => {
     {
       id: 7,
       title: "Es un juegazo. Rumores o no, un exdesarrollador de Rockstar tiene claro que GTA 4 debería ser rescatado como es debido con un remaster",
-      categoria: "GTA V",
+      categoria: "Videojuegos",
       autor: "Alberto Lloria",
       dias: 10
     }
-  ])
+  ]
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string>('All');
+  const noticiasSeleccionadas = (datos: nota[]) => {
+    if (categoriaSeleccionada === 'All') return datos;
+    return datos.filter((elem: nota) => elem.categoria === categoriaSeleccionada);
+  };
+  
+  const categoriasUnicas = (datos : nota[]) => {
+    const todasCategorias = datos.map((elem : nota) => elem.categoria)
+    const [categorias,setCategorias] = useState <typeCategory[]>(['All'])
+    todasCategorias.map((item : typeCategory)=>{
+          if(!categorias.includes(item)){
+              setCategorias([...categorias,item])
+          }
+    })
+    return categorias
+  }
+
   return (
     <div>
         <img src={portadaNoticias} alt="Portada_noticias" />
         <h1 className='title_noticias'>Noticias</h1>
-        <VerNoticias registro={lista}/>
+        <VerNoticias
+          registros={noticiasSeleccionadas(listaDeNoticias)}
+          categorias={categoriasUnicas(listaDeNoticias)}
+          categoriaSeleccionada={categoriaSeleccionada}
+          setCategoriaSeleccionada={setCategoriaSeleccionada}
+        />
     </div>
   )
 }
