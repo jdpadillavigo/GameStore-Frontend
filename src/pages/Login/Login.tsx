@@ -8,7 +8,15 @@ const Login: React.FC = () => {
   const [mensaje, setMensaje] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Validación manual de campos vacíos
+    if (email.trim() === '' || password.trim() === '') {
+      setMensaje('Por favor, completa todos los campos');
+      return;
+    }
+
     const usuarios = JSON.parse(localStorage.getItem('usuariosRegistrados') || '[]');
     const usuario = usuarios.find((u: any) => u.email === email);
 
@@ -26,6 +34,7 @@ const Login: React.FC = () => {
       localStorage.setItem('usuarioLogueado', JSON.stringify(usuario));
       localStorage.setItem('rol', usuario.rol);
       setMensaje('Inicio de sesión exitoso ✅');
+
       setTimeout(() => {
         if (usuario.rol === 'usuario') {
           navigate('/');
@@ -41,7 +50,7 @@ const Login: React.FC = () => {
 
   return (
     <div className="login-container">
-      <form className="login-form">
+      <form className="login-form" onSubmit={handleLogin}>
         <h2>Iniciar sesión</h2>
 
         {mensaje && <p className="login-form__mensaje">{mensaje}</p>}
@@ -53,7 +62,6 @@ const Login: React.FC = () => {
           placeholder="correo@ejemplo.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
         />
 
         <label htmlFor="password">Contraseña:</label>
@@ -63,10 +71,9 @@ const Login: React.FC = () => {
           placeholder="••••••••"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required
         />
 
-        <button type="button" onClick={handleLogin}>Entrar</button>
+        <button type="submit">Entrar</button>
 
         <p className="login-form__link">
           ¿No tienes cuenta? <Link to="/register">Regístrate</Link>
