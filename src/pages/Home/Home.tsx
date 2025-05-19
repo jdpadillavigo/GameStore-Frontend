@@ -16,18 +16,17 @@ const Home = () => {
     addToCart(game); // Agregar el juego al carrito
   };
 
-
   interface SliderImage {
     url: string;
-    title: string;
+    key: string;
   }
 
   const [slides, setSlides] = useState<SliderImage[]>([]);
 
   useEffect(() => {
-    const gamesSlider = Object.values(games).map(game => ({
+    const gamesSlider = Object.entries(games).map(([key, game]) => ({
       url: game.images[0] || '',
-      title: game.title
+      key: key,
     }));
 
     setSlides(gamesSlider);
