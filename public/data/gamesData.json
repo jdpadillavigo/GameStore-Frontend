@@ -24,7 +24,8 @@
         "release_date": "17/09/2013",
         "category": "Acción, Aventura",
         "base_price": 199,
-        "discount": 20
+        "discount": 20,
+        "platform": "PlayStation, Xbox, Windows"
     },
     "NFS_Heat": {
         "title": "Need for Speed Heat",
@@ -51,7 +52,8 @@
         "release_date": "08/11/2019",
         "category": "Carreras",
         "base_price": 199,
-        "discount": 15
+        "discount": 15,
+        "platform": "PlayStation, Xbox, Windows"
     },
     "Elden_Ring": {
         "title": "Elden Ring",
@@ -78,7 +80,8 @@
         "release_date": "25/02/2022",
         "category": "RPG, Acción",
         "base_price": 172,
-        "discount": 10
+        "discount": 10,
+        "platform": "PlayStation, Xbox, Windows"
     },
     "Cyberpunk_2077": {
         "title": "Cyberpunk 2077",
@@ -105,7 +108,8 @@
         "release_date": "10/12/2020",
         "category": "RPG, Acción, Aventura",
         "base_price": 153,
-        "discount": 25
+        "discount": 25,
+        "platform": "PlayStation, Xbox, Windows"
     },
     "Red_Dead_Redemption_2": {
         "title": "Red Dead Redemption 2",
@@ -132,7 +136,8 @@
         "release_date": "26/10/2018",
         "category": "Aventura, Acción",
         "base_price": 153,
-        "discount": 30
+        "discount": 30,
+        "platform": "PlayStation, Xbox, Windows"
     },
     "Horizon_Forbidden_West": {
         "title": "Horizon Forbidden West",
@@ -159,7 +164,8 @@
         "release_date": "18/02/2022",
         "category": "Aventura, Acción",
         "base_price": 197,
-        "discount": 15
+        "discount": 15,
+        "platform": "PlayStation"
     },
     "Ghost_of_Tsushima": {
         "title": "Ghost of Tsushima",
@@ -186,7 +192,8 @@
         "release_date": "17/07/2020",
         "category": "Aventura, Acción",
         "base_price": 199,
-        "discount": 20
+        "discount": 20,
+        "platform": "PlayStation"
     },
     "Assassin’s_Creed_Valhalla": {
         "title": "Assassin’s Creed Valhalla",
@@ -213,7 +220,8 @@
         "release_date": "10/11/2020",
         "category": "Acción, Aventura",
         "base_price": 197,
-        "discount": 10
+        "discount": 10,
+        "platform": "PlayStation, Xbox, Windows"
     },
     "Spider-Man": {
         "title": "Marvel’s Spider-Man Remastered",
@@ -240,7 +248,8 @@
         "release_date": "07/09/2018",
         "category": "Acción, Aventura",
         "base_price": 132,
-        "discount": 10
+        "discount": 10,
+        "platform": "PlayStation, Windows"
     },
     "Resident_Evil_4_Remake": {
         "title": "Resident Evil 4 Remake",
@@ -267,6 +276,7 @@
         "release_date": "24/03/2023",
         "category": "Survival Horror, Acción",
         "base_price": 153,
-        "discount": 0
+        "discount": 0,
+        "platform": "PlayStation, Xbox, Windows"
     }
 }

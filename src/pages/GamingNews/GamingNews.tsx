@@ -3,9 +3,9 @@ import portadaNoticias from "/images/news/Portada_noticias.jpg"
 import VerNoticias from '../../components/Tidings/viewTidings'
 import { nota } from '../../components/Tidings/listaTidings'
 import { typeCategory } from '../../components/Tidings/filterTidings';
-import './Explore.css';
+import './GamingNews.css';
 
-const Explore = () => {
+const GamingNews = () => {
   const listaDeNoticias = [
     {
       id: 1,
@@ -88,4 +88,4 @@ const Explore = () => {
   )
 }
 
-export default Explore;
+export default GamingNews;

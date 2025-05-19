@@ -16,6 +16,7 @@ export interface Game {
   category: string;
   base_price: number;
   discount: number;
+  platform: string;
 }
 
 interface GamesContextType {

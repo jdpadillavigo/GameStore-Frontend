@@ -1,25 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { useGamesContext } from '../../../contexts/GamesContext';
+import { useGamesContext, Game } from '../../../contexts/GamesContext';
 import "./Games.css";
-
-interface Review {
-  author: string;
-  message: string;
-  stars: number;
-}
-
-interface Game {
-  title: string;
-  description: string;
-  trailer: string;
-  images: string[];
-  reviews: Review[];
-  release_date: string;
-  category: string;
-  base_price: number;
-  discount: number;
-}
 
 const Games = () => {
   const [game, setGame] = useState<Game[]>([]);
@@ -39,7 +21,8 @@ const Games = () => {
     release_date: '',
     category: '',
     base_price: 0,
-    discount: 0
+    discount: 0,
+    platform: ''
   });
 
   const handleAddGame = () => {
