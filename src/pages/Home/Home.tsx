@@ -1,20 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useCart } from '../../components/CartContext/useCart';
 import { useGamesContext } from '../../contexts/GamesContext';
 import Slider from '../../components/Slider/Slider';
 
 import './Home.css';
 
 const Home = () => {
-  const { addToCart } = useCart(); // Desestructurar la función addToCart desde el contexto
 
   const { games } = useGamesContext();
-
-  // Manejo de agregar al carrito
-  const handleAddToCart = (game: any) => {
-    addToCart(game); // Agregar el juego al carrito
-  };
 
   interface SliderImage {
     url: string;

@@ -16,8 +16,8 @@ import AdminUsers from './pages/AdminPages/Users/Users'
 import AdminGames from './pages/AdminPages/Games/Games'
 import AdminNews from './pages/AdminPages/News/News'
 import AdminStats from './pages/AdminPages/Stats/Stats'
-
-import { CartProvider } from './components/CartContext/CartContext';
+import Cart from './pages/Cart/Cart'
+import PaymentBlock from './components/PaymentBlock/PaymentBlock'
 import { GamesProvider } from './contexts/GamesContext';
 
 import './App.css'
@@ -26,7 +26,6 @@ function App() {
   return (
     <div className="app-container">
       <GamesProvider>
-        <CartProvider>
           <Navbar />
           <main className="main-content">
             <Routes>
@@ -38,7 +37,8 @@ function App() {
               <Route path='/register' element={<Register />} />
               <Route path='/restcontra' element={<ResetPassword />} />
               <Route path='/verificacion' element={<Verification />} />
-
+              <Route path='/cart' element={<Cart />} />
+              <Route path='/payment' element={<PaymentBlock />} />
               <Route path="/game/:gameId" element={<GameDetail />} />
 
               <Route path='/a/usuarios' element={<AdminUsers />} />
@@ -47,7 +47,6 @@ function App() {
               <Route path='/a/estadisticas' element={<AdminStats />} />
             </Routes>
           </main>
-        </CartProvider>
       </GamesProvider>
     </div>
   )
