@@ -1,9 +1,9 @@
-import './Explore.css';
-import portadaNoticias from "../../assets/images/noticia/Portada_noticias.jpg"
-import { nota } from '../../components/Tidings/listaTidings'
 import { useState } from 'react'
+import portadaNoticias from "/images/news/Portada_noticias.jpg"
 import VerNoticias from '../../components/Tidings/viewTidings'
+import { nota } from '../../components/Tidings/listaTidings'
 import { typeCategory } from '../../components/Tidings/filterTidings';
+import './Explore.css';
 
 const Explore = () => {
   const listaDeNoticias = [

@@ -11,8 +11,9 @@
   -moz-osx-font-smoothing: grayscale;
 
   /* Font size */
-  --font-size-subtitle: 1.3rem;
+  --font-size-subtitle: 1.5rem;
   --font-size-paragraph: 1.1rem;
+  --font-size-note: 0.9rem;
 
   /* Main colors */
   --main-color: darkred;

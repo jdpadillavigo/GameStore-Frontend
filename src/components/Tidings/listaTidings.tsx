@@ -1,5 +1,5 @@
+import noticia_1 from "/images/news/Noticia1.jpg"
 import "./listaTiding.css"
-import noticia_1 from "../../assets/images/noticia/Noticia1.jpg"
 
 export interface nota {
     id : number

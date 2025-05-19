@@ -5,13 +5,13 @@
   </a>
 </p>
 
-## <picture><img src= "./src/assets/images/readme/arrow.gif" width= 20px></picture> About
+## <picture><img src= "public/images/readme/arrow.gif" width= 20px></picture> About
 
 This project is a modern web app for browsing and purchasing video games.  
 It features a clean UI, responsive design and a smooth user experience.  
 Built with **React**, **TypeScript**, and **Vite** for fast performance and strong developer experience.
 
-## <picture><img src= "./src/assets/images/readme/arrow.gif" width= 20px></picture> Getting started
+## <picture><img src= "public/images/readme/arrow.gif" width= 20px></picture> Getting started
 
 ### Prerequisites
 

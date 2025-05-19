@@ -18,34 +18,37 @@ import News from './pages/AdminPages/News/News'
 import Stats from './pages/AdminPages/Stats/Stats'
 
 import { CartProvider } from './components/CartContext/CartContext';
+import { GamesProvider } from './contexts/GamesContext';
 
 import './App.css'
 
 function App() {
   return (
     <div className="app-container">
-      <CartProvider>
-        <Navbar />
-        <main className="main-content">
-          <Routes>
-            <Route path='/' element={<Home/>} />
-            <Route path='/explorar' element={<Explore />} />
-            <Route path='/categorias' element={<Categories />} />
-            <Route path='/plataforma' element={<Platform />} />
-            <Route path='/ofertas' element={<SpecialOffers />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/restcontra' element={<ResetPassword />} />
-            <Route path='/verificacion' element={<Verification />} />
-            <Route path="/game/:gameId" element={<GameDetail />} />
+      <GamesProvider>
+        <CartProvider>
+          <Navbar />
+          <main className="main-content">
+            <Routes>
+              <Route path='/' element={<Home/>} />
+              <Route path='/explorar' element={<Explore />} />
+              <Route path='/categorias' element={<Categories />} />
+              <Route path='/plataforma' element={<Platform />} />
+              <Route path='/ofertas' element={<SpecialOffers />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
+              <Route path='/restcontra' element={<ResetPassword />} />
+              <Route path='/verificacion' element={<Verification />} />
+              <Route path="/game/:gameId" element={<GameDetail />} />
 
-            <Route path='/a/usuarios' element={<Users />} />
-            <Route path='/a/juegos' element={<Games />} />
-            <Route path='/a/noticias' element={<News />} />
-            <Route path='/a/estadisticas' element={<Stats />} />
-          </Routes>
-        </main>
-      </CartProvider>
+              <Route path='/a/usuarios' element={<Users />} />
+              <Route path='/a/juegos' element={<Games />} />
+              <Route path='/a/noticias' element={<News />} />
+              <Route path='/a/estadisticas' element={<Stats />} />
+            </Routes>
+          </main>
+        </CartProvider>
+      </GamesProvider>
     </div>
   )
 }

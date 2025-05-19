@@ -1,6 +1,6 @@
-import "./viewTidings.css"
 import ListaNoticias, { nota } from '../../components/Tidings/listaTidings'
 import FilterTidings, { typeCategory } from "./filterTidings"
+import "./viewTidings.css"
 
 interface Reg {
     registros : nota[]

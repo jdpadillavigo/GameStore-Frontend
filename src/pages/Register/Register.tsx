@@ -16,12 +16,12 @@ const Register: React.FC = () => {
     e.preventDefault(); // ← Necesario para que Enter funcione
 
     if (!nombre || !email || !contraseña || !confirmar || !pais) {
-      setMensaje('Por favor, completa todos los campos');
+      setMensaje('Por favor, completa todos los campos ❗');
       return;
     }
 
     if (contraseña !== confirmar) {
-      setMensaje('Las contraseñas no coinciden');
+      setMensaje('Las contraseñas no coinciden ❗');
       return;
     }
 
@@ -37,7 +37,7 @@ const Register: React.FC = () => {
     localStorage.setItem('emailConfirmacion', email);
 
     alert(`Código de confirmación enviado al correo: ${codigo}`);
-    setMensaje('✅ ¡Usuario registrado exitosamente!');
+    setMensaje('¡Usuario registrado exitosamente! ✅');
 
     setNombre('');
     setEmail('');

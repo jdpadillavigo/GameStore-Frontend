@@ -21,23 +21,23 @@ const Verification: React.FC = () => {
       localStorage.setItem('usuariosRegistrados', JSON.stringify(actualizados));
       localStorage.removeItem('codigoConfirmacion');
       localStorage.removeItem('emailConfirmacion');
-      setMensaje('✅ Código de confirmación válido');
+      setMensaje('Código de confirmación válido ✅');
 
       setTimeout(() => {
         navigate('/login');
       }, 1000);
     } else {
-      setMensaje('❌ Código de confirmación incorrecto');
+      setMensaje('Código de confirmación incorrecto ❌');
     }
   };
 
   return (
     <div className="confirmation-container">
       <form className="confirmation-form">
-        <h2>Por favor, Confirma tu Identidad</h2>
+        <h2>Por favor, confirma tu identidad</h2>
         <p>Te enviamos un código de confirmación. Ingrésalo a continuación:</p>
 
-        {mensaje && <p className="mensaje">{mensaje}</p>}
+        {mensaje && <p className="confirmation-form__mensaje">{mensaje}</p>}
 
         <label htmlFor="confirmationCode">Código de confirmación:</label>
         <input

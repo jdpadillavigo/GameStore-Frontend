@@ -13,7 +13,7 @@ const Login: React.FC = () => {
 
     // Validación manual de campos vacíos
     if (email.trim() === '' || password.trim() === '') {
-      setMensaje('Por favor, completa todos los campos');
+      setMensaje('Por favor, completa todos los campos ❗');
       return;
     }
 

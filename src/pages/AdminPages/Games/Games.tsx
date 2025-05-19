@@ -1,41 +1,64 @@
 import { useEffect, useState } from "react";
-import "./Games.css";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import { useGamesContext } from '../../../contexts/GamesContext';
+import "./Games.css";
 
-type Game = {
-  id: number;
-  date: string;
+interface Review {
+  author: string;
+  message: string;
+  stars: number;
+}
+
+interface Game {
+  title: string;
+  description: string;
+  trailer: string;
+  images: string[];
+  reviews: Review[];
+  release_date: string;
   category: string;
-  name: string;
-  price: number;
+  base_price: number;
   discount: number;
-};
-
-const sampleGames: Game[] = [
-  { id: 1, date: "10/12/20", category: "Open World", name: "Grand Theft Auto V", price: 180, discount: 75 },
-  { id: 2, date: "12/01/21", category: "Carreras", name: "Need for Speed Heat", price: 85, discount: 50 },
-  { id: 3, date: "18/03/21", category: "RPG", name: "Elden Ring", price: 172.5, discount: 75 },
-  { id: 4, date: "22/05/21", category: "Acción", name: "Cyberpunk 2077", price: 159, discount: 0 },
-  { id: 5, date: "30/07/21", category: "Aventura", name: "Red Dead Redemption 2", price: 232.5, discount: 0 },
-  { id: 6, date: "14/09/21", category: "Aventura", name: "Horizon Forbidden West", price: 210, discount: 30 },
-  { id: 7, date: "01/11/21", category: "Acción", name: "Ghost of Tsushima", price: 199, discount: 20 },
-  { id: 8, date: "15/01/22", category: "RPG", name: "Assassin’s Creed Valhalla", price: 219, discount: 10 },
-  { id: 9, date: "10/03/22", category: "Acción", name: "Spider-Man", price: 189, discount: 25 },
-  { id: 10, date: "20/06/22", category: "Horror", name: "Resident Evil 4 Remake", price: 129.99, discount: 20 }
-];
+}
 
 const Games = () => {
-  const [games, setGames] = useState<Game[]>([]);
+  const [game, setGame] = useState<Game[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [editingGame, setEditingGame] = useState<Game | null>(null);
   const [gameToDelete, setGameToDelete] = useState<Game | null>(null);
 
+  const { games, addGame, removeGame, updateGame } = useGamesContext();
+  
+  const [newGame, setNewGame] = useState({
+    title: '',
+    description: '',
+    trailer: '',
+    images: [],
+    reviews: [],
+    release_date: '',
+    category: '',
+    base_price: 0,
+    discount: 0
+  });
+
+  const handleAddGame = () => {
+    addGame(newGame); // Agrega un nuevo juego
+  };
+
+  const handleRemoveGame = (title: string) => {
+    removeGame(title); // Elimina un juego por su título
+  };
+
+  const handleUpdateGame = (title: string, updatedGame: typeof newGame) => {
+    updateGame(title, updatedGame); // Actualiza un juego por su título
+  };
+
   const [form, setForm] = useState({ date: "", category: "", name: "", price: "", discount: "" });
 
-  useEffect(() => {
-    setGames(sampleGames);
-  }, []);
+  // useEffect(() => {
+  //   setGames(sampleGames);
+  // }, []);
 
   const openAddModal = () => {
     setEditingGame(null);
@@ -46,10 +69,10 @@ const Games = () => {
   const openEditModal = (game: Game) => {
     setEditingGame(game);
     setForm({
-      date: game.date,
+      date: game.release_date,
       category: game.category,
-      name: game.name,
-      price: String(game.price),
+      name: game.title,
+      price: String(game.base_price),
       discount: String(game.discount),
     });
     setShowModal(true);
@@ -65,68 +88,70 @@ const Games = () => {
   };
 
   const handleSubmit = () => {
-    const newGame: Game = {
-      id: editingGame ? editingGame.id : Date.now(),
-      date: form.date,
-      category: form.category,
-      name: form.name,
-      price: parseFloat(form.price),
-      discount: parseInt(form.discount),
-    };
+    // const newGame: Game = {
+    //   id: editingGame ? editingGame.id : Date.now(),
+    //   date: form.date,
+    //   category: form.category,
+    //   name: form.name,
+    //   price: parseFloat(form.price),
+    //   discount: parseInt(form.discount),
+    // };
 
-    if (editingGame) {
-      setGames(games.map(g => g.id === editingGame.id ? newGame : g));
-    } else {
-      setGames([...games, newGame]);
-    }
+    // if (editingGame) {
+    //   setGames(games.map(g => g.id === editingGame.id ? newGame : g));
+    // } else {
+    //   setGames([...games, newGame]);
+    // }
 
-    setShowModal(false);
+    // setShowModal(false);
   };
 
   const handleDelete = () => {
-    if (gameToDelete) {
-      setGames(games.filter(g => g.id !== gameToDelete.id));
-      setShowDeleteModal(false);
-    }
+    // if (gameToDelete) {
+    //   setGames(games.filter(g => g.id !== gameToDelete.id));
+    //   setShowDeleteModal(false);
+    // }
   };
 
   return (
     <div className="games-table-container">
       <div className="header-row">
-        <h1>Games</h1>
+        <h1>Juegos</h1>
         <div className="header-actions">
-          <button className="filter-btn">Filter</button>
-          <button className="add-btn" onClick={openAddModal}>+ Add</button>
+          <button className="filter-btn">Filtrar</button>
+          <button className="add-btn" onClick={openAddModal}>+ Agregar</button>
         </div>
       </div>
 
-      <table className="games-table">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Category</th>
-            <th>Name</th>
-            <th>Base price</th>
-            <th>Discount</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {games.map((game) => (
-            <tr key={game.id}>
-              <td>{game.date}</td>
-              <td>{game.category}</td>
-              <td>{game.name}</td>
-              <td>S/. {game.price.toFixed(2)}</td>
-              <td>{game.discount}%</td>
-              <td className="actions">
-                <FaEdit className="edit-icon" onClick={() => openEditModal(game)} />
-                <FaTrash className="delete-icon" onClick={() => openDeleteModal(game)} />
-              </td>
+      <div className="games-table-container__games">
+        <table className="games-table">
+          <thead>
+            <tr>
+              <th>Fecha de lanzamiento</th>
+              <th>Categoría</th>
+              <th>Nombre</th>
+              <th>Precio base</th>
+              <th>Descuento</th>
+              <th>Acciones</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {Object.entries(games).map(([key, game]) => (
+              <tr key={key}>
+                <td>{game.release_date}</td>
+                <td>{game.category}</td>
+                <td>{game.title}</td>
+                <td>S/. {game.base_price.toFixed(2)}</td>
+                <td>{game.discount}%</td>
+                <td className="actions">
+                  <FaEdit className="edit-icon" onClick={() => openEditModal(game)} />
+                  <FaTrash className="delete-icon" onClick={() => openDeleteModal(game)} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       {/* Modal Agregar / Editar */}
       {showModal && (

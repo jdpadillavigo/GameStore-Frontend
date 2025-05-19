@@ -105,6 +105,11 @@
 
 .navbar-admin__profile__name {
     font-size: var(--font-size-subtile);
+    margin: 12px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
 }
 
 .navbar-admin a {
@@ -181,5 +186,9 @@
     .navbar-admin a,
     .navbar-admin button {
         padding-left: 9px;
+    }
+
+    .navbar-admin__profile__name {
+        margin-inline: 9px;
     }
 }
