@@ -114,76 +114,78 @@ const Games = () => {
   };
 
   return (
-    <div className="games-table-container">
-      <div className="header-row">
-        <h1>Juegos</h1>
-        <div className="header-actions">
-          <button className="filter-btn">Filtrar</button>
-          <button className="add-btn" onClick={openAddModal}>+ Agregar</button>
+    <div className="games-page">
+      <div className="games-table-container">
+        <div className="header-row">
+          <h1>Juegos</h1>
+          <div className="header-actions">
+            <button className="filter-btn">Filtrar</button>
+            <button className="add-btn" onClick={openAddModal}>+ Agregar</button>
+          </div>
         </div>
-      </div>
 
-      <div className="games-table-container__games">
-        <table className="games-table">
-          <thead>
-            <tr>
-              <th>Fecha de lanzamiento</th>
-              <th>Categoría</th>
-              <th>Nombre</th>
-              <th>Precio base</th>
-              <th>Descuento</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.entries(games).map(([key, game]) => (
-              <tr key={key}>
-                <td>{game.release_date}</td>
-                <td>{game.category}</td>
-                <td>{game.title}</td>
-                <td>S/. {game.base_price.toFixed(2)}</td>
-                <td>{game.discount}%</td>
-                <td className="actions">
-                  <FaEdit className="edit-icon" onClick={() => openEditModal(game)} />
-                  <FaTrash className="delete-icon" onClick={() => openDeleteModal(game)} />
-                </td>
+        <div className="games-table-container__games">
+          <table className="games-table">
+            <thead>
+              <tr>
+                <th>Fecha de lanzamiento</th>
+                <th>Categoría</th>
+                <th>Nombre</th>
+                <th>Precio base</th>
+                <th>Descuento</th>
+                <th>Acciones</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {Object.entries(games).map(([key, game]) => (
+                <tr key={key}>
+                  <td>{game.release_date}</td>
+                  <td>{game.category}</td>
+                  <td>{game.title}</td>
+                  <td>S/. {game.base_price.toFixed(2)}</td>
+                  <td>{game.discount}%</td>
+                  <td className="actions">
+                    <FaEdit className="edit-icon" onClick={() => openEditModal(game)} />
+                    <FaTrash className="delete-icon" onClick={() => openDeleteModal(game)} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Modal Agregar / Editar */}
+        {showModal && (
+          <div className="modal">
+            <div className="modal-content">
+              <h2>{editingGame ? "Edit Game" : "Add Game"}</h2>
+              <input name="date" placeholder="Date" value={form.date} onChange={handleChange} />
+              <input name="category" placeholder="Category" value={form.category} onChange={handleChange} />
+              <input name="name" placeholder="Name" value={form.name} onChange={handleChange} />
+              <input name="price" placeholder="Price" value={form.price} onChange={handleChange} />
+              <input name="discount" placeholder="Discount" value={form.discount} onChange={handleChange} />
+              <div className="modal-actions">
+                <button onClick={() => setShowModal(false)}>Cancel</button>
+                <button onClick={handleSubmit}>Submit</button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal Confirmar Eliminación */}
+        {showDeleteModal && (
+          <div className="modal">
+            <div className="modal-content">
+              <h2>Delete game</h2>
+              <p>Are you sure that you want to delete this register?</p>
+              <div className="modal-actions">
+                <button onClick={() => setShowDeleteModal(false)}>Cancel</button>
+                <button onClick={handleDelete}>Submit</button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-
-      {/* Modal Agregar / Editar */}
-      {showModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <h2>{editingGame ? "Edit Game" : "Add Game"}</h2>
-            <input name="date" placeholder="Date" value={form.date} onChange={handleChange} />
-            <input name="category" placeholder="Category" value={form.category} onChange={handleChange} />
-            <input name="name" placeholder="Name" value={form.name} onChange={handleChange} />
-            <input name="price" placeholder="Price" value={form.price} onChange={handleChange} />
-            <input name="discount" placeholder="Discount" value={form.discount} onChange={handleChange} />
-            <div className="modal-actions">
-              <button onClick={() => setShowModal(false)}>Cancel</button>
-              <button onClick={handleSubmit}>Submit</button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Modal Confirmar Eliminación */}
-      {showDeleteModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <h2>Delete game</h2>
-            <p>Are you sure that you want to delete this register?</p>
-            <div className="modal-actions">
-              <button onClick={() => setShowDeleteModal(false)}>Cancel</button>
-              <button onClick={handleDelete}>Submit</button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

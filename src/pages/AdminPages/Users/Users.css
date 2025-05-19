@@ -2,15 +2,15 @@
   display: flex;
   justify-content: center;
   align-items: start;
-  padding: 1.5rem 2rem;
-  margin-left: 360px;
   min-height: 100vh;
   background-color: #f5f5f5;
+  margin-left: 360px;
 }
 
 .user-list-inner {
   width: 100%;
-  max-width: 1000px;
+  max-width: 100%;
+  padding: 1.5rem 2rem;
 }
 
 .user-list h2 {
@@ -49,6 +49,17 @@
   font-weight: bold;
 }
 
+.no-users-message {
+  position: absolute;
+  top: 50%;
+  margin-inline: 1.5rem;
+  margin-block: 0;
+  text-align: center;
+  font-size: var(--font-size-subtitle);
+  color: black;
+  font-weight: bold;
+}
+
 .user-list tr:last-child td {
   border-bottom: none;
 }
@@ -67,7 +78,7 @@
   }
 }
 
-@media (max-width: 630px) {
+@media (max-width: 730px) {
   .user-list {
     padding: 1.5rem;
   }

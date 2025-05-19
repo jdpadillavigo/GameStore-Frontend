@@ -13,33 +13,37 @@ const Users: React.FC = () => {
 
   return (
     <div className="user-list">
-      <div className="user-list-inner">
-        <h2>Usuarios Registrados</h2>
-        <div className="user-list-container">
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Contraseña</th>
-                <th>País</th>
-              </tr>
-            </thead>
-            <tbody>
-              {usuarios.map((usuario: any, index: number) => (
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td>{usuario.nombre}</td>
-                  <td>{usuario.email}</td>
-                  <td>{usuario.contraseña}</td>
-                  <td>{usuario.pais}</td>
+      {usuarios.length === 0 ? (
+        <p className="no-users-message">Aún no hay usuarios registrados</p>
+      ) : (
+        <div className="user-list-inner">
+          <h2>Usuarios Registrados</h2>
+          <div className="user-list-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Correo</th>
+                  <th>Contraseña</th>
+                  <th>País</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {usuarios.map((usuario: any, index: number) => (
+                  <tr key={index}>
+                    <td>{index + 1}</td>
+                    <td>{usuario.nombre}</td>
+                    <td>{usuario.email}</td>
+                    <td>{usuario.contraseña}</td>
+                    <td>{usuario.pais}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

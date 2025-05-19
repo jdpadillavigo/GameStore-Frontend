@@ -1,10 +1,14 @@
+/* Página */
+.games-page {
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  place-content: center;
+}
+
 /* Contenedor principal */
 .games-table-container {
-  background-color: #f5f5f5;
   padding: 1.5rem 2rem;
-  place-content: center;
   margin-left: 360px;
-  min-height: 100vh;
 }
 
 /* Encabezado superior */

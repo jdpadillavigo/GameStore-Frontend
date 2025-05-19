@@ -12,11 +12,13 @@ const Stats: React.FC = () => {
   }, []);
 
   return (
-    <div className="stats-container">
-      <h2 className="stats-title">Estadísticas</h2>
-      <div className="card-users">
-        <p>Total de usuarios registrados</p>
-        <h1>{totalUsuarios}</h1>
+    <div className="stats-page">
+      <div className="stats-container">
+        <h2 className="stats-title">Estadísticas</h2>
+        <div className="card-users">
+          <p>Total de usuarios registrados</p>
+          <h1>{totalUsuarios}</h1>
+        </div>
       </div>
     </div>
   )
