@@ -31,6 +31,8 @@ interface GamesProviderProps {
   children: ReactNode;
 }
 
+const GamesContext = createContext<GamesContextType | undefined>(undefined);
+
 export const GamesProvider = ({ children }: GamesProviderProps) => {
   const [games, setGames] = useState<Record<string, Game>>({});
 
@@ -57,19 +59,16 @@ export const GamesProvider = ({ children }: GamesProviderProps) => {
     }
   };
 
-  // Guardar los juegos actualizados en localStorage
   const saveGamesToLocalStorage = (gamesData: Record<string, Game>) => {
     localStorage.setItem('games', JSON.stringify(gamesData));
   };
 
-  // Función para agregar un juego
   const addGame = (game: Game) => {
     const newGames = { ...games, [game.title]: game };
     setGames(newGames);
     saveGamesToLocalStorage(newGames);
   };
 
-  // Función para eliminar un juego
   const removeGame = (title: string) => {
     const newGames = { ...games };
     delete newGames[title];
@@ -77,26 +76,36 @@ export const GamesProvider = ({ children }: GamesProviderProps) => {
     saveGamesToLocalStorage(newGames);
   };
 
-  // Función para actualizar un juego
   const updateGame = (title: string, updatedGame: Game) => {
-    const newGames = { ...games, [title]: updatedGame };
+    const newGames = { ...games };
+    if (title !== updatedGame.title) {
+      delete newGames[title]; // Eliminar el anterior si cambió el nombre
+    }
+    newGames[updatedGame.title] = updatedGame;
     setGames(newGames);
     saveGamesToLocalStorage(newGames);
   };
 
   return (
-    <GamesContext.Provider value={{ games, addGame, removeGame, updateGame, setGamesFromLocalStorage }}>
+    <GamesContext.Provider
+      value={{
+        games,
+        addGame,
+        removeGame,
+        updateGame,
+        setGamesFromLocalStorage,
+      }}
+    >
       {children}
     </GamesContext.Provider>
   );
 };
 
-const GamesContext = createContext<GamesContextType | undefined>(undefined);
-
 export const useGamesContext = () => {
   const context = useContext(GamesContext);
   if (!context) {
-    throw new Error('useGamesContext debe ser usado dentro de un GamesProvider');
+    throw new Error('useGamesContext debe usarse dentro de GamesProvider');
   }
   return context;
 };
+
