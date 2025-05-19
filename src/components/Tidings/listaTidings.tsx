@@ -1,5 +1,6 @@
 import "./listaTiding.css"
 import noticia_1 from "../../assets/images/noticia/Noticia1.jpg"
+import { Link } from 'react-router-dom';
 
 export interface nota {
     id : number
@@ -7,6 +8,7 @@ export interface nota {
     categoria : string
     autor : string
     dias : number
+    select : boolean
 }
 
 interface listaNoticiasProps {
@@ -18,7 +20,9 @@ const ListaNoticias = (props : listaNoticiasProps ) => {
             return (
                 <div className="noticia">
                     <div className="contenido_nota">
-                        <div className="titulo_nota">{elemento.title}</div>
+                        <Link to={"/explore/contenido"}>
+                            <div className="titulo_nota">{elemento.title}</div>
+                        </Link>
                         <br></br>
                         <div className="categoria_nota"> Redactado por {elemento.autor}</div>
                         <div className="extra_nota"> Hace {elemento.dias} dias - {elemento.categoria}</div>
