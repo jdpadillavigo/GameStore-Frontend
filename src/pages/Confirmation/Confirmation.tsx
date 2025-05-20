@@ -34,7 +34,7 @@ const Verification: React.FC = () => {
   return (
     <div className="confirmation-container">
       <form className="confirmation-form">
-        <h2>Por favor, Confirma tu Identidad</h2>
+        <h1>Por favor, Confirma tu Identidad</h1>
         <p>Te enviamos un código de confirmación. Ingrésalo a continuación:</p>
 
         {mensaje && <p className="mensaje">{mensaje}</p>}

@@ -14,7 +14,7 @@ const Users: React.FC = () => {
   return (
     <div className="user-list">
       <div className="user-list-inner">
-        <h2>Usuarios Registrados</h2>
+        <h1>Usuarios Registrados</h1>
         <div className="user-list-container">
           {usuarios.length === 0 ? (
             <p className="no-users-message">Aún no hay usuarios registrados</p>

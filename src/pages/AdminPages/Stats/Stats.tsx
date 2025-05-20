@@ -21,7 +21,7 @@ setTotalUsuarios(soloUsuarios.length);
    <h1 className="Stats-title">Estadísticas</h1>
    <div className="Card-users">
     <p className="Stats-title2">Total De Usuarios Registrados</p>
-    <h1 className="Totalusers">{totalUsuarios}</h1>
+    <h2 className="Totalusers">{totalUsuarios}</h2>
    </div>
   </div>
 
