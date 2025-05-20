@@ -1,47 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { useGamesContext, Game } from '../../../contexts/GamesContext';
 import "./Games.css";
 
 const Games = () => {
-  const [game, setGame] = useState<Game[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [editingGame, setEditingGame] = useState<Game | null>(null);
   const [gameToDelete, setGameToDelete] = useState<Game | null>(null);
 
   const { games, addGame, removeGame, updateGame } = useGamesContext();
-  
-  const [newGame, setNewGame] = useState({
-    title: '',
-    description: '',
-    trailer: '',
-    images: [],
-    reviews: [],
-    release_date: '',
-    category: '',
-    base_price: 0,
-    discount: 0,
-    platform: ''
-  });
-
-  const handleAddGame = () => {
-    addGame(newGame); // Agrega un nuevo juego
-  };
-
-  const handleRemoveGame = (title: string) => {
-    removeGame(title); // Elimina un juego por su título
-  };
-
-  const handleUpdateGame = (title: string, updatedGame: typeof newGame) => {
-    updateGame(title, updatedGame); // Actualiza un juego por su título
-  };
 
   const [form, setForm] = useState({ date: "", category: "", name: "", price: "", discount: "" });
-
-  // useEffect(() => {
-  //   setGames(sampleGames);
-  // }, []);
 
   const openAddModal = () => {
     setEditingGame(null);
@@ -71,34 +41,38 @@ const Games = () => {
   };
 
   const handleSubmit = () => {
-    // const newGame: Game = {
-    //   id: editingGame ? editingGame.id : Date.now(),
-    //   date: form.date,
-    //   category: form.category,
-    //   name: form.name,
-    //   price: parseFloat(form.price),
-    //   discount: parseInt(form.discount),
-    // };
+    const updated: Game = {
+      title: form.name,
+      description: editingGame?.description || "",
+      trailer: editingGame?.trailer || "",
+      images: editingGame?.images || [],
+      reviews: editingGame?.reviews || [],
+      release_date: form.date,
+      category: form.category,
+      base_price: parseFloat(form.price),
+      discount: parseInt(form.discount),
+      platform: editingGame?.platform || ""
+    };
 
-    // if (editingGame) {
-    //   setGames(games.map(g => g.id === editingGame.id ? newGame : g));
-    // } else {
-    //   setGames([...games, newGame]);
-    // }
+    if (editingGame) {
+      updateGame(editingGame.title, updated);
+    } else {
+      addGame(updated);
+    }
 
-    // setShowModal(false);
+    setShowModal(false);
   };
 
   const handleDelete = () => {
-    // if (gameToDelete) {
-    //   setGames(games.filter(g => g.id !== gameToDelete.id));
-    //   setShowDeleteModal(false);
-    // }
+    if (gameToDelete) {
+      removeGame(gameToDelete.title);
+      setShowDeleteModal(false);
+    }
   };
 
   return (
     <div className="games-page">
-      <div className="games-table-container">
+      <div className="games-wrapper">
         <div className="header-row">
           <h1>Juegos</h1>
           <div className="header-actions">
@@ -139,17 +113,19 @@ const Games = () => {
 
         {/* Modal Agregar / Editar */}
         {showModal && (
-          <div className="modal">
-            <div className="modal-content">
-              <h2>{editingGame ? "Edit Game" : "Add Game"}</h2>
-              <input name="date" placeholder="Date" value={form.date} onChange={handleChange} />
-              <input name="category" placeholder="Category" value={form.category} onChange={handleChange} />
-              <input name="name" placeholder="Name" value={form.name} onChange={handleChange} />
-              <input name="price" placeholder="Price" value={form.price} onChange={handleChange} />
-              <input name="discount" placeholder="Discount" value={form.discount} onChange={handleChange} />
-              <div className="modal-actions">
-                <button onClick={() => setShowModal(false)}>Cancel</button>
-                <button onClick={handleSubmit}>Submit</button>
+          <div className="modal-overlay">
+            <div className="modal">
+              <h2>{editingGame ? "Editar juego" : "Agregar juego"}</h2>
+              <div className="modal-content">
+                <input name="date" placeholder="Fecha" value={form.date} onChange={handleChange} />
+                <input name="category" placeholder="Categoría" value={form.category} onChange={handleChange} />
+                <input name="name" placeholder="Nombre" value={form.name} onChange={handleChange} />
+                <input name="price" placeholder="Precio" value={form.price} onChange={handleChange} />
+                <input name="discount" placeholder="Descuento" value={form.discount} onChange={handleChange} />
+                <div className="modal-actions">
+                  <button onClick={() => setShowModal(false)}>Cancelar</button>
+                  <button onClick={handleSubmit}>Guardar</button>
+                </div>
               </div>
             </div>
           </div>
@@ -157,13 +133,17 @@ const Games = () => {
 
         {/* Modal Confirmar Eliminación */}
         {showDeleteModal && (
-          <div className="modal">
-            <div className="modal-content">
-              <h2>Delete game</h2>
-              <p>Are you sure that you want to delete this register?</p>
-              <div className="modal-actions">
-                <button onClick={() => setShowDeleteModal(false)}>Cancel</button>
-                <button onClick={handleDelete}>Submit</button>
+          <div className="modal-overlay">
+            <div className="modal">
+              <h2>Eliminar juego</h2>
+              <p>¿Está seguro que desea eliminar este registro?</p>
+              <div className="modal-buttons">
+                <button onClick={() => setShowDeleteModal(false)} className="btn-cancel">
+                  Cancelar
+                </button>
+                <button onClick={handleDelete} className="btn-danger">
+                  Entregar
+                </button>
               </div>
             </div>
           </div>
@@ -174,6 +154,9 @@ const Games = () => {
 };
 
 export default Games;
+
+
+
 
 
 
