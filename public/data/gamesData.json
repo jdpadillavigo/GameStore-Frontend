@@ -10,19 +10,19 @@
             "/images/games/gta_v_4.jpg"
         ],
         "reviews": [
-        {
-            "author": "John Doe",
-            "message": "Una experiencia increíble, la mejor entrega de la saga GTA.",
-            "stars": 5
-        },
-        {
-            "author": "Jane Smith",
-            "message": "Excelente juego, pero los controles pueden ser mejorados.",
-            "stars": 4
-        }
+            {
+                "author": "John Doe",
+                "message": "Una experiencia increíble, la mejor entrega de la saga GTA.",
+                "stars": 5
+            },
+            {
+                "author": "Jane Smith",
+                "message": "Excelente juego, pero los controles pueden ser mejorados.",
+                "stars": 4
+            }
         ],
         "release_date": "17/09/2013",
-        "category": "Acción, Aventura",
+        "category": "Acción, Aventura, Multijugador, Más vendido, Mejor valorado",
         "base_price": 199,
         "discount": 20,
         "platform": "PlayStation, Xbox, Windows"
@@ -38,19 +38,19 @@
             "/images/games/nfs_heat_4.jpg"
         ],
         "reviews": [
-        {
-            "author": "Carlos Ruiz",
-            "message": "Muy entretenido, la personalización de los autos es impresionante.",
-            "stars": 4
-        },
-        {
-            "author": "Laura González",
-            "message": "Un juego muy divertido, aunque a veces se vuelve repetitivo.",
-            "stars": 3
-        }
+            {
+                "author": "Carlos Ruiz",
+                "message": "Muy entretenido, la personalización de los autos es impresionante.",
+                "stars": 4
+            },
+            {
+                "author": "Laura González",
+                "message": "Un juego muy divertido, aunque a veces se vuelve repetitivo.",
+                "stars": 3
+            }
         ],
         "release_date": "08/11/2019",
-        "category": "Carreras",
+        "category": "Carreras, Multijugador",
         "base_price": 199,
         "discount": 15,
         "platform": "PlayStation, Xbox, Windows"
@@ -66,19 +66,19 @@
             "/images/games/elden_ring_4.jpg"
         ],
         "reviews": [
-        {
-            "author": "Alex Martínez",
-            "message": "Una obra maestra, uno de los mejores juegos de rol de todos los tiempos.",
-            "stars": 5
-        },
-        {
-            "author": "Marta López",
-            "message": "Increíblemente desafiante y hermoso. La dificultad es extrema.",
-            "stars": 5
-        }
+            {
+                "author": "Alex Martínez",
+                "message": "Una obra maestra, uno de los mejores juegos de rol de todos los tiempos.",
+                "stars": 5
+            },
+            {
+                "author": "Marta López",
+                "message": "Increíblemente desafiante y hermoso. La dificultad es extrema.",
+                "stars": 5
+            }
         ],
         "release_date": "25/02/2022",
-        "category": "RPG, Acción",
+        "category": "RPG, Acción, Mejor valorado",
         "base_price": 172,
         "discount": 10,
         "platform": "PlayStation, Xbox, Windows"
@@ -94,19 +94,19 @@
             "/images/games/cyberpunk_2077_4.jpg"
         ],
         "reviews": [
-        {
-            "author": "Pedro Hernández",
-            "message": "A pesar de los problemas iniciales, ahora es un juego impresionante.",
-            "stars": 4
-        },
-        {
-            "author": "Sofia Ramírez",
-            "message": "Excelente historia, pero la jugabilidad aún necesita mejoras.",
-            "stars": 4
-        }
+            {
+                "author": "Pedro Hernández",
+                "message": "A pesar de los problemas iniciales, ahora es un juego impresionante.",
+                "stars": 4
+            },
+            {
+                "author": "Sofia Ramírez",
+                "message": "Excelente historia, pero la jugabilidad aún necesita mejoras.",
+                "stars": 4
+            }
         ],
         "release_date": "10/12/2020",
-        "category": "RPG, Acción, Aventura",
+        "category": "RPG, Acción, Aventura, Más vendido",
         "base_price": 153,
         "discount": 25,
         "platform": "PlayStation, Xbox, Windows"
@@ -122,19 +122,19 @@
             "/images/games/rdr2_4.jpg"
         ],
         "reviews": [
-        {
-            "author": "Carlos Pérez",
-            "message": "Una experiencia única, una de las mejores historias de la historia de los videojuegos.",
-            "stars": 5
-        },
-        {
-            "author": "Ricardo Jiménez",
-            "message": "El mundo abierto es impresionante, pero la historia se siente un poco larga.",
-            "stars": 4
-        }
+            {
+                "author": "Carlos Pérez",
+                "message": "Una experiencia única, una de las mejores historias de la historia de los videojuegos.",
+                "stars": 5
+            },
+            {
+                "author": "Ricardo Jiménez",
+                "message": "El mundo abierto es impresionante, pero la historia se siente un poco larga.",
+                "stars": 4
+            }
         ],
         "release_date": "26/10/2018",
-        "category": "Aventura, Acción",
+        "category": "Aventura, Acción, Mejor valorado",
         "base_price": 153,
         "discount": 30,
         "platform": "PlayStation, Xbox, Windows"
@@ -150,19 +150,19 @@
             "/images/games/horizon_forbidden_west_4.jpg"
         ],
         "reviews": [
-        {
-            "author": "Julia González",
-            "message": "Impresionante mundo, la jugabilidad es fantástica y la historia te engancha.",
-            "stars": 5
-        },
-        {
-            "author": "Luis Rodríguez",
-            "message": "Muy buen juego, pero se siente algo repetitivo en ciertos momentos.",
-            "stars": 4
-        }
+            {
+                "author": "Julia González",
+                "message": "Impresionante mundo, la jugabilidad es fantástica y la historia te engancha.",
+                "stars": 5
+            },
+            {
+                "author": "Luis Rodríguez",
+                "message": "Muy buen juego, pero se siente algo repetitivo en ciertos momentos.",
+                "stars": 4
+            }
         ],
         "release_date": "18/02/2022",
-        "category": "Aventura, Acción",
+        "category": "Aventura, Acción, Más vendido",
         "base_price": 197,
         "discount": 15,
         "platform": "PlayStation"
@@ -178,19 +178,19 @@
             "/images/games/ghost_of_tsushima_4.jpg"
         ],
         "reviews": [
-        {
-            "author": "Juan Carlos",
-            "message": "Un juego visualmente impresionante, y la historia es muy emocional.",
-            "stars": 5
-        },
-        {
-            "author": "Rosa Díaz",
-            "message": "Gran historia y ambientación, pero algunas mecánicas de combate son repetitivas.",
-            "stars": 4
-        }
+            {
+                "author": "Juan Carlos",
+                "message": "Un juego visualmente impresionante, y la historia es muy emocional.",
+                "stars": 5
+            },
+            {
+                "author": "Rosa Díaz",
+                "message": "Gran historia y ambientación, pero algunas mecánicas de combate son repetitivas.",
+                "stars": 4
+            }
         ],
         "release_date": "17/07/2020",
-        "category": "Aventura, Acción",
+        "category": "Aventura, Acción, Mejor valorado",
         "base_price": 199,
         "discount": 20,
         "platform": "PlayStation"
@@ -206,19 +206,19 @@
             "/images/games/assassins_creed_valhalla_4.jpg"
         ],
         "reviews": [
-        {
-            "author": "Oscar Méndez",
-            "message": "Una de las mejores entregas de la saga, con un mundo vasto y lleno de detalles.",
-            "stars": 5
-        },
-        {
-            "author": "Beatriz García",
-            "message": "Muy divertido, aunque algunas mecánicas se sienten un poco forzadas.",
-            "stars": 4
-        }
+            {
+                "author": "Oscar Méndez",
+                "message": "Una de las mejores entregas de la saga, con un mundo vasto y lleno de detalles.",
+                "stars": 5
+            },
+            {
+                "author": "Beatriz García",
+                "message": "Muy divertido, aunque algunas mecánicas se sienten un poco forzadas.",
+                "stars": 4
+            }
         ],
         "release_date": "10/11/2020",
-        "category": "Acción, Aventura",
+        "category": "Acción, Aventura, Multijugador",
         "base_price": 197,
         "discount": 10,
         "platform": "PlayStation, Xbox, Windows"
@@ -234,19 +234,19 @@
             "/images/games/spiderman_4.jpg"
         ],
         "reviews": [
-        {
-            "author": "Antonio Pérez",
-            "message": "¡Es como ser Spider-Man! La jugabilidad es increíble y la historia muy entretenida.",
-            "stars": 5
-        },
-        {
-            "author": "Carmen Ruiz",
-            "message": "Un juego divertido, pero algunos villanos no están bien desarrollados.",
-            "stars": 4
-        }
+            {
+                "author": "Antonio Pérez",
+                "message": "¡Es como ser Spider-Man! La jugabilidad es increíble y la historia muy entretenida.",
+                "stars": 5
+            },
+            {
+                "author": "Carmen Ruiz",
+                "message": "Un juego divertido, pero algunos villanos no están bien desarrollados.",
+                "stars": 4
+            }
         ],
         "release_date": "07/09/2018",
-        "category": "Acción, Aventura",
+        "category": "Acción, Aventura, Más vendido",
         "base_price": 132,
         "discount": 10,
         "platform": "PlayStation, Windows"
@@ -262,19 +262,19 @@
             "/images/games/resident_evil_4_remake_4.jpg"
         ],
         "reviews": [
-        {
-            "author": "Francisco Álvarez",
-            "message": "La mejor remasterización de la saga, un clásico modernizado.",
-            "stars": 5
-        },
-        {
-            "author": "Patricia Gómez",
-            "message": "Es un gran remake, pero algunas partes pierden el toque clásico del original.",
-            "stars": 4
-        }
+            {
+                "author": "Francisco Álvarez",
+                "message": "La mejor remasterización de la saga, un clásico modernizado.",
+                "stars": 5
+            },
+            {
+                "author": "Patricia Gómez",
+                "message": "Es un gran remake, pero algunas partes pierden el toque clásico del original.",
+                "stars": 4
+            }
         ],
         "release_date": "24/03/2023",
-        "category": "Survival Horror, Acción",
+        "category": "Survival Horror, Acción, Mejor valorado",
         "base_price": 153,
         "discount": 0,
         "platform": "PlayStation, Xbox, Windows"
