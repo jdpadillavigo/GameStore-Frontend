@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaUserCircle } from 'react-icons/fa';
-import {  FaShoppingCart } from 'react-icons/fa';
+import { FaUserCircle, FaShoppingCart } from 'react-icons/fa';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -71,7 +70,7 @@ const Navbar = () => {
           <div className='navbar__search-login'>
             <input type="text" placeholder='Buscar' />
             {isLogged ? (
-              <Link to="/cart" className="cart-icon">
+              <Link to="/carrito" className="cart-icon">
                 <FaShoppingCart />
               </Link>
             ) : (

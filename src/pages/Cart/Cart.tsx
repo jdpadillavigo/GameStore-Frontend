@@ -1,5 +1,5 @@
-import './Cart.css';
 import { useNavigate } from 'react-router-dom';
+import './Cart.css';
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const Cart = () => {
   };
 
   const handleConfirm = () => {
-    navigate('/payment');
+    navigate('/pago');
   };
 
   if (!isLogged) {
@@ -44,16 +44,19 @@ const Cart = () => {
       ) : (
         <>
           <div className="cart-list">
-            {cart.map((id: number) => (
-              <div key={id} className="cart-item">
-                <img
-                  src={`/images/games/juego${id}.jpg`}
-                  alt={`Juego ${id}`}
-                  className="cart-img"
-                />
-                <button className="remove-btn" onClick={() => handleRemove(id)}>✖</button>
-              </div>
-            ))}
+            {cart.map((id: number) => {
+              const lowerId = id.toString().toLowerCase();
+              return (
+                <div key={id} className="cart-item">
+                  <img
+                    src={`/images/games/${lowerId}_2.jpg`}
+                    alt={lowerId}
+                    className="cart-img"
+                  />
+                  <button className="remove-btn" onClick={() => handleRemove(id)}>✖</button>
+                </div>
+              );
+            })}
           </div>
 
           <div className="cart-actions">

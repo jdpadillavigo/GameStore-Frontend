@@ -1,12 +1,12 @@
-import './PaymentBlock.css';
 import { useNavigate } from 'react-router-dom';
+import './PaymentBlock.css';
 
 const PaymentBlock = () => {
   const navigate = useNavigate();
 
   const handlePay = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('✅ Pago simulado exitoso. ¡Gracias por tu compra!');
+    alert('✅ Pago exitoso. ¡Gracias por tu compra!');
     localStorage.removeItem('cart');
     navigate('/');
   };
