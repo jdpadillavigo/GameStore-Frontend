@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { useGamesContext } from '../../contexts/GamesContext';
 import { useNavigate } from 'react-router-dom';
 import './Cart.css';
 
@@ -5,18 +7,25 @@ const Cart = () => {
   const navigate = useNavigate();
   const usuario = localStorage.getItem('usuarioLogueado');
   const isLogged = Boolean(usuario);
+  const { games } = useGamesContext();
 
-  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  const [cart, setCart] = useState<number[]>([]);
+
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem('cart') || '[]');
+    setCart(storedCart);
+  }, []);
+
 
   const handleRemove = (id: number) => {
     const updated = cart.filter((g: number) => g !== id);
     localStorage.setItem('cart', JSON.stringify(updated));
-    window.location.reload();
+    setCart(updated);
   };
 
   const handleClear = () => {
     localStorage.removeItem('cart');
-    window.location.reload();
+    setCart([]);
   };
 
   const handleConfirm = () => {
@@ -45,12 +54,11 @@ const Cart = () => {
         <>
           <div className="cart-list">
             {cart.map((id: number) => {
-              const lowerId = id.toString().toLowerCase();
               return (
                 <div key={id} className="cart-item">
                   <img
-                    src={`/images/games/${lowerId}_2.jpg`}
-                    alt={lowerId}
+                    src={games[id].images[1]}
+                    alt={games[id].title}
                     className="cart-img"
                   />
                   <button className="remove-btn" onClick={() => handleRemove(id)}>✖</button>
