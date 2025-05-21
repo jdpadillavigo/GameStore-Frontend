@@ -11,12 +11,12 @@ const Games = () => {
 
   const { games, addGame, removeGame, updateGame } = useGamesContext();
 
-  const [form, setForm] = useState({ date: "", category: "", name: "", price: "", discount: "" });
+  const [form, setForm] = useState({ date: "", category: "", name: "", price: "", discount: "" })
 
   const openAddModal = () => {
-    setEditingGame(null);
-    setForm({ date: "", category: "", name: "", price: "", discount: "" });
-    setShowModal(true);
+    setEditingGame(null)
+    setForm({ date: "", category: "", name: "", price: "", discount: "" })
+    setShowModal(true)
   };
 
   const openEditModal = (game: Game) => {
@@ -37,7 +37,7 @@ const Games = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({ ...form, [e.target.name]: e.target.value })
   };
 
   const handleSubmit = () => {
@@ -55,18 +55,18 @@ const Games = () => {
     };
 
     if (editingGame) {
-      updateGame(editingGame.title, updated);
+      updateGame(editingGame.title, updated)
     } else {
-      addGame(updated);
+      addGame(updated)
     }
 
-    setShowModal(false);
+    setShowModal(false)
   };
 
   const handleDelete = () => {
     if (gameToDelete) {
-      removeGame(gameToDelete.title);
-      setShowDeleteModal(false);
+      removeGame(gameToDelete.title)
+      setShowDeleteModal(false)
     }
   };
 
@@ -153,7 +153,7 @@ const Games = () => {
   );
 };
 
-export default Games;
+export default Games
 
 
 
