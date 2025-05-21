@@ -45,7 +45,7 @@ function App() {
             <Route path='/verificacion' element={<Verification />} />
             <Route path='/carrito' element={<Cart />} />
             <Route path='/pago' element={<PaymentBlock />} />
-            <Route path="/game/:gameId" element={<GameDetail />} />
+            <Route path="/juego/:gameId" element={<GameDetail />} />
 
             <Route path='/a/usuarios' element={<AdminUsers />} />
             <Route path='/a/juegos' element={<AdminGames />} />

@@ -7,7 +7,14 @@ const Verification: React.FC = () => {
   const [mensaje, setMensaje] = useState('');
   const navigate = useNavigate();
 
-  const handleConfirm = () => {
+  const handleConfirm = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (confirmacionCodigo.trim() === '') {
+      setMensaje('Por favor, completa todos los campos ❗');
+      return;
+    }
+
     const codigoEsperado = localStorage.getItem('codigoConfirmacion');
     const email = localStorage.getItem('emailConfirmacion');
 
@@ -48,7 +55,7 @@ const Verification: React.FC = () => {
           onChange={(e) => setConfirmacionCodigo(e.target.value)}
           required
         />
-        <button type="button" onClick={handleConfirm}>Verificar código de confirmación</button>
+        <button type="submit" onClick={handleConfirm}>Verificar código de confirmación</button>
       </form>
     </div>
   );
