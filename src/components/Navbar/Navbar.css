@@ -45,7 +45,7 @@
     border: 1px solid black;
     border-radius: 23px;
     padding-inline: 15px;
-    width: 450px;
+    width: 30vw;
     font-size: var(--font-size-paragraph);
     color: var(--main-color);
     transition: box-shadow 0.3s ease;
@@ -64,6 +64,35 @@
 .navbar__search-login input::selection {
     background-color: var(--main-color);
     color: white;
+}
+
+.navbar__search-login__suggestions {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 53px;
+    right: 145px;
+    list-style-type: none;
+    border: 1px solid transparent;
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    max-height: 215px;
+    width: 29.65vw;
+    overflow-y: auto;
+    background-color: white;
+    z-index: 10;
+}
+
+.navbar__search-login__suggestions li {
+    padding-block: 8px;
+    padding-inline: 16px;
+    cursor: pointer;
+    font-size: var(--font-size-paragraph);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.navbar__search-login__suggestions li:hover {
+    background-color: #f0f0f0;
 }
 
 .navbar__search-login a {
@@ -149,7 +178,18 @@
 
 
 /* Responsive */
+@media (max-width: 1440px) {
+    .navbar__search-login__suggestions {
+        right: 148px;
+        width: 29vw;
+    }
+}
+
 @media (max-width: 1300px) {
+    .navbar__search-login__suggestions {
+        width: 28.85vw;
+    }
+
     .navbar-admin {
         width: 240px;
     }

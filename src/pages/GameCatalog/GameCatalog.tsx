@@ -74,7 +74,7 @@ const GameCatalog = () => {
             <p className='catalog-page__content__games__no-results'>No se encontraron resultados.</p>
           :
             Object.entries(filteredGames).map(([key, game]) => (
-              <Link to={`/game/${key}`}>
+              <Link to={`/juego/${key}`}>
                 <img src={game.images[0]} alt={game.title} />
                 <div className='catalog-page__content__games__info'>
                   <div className='catalog-page__content__games__info__title-stars'>

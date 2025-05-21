@@ -1,9 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaUserCircle, FaShoppingCart } from 'react-icons/fa';
+import { useGamesContext } from '../../contexts/GamesContext';
 import './Navbar.css';
 
 const Navbar = () => {
+  const { games } = useGamesContext();
+
+  const [search, setSearch] = useState<string>('');
+
+  type Suggestion = {
+    key: string;
+    title: string;
+  };
+
+  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
+  const suggestionsRef = useRef<HTMLDivElement>(null);
+
   interface Usuario {
     nombre: string;
     email: string;
@@ -29,7 +42,45 @@ const Navbar = () => {
     if (rolUsuario) {
       setRol(rolUsuario);
     }
+
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (suggestionsRef.current && !suggestionsRef.current.contains(event.target as Node)) {
+        setSuggestions([]);
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
   }, []);
+
+  const cleanText = (text: string) => {
+    return text
+      .normalize("NFD")                 // separa las letras de sus acentos
+      .replace(/[\u0300-\u036f]/g, '')  // elimina los acentos
+      .replace(/\s+/g, ' ')             // reemplaza espacios/saltos de línea/tabulaciones por un espacio
+      .trim();                          // elimina espacios al inicio y al final
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+
+    const filteredSuggestions: Suggestion[] = Object.entries(games)
+      .filter(([key, game]) =>
+        game &&
+        (
+          cleanText(game.title).toLowerCase().includes(cleanText(event.target.value).toLowerCase()) ||
+          cleanText(key).toLowerCase().includes(cleanText(event.target.value).toLowerCase())
+        )
+      )
+      .map(([key, game]) => ({
+        title: game.title,
+        key: key
+      }));
+    
+    setSuggestions(filteredSuggestions);
+  };
 
   const handleLogout = () => {
     localStorage.removeItem('usuarioLogueado');
@@ -68,7 +119,30 @@ const Navbar = () => {
           <Link to="/noticias">Noticias</Link>
           
           <div className='navbar__search-login'>
-            <input type="text" placeholder='Buscar' />
+            <div ref={suggestionsRef}>
+              <input
+                type='text'
+                value={search}
+                onChange={handleChange}
+                onFocus={handleChange}
+                placeholder='Buscar juego'
+              />
+              {suggestions.length > 0 && (
+                <ul className="navbar__search-login__suggestions">
+                  {suggestions.map((suggestion) => (
+                    <li
+                      onClick={() => {
+                        navigate('/juego/' + suggestion.key);
+                        setSuggestions([]);
+                        setSearch('')
+                      }}
+                    >
+                      {suggestion.title.replace(/\s+/g, ' ').trim()}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
             {isLogged ? (
               <Link to="/carrito" className="cart-icon">
                 <FaShoppingCart />
