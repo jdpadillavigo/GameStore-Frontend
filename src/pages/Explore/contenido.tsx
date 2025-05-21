@@ -1,27 +1,37 @@
 import './contenido.css'
 import portadaNoticias from "../../assets/images/noticia/Portada_noticias.jpg"
-import { nota } from '../../components/Tidings/listaTidings';
-import { listaDeNoticias } from './Explore';
+import { nota } from '../../components/Tidings/listaTidings'
+import { useNoticias } from '../../components/Tidings/noticiasContext'
 
 const ContenidoNoticia = () => {
-  const titulo = "Contenido de la noticia"
+  const { listaDeNoticias } = useNoticias();
+  const noticiaSeleccionada = listaDeNoticias.find((elemento: nota) => elemento.select);
+
   return (
-      <div>
-        <img src={portadaNoticias} alt="Portada_noticia" />
-        <h1 className="title_noticias">{titulo}</h1>
-        {listaDeNoticias.map((elemento: nota) => {
-          return (
-            <div className="contenido_nota">
-              <div className="titulo_nota">{elemento.title}</div>
-              <br></br>
-              <div className="categoria_nota"> Redactado por {elemento.autor}</div>
-              <div className="extra_nota"> Hace {elemento.dias} dias</div>
-              <div>Redactado por: {elemento.categoria}</div>
+    <div className="contenedor-noticia">
+      {noticiaSeleccionada ? (
+        <div className="nota-periodistica fila-noticia">
+          <img
+            className="imagen-noticia mitad-ancho"
+            src={portadaNoticias}
+            alt="Imagen de la noticia"
+          />
+          {/* Contenido a la derecha */}
+          <div className="contenido-noticia-seleccionada">
+            <div className="info-noticia">
+              <img src={noticiaSeleccionada.image}/>
+              <span className="autor-noticia">Redactado por: {noticiaSeleccionada.autor}</span>
+              <span className="dias-noticia"> | Escrtio hace {noticiaSeleccionada.dias} días</span>
             </div>
-          )
-        })
-  }
-      </div>
-  );
-};
+            <div className="redaccion-noticia">
+              {noticiaSeleccionada.redaccion}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div>No hay noticia seleccionada.</div>
+      )}
+    </div>
+  )
+}
 export default ContenidoNoticia;

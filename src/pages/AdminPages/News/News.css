@@ -3,3 +3,54 @@
     font-size: 2rem;
     text-align: left;
 }
+.admin-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 36px;
+  margin: 32px 60px 32px 0;
+  padding: 32px 48px 32px 48px;
+  border: 4px solid #b23a48;
+  border-radius: 16px;
+  background: #b23a48;
+  position: relative;
+  left: 10px;
+}
+.admin-description h1 {
+  margin: 0;
+  padding: 0;
+}
+.admin-description {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1.15rem;
+  max-width: 100%;
+  width: 100%;
+  justify-content: center;
+  margin-left: 0;
+  color: #e4e4e4; /* Texto blanco */
+}
+.admin-description strong {
+  color: #d4d4d4 !important; /* Negro, sobrescribe cualquier otro color */
+}
+.admin-btn {
+  padding: 20px 48px;
+  border: 2px solid #b23a48;
+  border-radius: 10px;
+  background: #fff;
+  color: #b23a48;
+  font-size: 1.15rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  margin-right: 18px;
+}
+.admin-btn.crear { background: #fff; color: #28a745; }
+.admin-btn.editar { background: #fff; color: #ffc107; }
+.admin-btn.eliminar { background: #fff; color: #dc3545; }
+
+.admin-btn:hover {
+  background: #f7eaea;
+  opacity: 0.92;
+}

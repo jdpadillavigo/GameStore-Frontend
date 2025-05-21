@@ -21,6 +21,7 @@ import Stats from './pages/AdminPages/Stats/Stats'
 import { CartProvider } from './components/CartContext/CartContext';
 
 import './App.css'
+import GestionNoticia from './pages/AdminPages/News/Administracion'
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
             <Route path='/a/usuarios' element={<Users />} />
             <Route path='/a/juegos' element={<Games />} />
             <Route path='/a/noticias' element={<News />} />
+            <Route path='/a/noticias/gestion' element={<GestionNoticia />} />
             <Route path='/a/estadisticas' element={<Stats />} />
           </Routes>
         </main>
