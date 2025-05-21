@@ -13,6 +13,7 @@ const Navbar = () => {
     verificado: boolean;
   }
 
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [rol, setRol] = useState(localStorage.getItem('rol') || 'usuario');
   const [usuario, setUsuario] = useState<Usuario | null>(null);
   const navigate = useNavigate();

@@ -1,4 +1,3 @@
-/* Envoltorio centrado para todo el contenido */
 .cart-container,
 .cart-message {
   max-width: 1000px;
@@ -13,11 +12,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 100px); /* Ajusta este valor si tu navbar tiene otra altura */
+  min-height: calc(100vh - 100px); 
   scroll-margin-top: 80px;
 }
 
-/* Título del carrito */
 .cart-container h2 {
   margin-bottom: 1.5rem;
   font-size: 1.75rem;
@@ -25,7 +23,6 @@
   text-align: center;
 }
 
-/* Lista de juegos */
 .cart-list {
   display: flex;
   flex-wrap: wrap;
@@ -33,7 +30,6 @@
   justify-content: center;
 }
 
-/* Estilo de cada juego */
 .cart-item {
   position: relative;
   width: 220px;
@@ -55,7 +51,6 @@
   border-radius: 0.75rem 0.75rem 0 0;
 }
 
-/* Botón de quitar juego */
 .remove-btn {
   position: absolute;
   top: 8px;
@@ -72,7 +67,6 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Botones debajo del carrito */
 .cart-actions {
   margin-top: 2rem;
   display: flex;
@@ -91,7 +85,6 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Botón Cancelar */
 .cancel-btn {
   background-color: #fff;
   color: #000;
@@ -103,7 +96,6 @@
   color: #fff;
 }
 
-/* Botón Confirmar con hover en secondary */
 .confirm-btn {
   background-color: var(--main-color);
   color: #fff;
@@ -113,13 +105,11 @@
   background-color: var(--secondary-color);
 }
 
-/* Mensaje de usuario no logueado */
 .cart-message {
   max-width: 500px;
   text-align: center;
 }
 
-/* Botones dentro del mensaje */
 .cart-message-actions {
   margin-top: 1rem;
   display: flex;
@@ -140,4 +130,23 @@
 
 .cart-message button:hover {
   background-color: var(--secondary-color);
+}
+
+.cart-prices {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.price-normal {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #555;
+  text-decoration: line-through;
+  margin-bottom: 0.25rem;
+}
+
+.price-discount {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: green;
 }

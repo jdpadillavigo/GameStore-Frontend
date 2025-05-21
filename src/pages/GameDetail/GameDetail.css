@@ -1,5 +1,5 @@
-body {
-  background-color: #f4f4f4;
+.game-detail-page {
+  background-color: var(--main-color);
 }
 
 .game-detail-container {
@@ -27,21 +27,26 @@ body {
 }
 
 .game-title {
-  font-size: 2.25rem;
-  font-weight: 600;
+  font-size: 3rem;
+  font-weight: 800;
   color: var(--main-color);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   text-align: center;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
 }
 
 .game-description {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   margin-bottom: 2rem;
   color: #374151;
-  line-height: 1.6;
-  max-width: 700px;
+  line-height: 1.8;
+  max-width: 720px;
   margin-left: auto;
   margin-right: auto;
+  font-weight: 400;
+  font-style: italic;
+  opacity: 0.95;
 }
 
 .media-slider {
@@ -87,7 +92,7 @@ body {
 
 .game-reviews {
   margin-top: 2rem;
-  text-align: left;
+  text-align: center;
 }
 
 .game-reviews h3 {
@@ -110,8 +115,39 @@ body {
 
 .review-item div {
   font-size: 1.2rem;
-  color: var(--main-color); /* Estrellas con main color */
+  color: var(--main-color);
 }
+
+.price-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.price-normal {
+  font-size: 1.2rem;
+  color: #999;
+  text-decoration: line-through;
+  margin-bottom: 0.3rem;
+}
+
+.price-discount {
+  font-size: 1.75rem;
+  font-weight: 700;
+  background-color: #dcfce7;
+  color: #166534;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease;
+}
+
+.price-discount:hover {
+  transform: scale(1.05);
+}
+
 
 .buy-button {
   background-color: var(--main-color);
@@ -127,4 +163,41 @@ body {
 
 .buy-button:hover {
   background-color: var(--secondary-color);
+}
+
+.notification-message {
+  background-color: white;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+  color: black;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.notification-btn {
+  background-color: var(--main-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.notification-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+.added-message {
+  margin-top: 20px;
+  font-weight: 500;
+  color: black;
+  text-align: center;
 }
