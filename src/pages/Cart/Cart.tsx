@@ -56,7 +56,7 @@ const Cart = () => {
               return (
                 <div key={id} className="cart-item">
                   <img
-                    src={games[id].images[0]}
+                    src={games[id].images[1]}
                     alt={games[id].title}
                     className="cart-img"
                   />

@@ -1,95 +1,143 @@
-.cart-container {
-    padding: 2rem;
-    font-family: 'Segoe UI', sans-serif;
-  }
-  
-  .cart-container h2 {
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-  }
-  
-  .cart-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  
-  .cart-item {
-    position: relative;
-    width: 220px;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .cart-img {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 0.5rem;
-  }
-  
-  .remove-btn {
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    background-color: #ef4444;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    width: 24px;
-    height: 24px;
-    font-weight: bold;
-    line-height: 1;
-  }
-  
-  .cart-actions {
-    margin-top: 2rem;
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .cancel-btn,
-  .confirm-btn {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 9999px;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 1rem;
-  }
-  
-  .cancel-btn {
-    background-color: #e5e7eb;
-    color: #111827;
-  }
-  
-  .confirm-btn {
-    background-color: #10b981;
-    color: white;
-  }
-  
-  .cart-message {
-    padding: 2rem;
-    background: #fef3c7;
-    border-radius: 0.5rem;
-    max-width: 500px;
-    margin: 2rem auto;
-    text-align: center;
-  }
-  
-  .cart-message-actions {
-    margin-top: 1rem;
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-  }
-  
-  .cart-message button {
-    padding: 0.5rem 1rem;
-    border-radius: 9999px;
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
-  }
+/* Envoltorio centrado para todo el contenido */
+.cart-container,
+.cart-message {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  color: #000;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 100px); /* Ajusta este valor si tu navbar tiene otra altura */
+  scroll-margin-top: 80px;
+}
+
+/* Título del carrito */
+.cart-container h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Lista de juegos */
+.cart-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+/* Estilo de cada juego */
+.cart-item {
+  position: relative;
+  width: 220px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.cart-item:hover {
+  transform: translateY(-4px);
+}
+
+.cart-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+
+/* Botón de quitar juego */
+.remove-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: var(--main-color);
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones debajo del carrito */
+.cart-actions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.cancel-btn,
+.confirm-btn {
+  padding: 0.75rem 1.75rem;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Botón Cancelar */
+.cancel-btn {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #000;
+}
+
+.cancel-btn:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Botón Confirmar con hover en secondary */
+.confirm-btn {
+  background-color: var(--main-color);
+  color: #fff;
+}
+
+.confirm-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Mensaje de usuario no logueado */
+.cart-message {
+  max-width: 500px;
+  text-align: center;
+}
+
+/* Botones dentro del mensaje */
+.cart-message-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.cart-message button {
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  background-color: var(--main-color);
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.cart-message button:hover {
+  background-color: var(--secondary-color);
+}

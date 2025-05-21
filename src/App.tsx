@@ -1,5 +1,5 @@
-import './App.css'
 import { Routes, Route} from 'react-router-dom'
+import { GamesProvider } from './contexts/GamesContext';
 
 import Navbar from './components/Navbar/Navbar'
 import Home from './pages/Home/Home'
@@ -13,19 +13,16 @@ import ResetPassword from './pages/ResetPassword/ResetPassword'
 import Verification from './pages/Confirmation/Confirmation'
 
 import GameDetail from './pages/GameDetail/GameDetail';
+import Cart from './pages/Cart/Cart'
+import PaymentBlock from './components/PaymentBlock/PaymentBlock'
 
 import AdminUsers from './pages/AdminPages/Users/Users'
 import AdminGames from './pages/AdminPages/Games/Games'
 import AdminNews from './pages/AdminPages/News/News'
 import AdminStats from './pages/AdminPages/Stats/Stats'
 
-import Cart from './pages/Cart/Cart'
-import PaymentBlock from './components/PaymentBlock/PaymentBlock'
-
-import { GamesProvider } from './contexts/GamesContext';
-
-import './App.css'
 import GestionNoticia from './pages/AdminPages/News/Administracion'
+import './App.css'
 
 function App() {
   return (
