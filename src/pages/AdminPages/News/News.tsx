@@ -1,33 +1,33 @@
 import { useNavigate } from 'react-router-dom'
 import './News.css';
-import portadaNoticias from "../../../assets/images/noticia/Portada_noticias.jpg"
+import portadaNoticias from "../../../../public/images/news/Portada_noticias.jpg"
 import { nota } from '../../../components/Tidings/listaTidings';
-import { useState } from 'react'
 import VerNoticias from '../../../components/Tidings/viewTidings'
 import { typeCategory } from '../../../components/Tidings/filterTidings';
 import { useNoticias } from '../../../components/Tidings/noticiasContext';
+import { useState } from 'react';
 
 const Explore = () => {
-  const { listaDeNoticias, setListaDeNoticias } = useNoticias()
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string>('All')
+  const { listaDeNoticias } = useNoticias()
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string>('Todos')
   const navigate = useNavigate()
   const noticiasSeleccionadas = (datos: nota[]) => {
-    if (categoriaSeleccionada === 'All') return datos;
+    if (categoriaSeleccionada === 'Todos') return datos;
     return datos.filter((elem: nota) => elem.categoria === categoriaSeleccionada);
   }
   const categoriasUnicas = (datos : nota[]) => {
     const todasCategorias = datos.map((elem : nota) => elem.categoria)
-    const [categorias,setCategorias] = useState <typeCategory[]>(['All'])
+    const [categorias,setCategorias] = useState <typeCategory[]>(['Todos'])
     todasCategorias.map((item : typeCategory)=>{
-          if(!categorias.includes(item)){
-              setCategorias([...categorias,item])
-          }
+      if(!categorias.includes(item)){
+        setCategorias([...categorias,item])
+      }
     })
     return categorias
   }
   return (
     <div>
-        <img src={portadaNoticias} alt="Portada_noticias" />
+        <img src={portadaNoticias} alt="Portada_noticias" className='portada-noticias'/>
         <div className="admin-bar">
           <div className="admin-description">
             <h1>Modo administrador</h1>

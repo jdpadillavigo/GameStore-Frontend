@@ -14,12 +14,12 @@ const ResetPassword: React.FC = () => {
     e.preventDefault();
 
     if (!email || !nuevaContraseña || !confirmarContraseña) {
-      setError("Todos los campos son obligatorios.");
+      setError("¡Por favor, completa todos los campos!");
       return;
     }
 
     if (nuevaContraseña !== confirmarContraseña) {
-      setError("Las contraseñas no coinciden.");
+      setError("¡Las contraseñas no coinciden!");
       return;
     }
 
@@ -37,19 +37,19 @@ const ResetPassword: React.FC = () => {
         navegador('/login');
       }, 1000);
     } else {
-      setError("No se encontró ningún usuario con ese correo.");
+      setError("¡No se encontró ningún usuario con ese correo!");
     }
   };
 
   return (
-    <div className="restcontraseña-container">
+    <div className="restpassword-container">
       <div className="card">
         <h1>Restablece tu contraseña</h1>
         <p>
           Ingrese la dirección de correo electrónico verificada de su cuenta de usuario y le
           enviaremos un mensaje de confirmación de restablecimiento de contraseña.
         </p>
-        <form>
+        <form onSubmit={handleSubmit}>
           <input
             type="email"
             placeholder="Correo electrónico"
@@ -68,7 +68,7 @@ const ResetPassword: React.FC = () => {
             value={confirmarContraseña}
             onChange={(e) => setConfirmContraseña(e.target.value)}
           />
-          <button type="button" onClick={handleSubmit}>Enviar correo electrónico</button>
+          <button type="submit">Restablecer</button>
         </form>
         {error && <div className="error">{error}</div>}
         {mensaje && <div className="success">{mensaje}</div>}

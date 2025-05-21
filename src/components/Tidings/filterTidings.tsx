@@ -13,7 +13,6 @@ const FilterTidings = (props: typeCategoryProps) => {
     const obtenerCategoria = (e : React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault()
         const categoria = e.currentTarget.innerText
-        console.log(categoria)
         props.setCategoriaSeleccionada(categoria)
     }
     return (
@@ -22,7 +21,6 @@ const FilterTidings = (props: typeCategoryProps) => {
             {props.items.map((tipo : typeCategory) => {
                 return <div>
                     <a
-                        href="/explorar"
                         onClick={obtenerCategoria}
                         className={props.categoriaSeleccionada === tipo ? "selected" : ""}
                     >

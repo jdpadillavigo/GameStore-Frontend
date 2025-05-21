@@ -8,30 +8,33 @@
 
 .login-form {
   background: white;
-  padding: 2rem;
+  padding: 30px;
   border-radius: 10px;
-  width: 600px;
-  height: 400px;
+  width: 440px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .login-form h2 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
   text-align: center;
+  font-size: var(--font-size-subtitle);
 }
 
 .login-form label {
   font-weight: bold;
   margin-top: 1rem;
   display: block;
+  font-size: var(--font-size-paragraph);
 }
 
 .login-form input {
-  width: 100%;
-  padding: 0.5rem;
+  width: 422.4px;
+  padding: 8px;
   margin-top: 0.3rem;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-size: var(--font-size-paragraph);
 }
 
 .login-form button {
@@ -43,6 +46,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: var(--font-size-paragraph);
   transition: background-color 0.3s ease;
 }
 
@@ -52,16 +56,21 @@
 
 .login-form__mensaje {
   text-align: center;
-  margin-top: 1rem;
+  margin-block: 1rem;
   font-weight: bold;
-  color: green;
+  color: var(--blue-color);
+  font-size: var(--font-size-note);
+}
+
+.login-form__link,
+.login-form__forgot-password {
+  font-size: var(--font-size-note);
 }
 
 .login-form__link a,
 .login-form__forgot-password a {
   text-decoration: none;
   color: var(--blue-color);
-  font-size: 0.9rem;
 }
 
 .login-form__link a:hover,
@@ -72,5 +81,5 @@
 .login-form__forgot-password {
   text-align: right;
   margin-top: -10px;
-  margin-bottom: 15px;
+  margin-bottom: 0;
 }

@@ -15,6 +15,7 @@ export interface nota {
 interface listaNoticiasProps {
     listaNotas : nota[]
 }
+
 const ListaNoticias = (props : listaNoticiasProps ) => {
     const { setListaDeNoticias } = useNoticias(); // Usa el contexto
 
@@ -50,4 +51,5 @@ const ListaNoticias = (props : listaNoticiasProps ) => {
         })}
     </div>
 }
+
 export default ListaNoticias

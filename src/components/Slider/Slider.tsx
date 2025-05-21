@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import './Slider.css';
 
 type Slide = {
-    url: string;
-    title: string;
+  url: string;
+  key: string;
 };
 
 type SliderProps = {
-    slides: Slide[];
+  slides: Slide[];
 };
 
 const Slider = ({ slides }: SliderProps) => {
@@ -75,7 +76,11 @@ const Slider = ({ slides }: SliderProps) => {
         style={{
           backgroundImage: `url(${slides[currentIndex].url})`,
         }}
-      />
+      >
+        <Link to={`/game/${slides[currentIndex].key}`}>
+          Ver juego
+        </Link>
+      </div>
 
       {slides.length > 1 && (
         <div className="slider-container__dots">

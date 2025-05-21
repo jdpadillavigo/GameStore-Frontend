@@ -1,5 +1,5 @@
-import './contenido.css'
-import portadaNoticias from "../../assets/images/noticia/Portada_noticias.jpg"
+import './Content.css'
+import portadaNoticias from "../../../public/images/news/Portada_noticias.jpg"
 import { nota } from '../../components/Tidings/listaTidings'
 import { useNoticias } from '../../components/Tidings/noticiasContext'
 

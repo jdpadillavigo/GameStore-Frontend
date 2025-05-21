@@ -1,106 +1,88 @@
-.game-detail {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.game-detail-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
+  font-family: 'Segoe UI', sans-serif;
+  color: #1f2937;
 }
 
-.game-detail__header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.game-detail__header h1 {
-  font-size: 2rem;
-  color: var(--main-color);
-  font-weight: bold;
-}
-
-.game-detail__header p {
-  font-size: 1rem;
-  color: black;
-}
-
-.game-detail__image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-}
-
-.game-detail__description {
-  font-size: 1rem;
-  color: black;
-  text-align: justify;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.game-detail__trailer {
-  width: 100%;
-  max-width: 800px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-}
-
-.game-detail__button-container {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-}
-
-.game-detail__buy-button {
-  background-color: var(--main-color);
-  color: white;
-  font-size: 1rem;
-  padding: 10px 20px;
+.back-btn {
+  background: none;
   border: none;
-  border-radius: 5px;
+  font-size: 1.75rem;
   cursor: pointer;
-  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.game-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.game-image {
+  width: 180px;
+  height: auto;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.game-detail-header h1 {
+  font-size: 1.75rem;
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  color: #111827;
 }
 
-.game-detail__buy-button:hover {
-  background-color: var(--secondary-color);
+.game-trailer {
+  margin: 1.5rem 0;
 }
 
-.game-detail__buy-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.game-detail__reviews {
-  margin-top: 30px;
+.game-trailer-video {
   width: 100%;
-  max-width: 800px;
+  height: 320px;
+  border-radius: 0.5rem;
+  border: none;
 }
 
-.game-detail__reviews h2 {
-  color: var(--main-color);
+.game-rating {
   font-size: 1.5rem;
-  margin-bottom: 10px;
+  color: #f59e0b;
+  margin: 1rem 0;
 }
 
-.game-detail__review {
-  background-color: #f9f9f9;
-  padding: 15px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.game-reviews {
+  margin-top: 1rem;
 }
 
-.game-detail__review p {
-  color: #333;
+.game-reviews h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #111827;
 }
 
-.game-detail__review .review-author {
-  font-weight: bold;
-  color: var(--main-color);
+.game-reviews p {
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.buy-button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 9999px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1.5rem;
+}
+
+.buy-button:hover {
+  background-color: #2563eb;
 }

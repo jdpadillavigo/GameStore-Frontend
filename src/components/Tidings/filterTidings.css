@@ -1,0 +1,9 @@
+.filter-container a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.filter-container a:hover {
+    color: var(--secondary-color);
+}
