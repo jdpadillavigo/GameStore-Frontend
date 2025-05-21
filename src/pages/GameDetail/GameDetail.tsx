@@ -7,10 +7,16 @@ const GameDetail = () => {
   const { games } = useGamesContext();
   const { gameId } = useParams<{ gameId: string }>();
   const [gameSelected, setGameSelected] = useState<Game | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('rol') !== null);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [currentMedia, setCurrentMedia] = useState<number>(0);
   const [fade, setFade] = useState<boolean>(false);
+  const [addedToCart, setAddedToCart] = useState(false);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setIsAuthenticated(localStorage.getItem('rol') !== null);
+  }, []);
 
   useEffect(() => {
     if (gameId && games[gameId]) {
@@ -22,7 +28,7 @@ const GameDetail = () => {
     if (isAuthenticated) {
       const cart = JSON.parse(localStorage.getItem('cart') || '[]');
       localStorage.setItem('cart', JSON.stringify([...new Set([...cart, gameId])]));
-      alert('Juego añadido al carrito.');
+      setAddedToCart(true);
     } else {
       navigate('/login');
     }
@@ -33,7 +39,7 @@ const GameDetail = () => {
     setTimeout(() => {
       setCurrentMedia(nextIndex);
       setFade(false);
-    }, 250); // Duración del fade-out
+    }, 250);
   };
 
   const handlePrev = () => {
@@ -53,12 +59,13 @@ const GameDetail = () => {
   if (!gameSelected) return <p>Cargando...</p>;
 
   return (
+    <div className='game-detail-page'>
     <div className="game-detail-container">
       <button className="back-btn" onClick={() => navigate(-1)}>←</button>
 
       <h1 className="game-title">{gameSelected.title}</h1>
       <p className="game-description">{gameSelected.description}</p>
-
+      
       <div className="media-slider">
         <button className="slider-btn" onClick={handlePrev}>⟨</button>
 
@@ -82,6 +89,12 @@ const GameDetail = () => {
         <button className="slider-btn" onClick={handleNext}>⟩</button>
       </div>
 
+        <div className="price-section">
+        <p className="price-discount"> ¡En Descuento! S/ {(gameSelected.base_price * (1 - gameSelected.discount / 100)).toFixed(2)}
+        <p className="price-normal">S/ {gameSelected.base_price.toFixed(2)}</p>
+        </p>
+      </div>
+      
       {gameSelected.reviews?.length > 0 && (
         <div className="game-reviews">
           <h3>Reseñas:</h3>
@@ -95,12 +108,29 @@ const GameDetail = () => {
         </div>
       )}
 
-      <button className="buy-button" onClick={handleBuy}>
-        Añadir al Carrito
-      </button>
+      {/* Notificación permanente personalizada */}
+      {addedToCart && (
+        <div className="notification-message">
+          <p>El juego fue añadido al carrito</p>
+          <button onClick={() => navigate('/cart')} className="notification-btn">
+            Ver carrito
+          </button>
+        </div>
+      )}
+
+      {/* Mostrar botón añadir solo si aún no ha sido añadido */}
+      {isAuthenticated && !addedToCart ? (
+        <button className="buy-button" onClick={handleBuy}>
+          Añadir al Carrito
+        </button>
+      ) : !isAuthenticated && !addedToCart ? (
+        <button className="buy-button" onClick={() => navigate('/login')}>
+          Iniciar sesión para comprar
+        </button>
+      ) : null}
+    </div>
     </div>
   );
 };
 
 export default GameDetail;
-
