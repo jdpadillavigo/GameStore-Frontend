@@ -13,11 +13,13 @@ const VerNoticias = (props : Reg) => {
         <div className='noticia-container'>
             <ListaNoticias listaNotas={props.registros}/>
         </div>
-        <FilterTidings
-            items={props.categorias}
-            categoriaSeleccionada={props.categoriaSeleccionada}
-            setCategoriaSeleccionada={props.setCategoriaSeleccionada}
-        />
+        <div>
+            <FilterTidings
+                items={props.categorias}
+                categoriaSeleccionada={props.categoriaSeleccionada}
+                setCategoriaSeleccionada={props.setCategoriaSeleccionada}
+            />
+        </div>
     </div>
 }
 export default VerNoticias

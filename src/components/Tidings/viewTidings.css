@@ -22,5 +22,9 @@
     min-width: 180px;
     max-width: 320px;
     width: 30%;
-    padding: 0;
+    padding: 16px 12px;
+    background: #fff;
+    border: 2px solid #b23a48;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
