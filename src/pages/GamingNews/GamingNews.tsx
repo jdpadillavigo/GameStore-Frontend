@@ -8,7 +8,7 @@ import { nota } from '../../components/Tidings/listaTidings';
 import portadaNoticias from '../../../public/images/news/Portada_noticias.jpg'
 
 const Explore = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   useEffect(() => {
     const rol = localStorage.getItem('rol')
@@ -20,7 +20,7 @@ const Explore = () => {
   const { listaDeNoticias } = useNoticias();
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string>('Todos')
   const noticiasSeleccionadas = (datos: nota[]) => {
-    if (categoriaSeleccionada === 'Todos') return datos;
+    if (categoriaSeleccionada === 'Todos') return datos
     return datos.filter((elem: nota) => elem.categoria === categoriaSeleccionada)
   }
   const categoriasUnicas = (datos : nota[]) => {

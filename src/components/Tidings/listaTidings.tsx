@@ -25,8 +25,8 @@ const ListaNoticias = (props : listaNoticiasProps ) => {
             prev.map(n =>
                 n.id === id ? { ...n, select: true } : { ...n, select: false }
             )
-        );
-    };
+        )
+    }
 
     return <div>
         {props.listaNotas.map((elemento : nota) => {
@@ -34,7 +34,7 @@ const ListaNoticias = (props : listaNoticiasProps ) => {
                 <div className="noticia" key={elemento.id}>
                     <div className="contenido_nota">
                         <Link 
-                            to={"/explore"}
+                            to={"/noticias"}
                             onClick={() => handleSelect(elemento.id)}
                         >
                             <div className="titulo_nota">{elemento.title}</div>
