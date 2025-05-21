@@ -25,7 +25,7 @@ const Users: React.FC = () => {
                   <th>ID</th>
                   <th>Nombre</th>
                   <th>Correo</th>
-                  <th>Contraseña</th>
+                  {/* <th>Contraseña</th> */}
                   <th>País</th>
                 </tr>
               </thead>
@@ -35,7 +35,7 @@ const Users: React.FC = () => {
                     <td>{index + 1}</td>
                     <td>{usuario.nombre}</td>
                     <td>{usuario.email}</td>
-                    <td>{usuario.contraseña}</td>
+                    {/* <td>{usuario.contraseña}</td> */}
                     <td>{usuario.pais}</td>
                   </tr>
                 ))}

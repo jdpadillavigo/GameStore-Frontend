@@ -26,7 +26,7 @@ const Navbar = () => {
     verificado: boolean;
   }
 
-  const [rol, setRol] = useState(localStorage.getItem('rol') || 'usuario');
+  const [rol, setRol] = useState(localStorage.getItem('rol') || '');
   const [usuario, setUsuario] = useState<Usuario | null>(null);
   const navigate = useNavigate();
   const isLogged = Boolean(usuario);
@@ -85,8 +85,8 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem('usuarioLogueado');
     setUsuario(null);
-    localStorage.setItem('rol', 'usuario');
-    setRol('usuario');
+    localStorage.setItem('rol', '');
+    setRol('');
     navigate("/");
   };
 
