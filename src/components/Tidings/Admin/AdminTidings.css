@@ -28,12 +28,14 @@
     text-align: center;
     margin-top: 8px;
     margin-bottom: 8px;
+    color: #b23a48;
 }
 
 .gestion-noticia-desc {
     text-align: center;
     margin-top: 8px;
     margin-bottom: 8px;
+    color: #b23a48;
 }
 
 .gestion-noticia-field {
@@ -45,7 +47,7 @@
 .gestion-noticia-label {
     font-weight: 500;
     margin-bottom: 4px;
-    color: #222;
+    color: #b23a48;
 }
 
 .gestion-noticia-input {
@@ -58,7 +60,7 @@
 }
 
 .gestion-noticia-input:focus {
-    border-color: #1976d2;
+    border-color: #b23a48;
     outline: none;
 }
 
@@ -77,7 +79,7 @@
 .gestion-noticia-btn {
     margin-top: auto;
     padding: 12px;
-    background: #1976d2;
+    background: #b23a48;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -97,7 +99,7 @@
 }
 
 .gestion-noticia-btn-aplicar {
-    background: #1976d2;
+    background: #888;
     flex: 1;
 }
 
@@ -105,11 +107,18 @@
     background: #888;
     flex: 1;
 }
+.gestion-noticia-btn-cancelar:hover {
+    background-color:#b23a48;
+}
+.gestion-noticia-btn-aplicar:hover {
+    background-color:#b23a48;
+}
 
 .gestion-noticia-btn-editar {
-    background: #1976d2;
+    background: #b23a48;;
     margin-left: 16px;
     padding: 6px 16px;
+
 }
 
 .gestion-noticia-eliminar-item {
@@ -157,6 +166,7 @@
 .gestion-noticia-eliminar-title {
     margin-bottom: 16px;
     text-align: center;
+    color: #b23a48
 }
 
 .gestion-noticia-eliminar-filtros {

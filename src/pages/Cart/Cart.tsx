@@ -36,8 +36,9 @@ const Cart = () => {
   }
 
   return (
-    <div className="cart-container">
-      <h2>Tu Carrito</h2>
+  <div className='cart-page'>
+      <div className="cart-container">
+        <h2>Tu Carrito</h2>
 
       {cart.length === 0 ? (
         <p>No tienes juegos agregados.</p>
@@ -66,7 +67,8 @@ const Cart = () => {
         </>
       )}
     </div>
-  );
-};
+  </div>
+  )
+}
 
 export default Cart;
