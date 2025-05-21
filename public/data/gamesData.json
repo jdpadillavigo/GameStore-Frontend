@@ -1,5 +1,5 @@
 {
-    "GTA_V": {
+    "Grand Theft Auto V": {
         "title": "Grand Theft Auto V",
         "description": "Un juego de acción y aventura de mundo abierto, donde puedes explorar una ciudad ficticia, cometer crímenes y vivir aventuras con diferentes personajes.",
         "trailer": "https://www.youtube.com/embed/3DBrG2YjqQA",
@@ -27,7 +27,7 @@
         "discount": 20,
         "platform": "PlayStation, Xbox, Windows"
     },
-    "NFS_Heat": {
+    "Need for Speed Heat": {
         "title": "Need for Speed Heat",
         "description": "Un juego de carreras lleno de acción y adrenalina, con la posibilidad de personalizar vehículos y competir en circuitos nocturnos.",
         "trailer": "https://www.youtube.com/embed/9ewiJJe_nYI",
@@ -55,7 +55,7 @@
         "discount": 15,
         "platform": "PlayStation, Xbox, Windows"
     },
-    "Elden_Ring": {
+    "Elden Ring": {
         "title": "Elden Ring",
         "description": "Un juego de rol de acción en un mundo abierto donde los jugadores exploran un vasto mundo, luchan contra jefes desafiantes y mejoran sus habilidades.",
         "trailer": "https://www.youtube.com/embed/AKXiKBnzpBQ",
@@ -83,7 +83,7 @@
         "discount": 10,
         "platform": "PlayStation, Xbox, Windows"
     },
-    "Cyberpunk_2077": {
+    "Cyberpunk 2077": {
         "title": "Cyberpunk 2077",
         "description": "Un juego de rol y acción ambientado en un futuro distópico, donde tomas el rol de un mercenario en la ciudad de Night City.",
         "trailer": "https://www.youtube.com/embed/nLhWWoAaZ0Q",
@@ -111,7 +111,7 @@
         "discount": 25,
         "platform": "PlayStation, Xbox, Windows"
     },
-    "Red_Dead_Redemption_2": {
+    "Red Dead Redemption 2": {
         "title": "Red Dead Redemption 2",
         "description": "Un juego de acción y aventura ambientado en el Viejo Oeste, donde los jugadores toman el rol de un forajido que explora un mundo abierto y toma decisiones clave.",
         "trailer": "https://www.youtube.com/embed/eaW0tYpxyp0",
@@ -139,7 +139,7 @@
         "discount": 30,
         "platform": "PlayStation, Xbox, Windows"
     },
-    "Horizon_Forbidden_West": {
+    "Horizon Forbidden West": {
         "title": "Horizon Forbidden West",
         "description": "Un juego de aventura y acción en un mundo post-apocalíptico, donde controlas a Aloy, una cazadora que combate máquinas en un entorno vasto y diverso.",
         "trailer": "https://www.youtube.com/embed/Lq594XmpPBg",
@@ -167,7 +167,7 @@
         "discount": 15,
         "platform": "PlayStation"
     },
-    "Ghost_of_Tsushima": {
+    "Ghost of Tsushima": {
         "title": "Ghost of Tsushima",
         "description": "Un juego de acción y aventura ambientado en el Japón feudal, donde tomas el rol de un samurái que lucha por defender su hogar.",
         "trailer": "https://www.youtube.com/embed/iqysmS4lxwQ",
@@ -195,7 +195,7 @@
         "discount": 20,
         "platform": "PlayStation"
     },
-    "Assassins_Creed_Valhalla": {
+    "Assassins Creed Valhalla": {
         "title": "Assassin’s Creed Valhalla",
         "description": "Un juego de acción y aventura ambientado en la época vikinga, donde controlas a un guerrero vikingo mientras exploras un mundo abierto y realizas misiones.",
         "trailer": "https://www.youtube.com/embed/ssrNcwxALS4",
@@ -223,7 +223,7 @@
         "discount": 10,
         "platform": "PlayStation, Xbox, Windows"
     },
-    "Spider-Man": {
+    "Spider Man": {
         "title": "Marvel’s Spider-Man Remastered",
         "description": "Un juego de acción y aventura basado en el famoso superhéroe Spider-Man, donde puedes balancearte por la ciudad de Nueva York y luchar contra diversos villanos.",
         "trailer": "https://www.youtube.com/embed/1E051WtpyWg",
@@ -251,7 +251,7 @@
         "discount": 10,
         "platform": "PlayStation, Windows"
     },
-    "Resident_Evil_4_Remake": {
+    "Resident Evil 4 Remake": {
         "title": "Resident Evil 4 Remake",
         "description": "Un juego de survival horror donde controlas a Leon S. Kennedy en una misión para rescatar a la hija del presidente mientras lucha contra criaturas infectadas.",
         "trailer": "https://www.youtube.com/embed/j5Ic2z3_xp0",
