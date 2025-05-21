@@ -1,19 +1,19 @@
 import { useNavigate } from 'react-router-dom'
-import './News.css';
+import './News.css'
 import portadaNoticias from "../../../../public/images/news/Portada_noticias.jpg"
-import { nota } from '../../../components/Tidings/listaTidings';
+import { nota } from '../../../components/Tidings/listaTidings'
 import VerNoticias from '../../../components/Tidings/viewTidings'
-import { typeCategory } from '../../../components/Tidings/filterTidings';
-import { useNoticias } from '../../../components/Tidings/noticiasContext';
-import { useState } from 'react';
+import { typeCategory } from '../../../components/Tidings/filterTidings'
+import { useNoticias } from '../../../components/Tidings/noticiasContext'
+import { useState } from 'react'
 
 const Explore = () => {
   const { listaDeNoticias } = useNoticias()
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string>('Todos')
   const navigate = useNavigate()
   const noticiasSeleccionadas = (datos: nota[]) => {
-    if (categoriaSeleccionada === 'Todos') return datos;
-    return datos.filter((elem: nota) => elem.categoria === categoriaSeleccionada);
+    if (categoriaSeleccionada === 'Todos') return datos
+    return datos.filter((elem: nota) => elem.categoria === categoriaSeleccionada)
   }
   const categoriasUnicas = (datos : nota[]) => {
     const todasCategorias = datos.map((elem : nota) => elem.categoria)
