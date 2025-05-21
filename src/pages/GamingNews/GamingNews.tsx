@@ -13,7 +13,7 @@ const Explore = () => {
   useEffect(() => {
     const rol = localStorage.getItem('rol')
     if (rol === 'usuario') {
-      navigate('/a/noticias', { replace: true })
+      navigate('/noticias', { replace: true })
     }
   }, [navigate])
 

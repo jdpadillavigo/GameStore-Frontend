@@ -1,4 +1,5 @@
 import React from "react"
+import portadaNoticias from "/images/news/Portada_noticias.jpg"
 import './AdminTidings.css'
 
 interface VistaPreEdicionProps {
@@ -27,7 +28,7 @@ const VistaPreEdicion: React.FC<VistaPreEdicionProps> = ({
     <div className="gestion-noticia-container gestion-noticia-editar-outer">
         <div className="gestion-noticia-form">
             <br></br>
-            <img src="portadaNoticias" className="gestion-noticia-img" />
+            <img src={portadaNoticias} className="gestion-noticia-img" />
             <h2 className="gestion-noticia-title">Edición de Noticias</h2>
             <div className="gestion-noticia-eliminar-filtros">
                 <select

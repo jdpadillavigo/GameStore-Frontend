@@ -17,7 +17,7 @@ const FilterTidings = (props: typeCategoryProps) => {
     }
     return (
         <div className='filter-container'>
-            <h3>Quiere ver por categoría</h3>
+            <h3>Filtrar por categoría</h3>
             {props.items.map((tipo : typeCategory) => {
                 return <div>
                     <a

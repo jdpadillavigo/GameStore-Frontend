@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import './News.css'
-import portadaNoticias from "../../../../public/images/news/Portada_noticias.jpg"
+import portadaNoticias from "/images/news/Portada_noticias.jpg"
 import { nota } from '../../../components/Tidings/listaTidings'
 import VerNoticias from '../../../components/Tidings/viewTidings'
 import { typeCategory } from '../../../components/Tidings/filterTidings'
@@ -26,7 +26,7 @@ const Explore = () => {
     return categorias
   }
   return (
-    <div>
+    <div className='news-page'>
         <img src={portadaNoticias} alt="Portada_noticias" className='portada-noticias'/>
         <div className="admin-bar">
           <div className="admin-description">

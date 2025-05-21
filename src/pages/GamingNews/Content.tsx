@@ -21,7 +21,7 @@ const ContenidoNoticia = () => {
             <div className="info-noticia">
               <img src={noticiaSeleccionada.image}/>
               <span className="autor-noticia">Redactado por: {noticiaSeleccionada.autor}</span>
-              <span className="dias-noticia"> | Escrtio hace {noticiaSeleccionada.dias} días</span>
+              <span className="dias-noticia"> | Escrito hace {noticiaSeleccionada.dias} días</span>
             </div>
             <div className="redaccion-noticia">
               {noticiaSeleccionada.redaccion}

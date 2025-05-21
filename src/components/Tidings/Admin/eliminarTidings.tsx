@@ -1,4 +1,5 @@
 import React from "react"
+import portadaNoticias from "/images/news/Portada_noticias.jpg"
 import './AdminTidings.css'
 
 interface EliminarTidingsProps {
@@ -29,7 +30,7 @@ const EliminarTidings: React.FC<EliminarTidingsProps> = ({
     <div className="gestion-noticia-eliminar-outer">
         <div className="gestion-noticia-eliminar">
             <br/>
-            <img src="portadaNoticias" className="gestion-noticia-img"/>
+            <img src={portadaNoticias} className="gestion-noticia-img"/>
             <h2 className="gestion-noticia-eliminar-title">Eliminación de Noticias</h2>
             {/* Filtros */}
             <div className="gestion-noticia-eliminar-filtros">
