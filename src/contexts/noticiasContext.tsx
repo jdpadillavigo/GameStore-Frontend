@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { nota } from './listaTidings';
+import { nota } from '../components/Tidings/listaTidings';
 
 const noticiasPorDefecto: nota[] = [
   {

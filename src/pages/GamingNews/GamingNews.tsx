@@ -2,8 +2,8 @@ import './GamingNews.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import VerNoticias from '../../components/Tidings/viewTidings'
-import { typeCategory } from '../../components/Tidings/filterTidings';
-import { useNoticias } from '../../components/Tidings/noticiasContext';
+import { typeCategory } from '../../components/Tidings/viewTidings';
+import { useNoticias } from '../../contexts/noticiasContext';
 import { nota } from '../../components/Tidings/listaTidings';
 import portadaNoticias from '../../../public/images/news/Portada_noticias.jpg'
 
@@ -17,7 +17,7 @@ const Explore = () => {
     }
   }, [navigate])
 
-  const { listaDeNoticias } = useNoticias();
+  const { listaDeNoticias } = useNoticias()
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string>('Todos')
   const noticiasSeleccionadas = (datos: nota[]) => {
     if (categoriaSeleccionada === 'Todos') return datos
@@ -33,18 +33,17 @@ const Explore = () => {
     })
     return categorias
   }
-
   return (
-    <div>
-        <img src={portadaNoticias} alt="Portada_noticias" className='portada-noticias'/>
-        <h1 className='title_noticias'>Noticias</h1>
-        <VerNoticias 
-          registros={noticiasSeleccionadas(listaDeNoticias)}
-          categorias={categoriasUnicas(listaDeNoticias)}
-          categoriaSeleccionada={categoriaSeleccionada}
-          setCategoriaSeleccionada={setCategoriaSeleccionada}
-        />
-    </div>
+      <div>
+          <img src={portadaNoticias} alt="Portada_noticias" className='img_portada'/>
+          <h1 className='title_noticias'>Noticias</h1>
+          <VerNoticias
+            registros={noticiasSeleccionadas(listaDeNoticias)}
+            categorias={categoriasUnicas(listaDeNoticias)}
+            categoriaSeleccionada={categoriaSeleccionada}
+            setCategoriaSeleccionada={setCategoriaSeleccionada}
+          />
+      </div>
   )
 }
 

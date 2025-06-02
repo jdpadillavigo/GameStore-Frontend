@@ -3,11 +3,11 @@ import './News.css'
 import portadaNoticias from "../../../../public/images/news/Portada_noticias.jpg"
 import { nota } from '../../../components/Tidings/listaTidings'
 import VerNoticias from '../../../components/Tidings/viewTidings'
-import { typeCategory } from '../../../components/Tidings/filterTidings'
-import { useNoticias } from '../../../components/Tidings/noticiasContext'
+import { typeCategory } from '../../../components/Tidings/viewTidings'
+import { useNoticias } from '../../../contexts/noticiasContext'
 import { useState } from 'react'
 
-const Explore = () => {
+const ExploreAD = () => {
   const { listaDeNoticias } = useNoticias()
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string>('Todos')
   const navigate = useNavigate()
@@ -26,28 +26,16 @@ const Explore = () => {
     return categorias
   }
   return (
-    <div>
-        <img src={portadaNoticias} alt="Portada_noticias" className='portada-noticias'/>
-        <div className="admin-bar">
-          <div className="admin-description">
-            <h1>Modo administrador</h1>
-            <div>
-              Como administrador puede gestionar y controlar la visualización de todas las noticias que ven los usuarios. Es decir, tiene el poder de administrar el contenido publicado, asegurando que la información sea relevante y actualizada.
-            </div>
-            <div>
-              <strong>Crear:</strong>
-              Agrega una nueva noticia a la página completando los campos requeridos. La noticia será visible para todos los usuarios una vez publicada.
-            </div>
-            <div>
-              <strong>Editar:</strong>
-              Modifica el contenido de una noticia especifica; el contenido, la categoría u otros detalles del mismo. Esto permite mantener la información precisa y actualizada en todo momento.
-            </div>
-            <div>
-              <strong>Eliminar:</strong>
-              Elimina de forma permanente la noticia seleccionada, quitándola tanto de la página como de la vista de los usuarios.
-            </div>
-          </div>
-          <div className="admin-buttons-centered">
+      <div>
+          <img src={portadaNoticias} alt="Portada_noticias" className='img_portadaAdmin'/>
+          <h1 className='title_noticiasAdmin'>Noticias</h1>
+          <VerNoticias
+            registros={noticiasSeleccionadas(listaDeNoticias)}
+            categorias={categoriasUnicas(listaDeNoticias)}
+            categoriaSeleccionada={categoriaSeleccionada}
+            setCategoriaSeleccionada={setCategoriaSeleccionada}
+          />
+          <div className='borrar_temporal'>
             <button
               className="admin-btn crear"
               onClick={() => navigate('/a/noticias/gestion', { state: { accion: 'crear' } })}
@@ -67,16 +55,8 @@ const Explore = () => {
               Eliminar
             </button>
           </div>
-        </div>
-        <h1 className='title_noticias'>Noticias</h1>
-        <VerNoticias
-          registros={noticiasSeleccionadas(listaDeNoticias)}
-          categorias={categoriasUnicas(listaDeNoticias)}
-          categoriaSeleccionada={categoriaSeleccionada}
-          setCategoriaSeleccionada={setCategoriaSeleccionada}
-        />
-    </div>
+      </div>
   )
 }
 
-export default Explore;
+export default ExploreAD;

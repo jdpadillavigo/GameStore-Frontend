@@ -1,29 +1,27 @@
-import './Content.css'
+import './GamingNews.css'
 import portadaNoticias from "../../../public/images/news/Portada_noticias.jpg"
 import { nota } from '../../components/Tidings/listaTidings'
-import { useNoticias } from '../../components/Tidings/noticiasContext'
+import { useNoticias } from '../../contexts/noticiasContext'
 
 const ContenidoNoticia = () => {
   const { listaDeNoticias } = useNoticias();
   const noticiaSeleccionada = listaDeNoticias.find((elemento: nota) => elemento.select);
 
   return (
-    <div className="contenedor-noticia">
+    <div>
       {noticiaSeleccionada ? (
-        <div className="nota-periodistica fila-noticia">
+        <div>
           <img
-            className="imagen-noticia mitad-ancho"
             src={portadaNoticias}
             alt="Imagen de la noticia"
           />
-          {/* Contenido a la derecha */}
-          <div className="contenido-noticia-seleccionada">
-            <div className="info-noticia">
+          <div>
+            <div>
               <img src={noticiaSeleccionada.image}/>
-              <span className="autor-noticia">Redactado por: {noticiaSeleccionada.autor}</span>
-              <span className="dias-noticia"> | Escrtio hace {noticiaSeleccionada.dias} días</span>
+              <span>Redactado por: {noticiaSeleccionada.autor}</span>
+              <span> | Escrtio hace {noticiaSeleccionada.dias} días</span>
             </div>
-            <div className="redaccion-noticia">
+            <div>
               {noticiaSeleccionada.redaccion}
             </div>
           </div>

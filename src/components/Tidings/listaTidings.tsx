@@ -1,6 +1,6 @@
-import "./listaTiding.css"
+import "./viewTidings.css"
 import { Link } from 'react-router-dom';
-import { useNoticias } from './noticiasContext'; // Importa el hook
+import { useNoticias } from '../../contexts/noticiasContext';
 
 export interface nota {
     id : number
@@ -17,7 +17,7 @@ interface listaNoticiasProps {
 }
 
 const ListaNoticias = (props : listaNoticiasProps ) => {
-    const { setListaDeNoticias } = useNoticias(); // Usa el contexto
+    const { setListaDeNoticias } = useNoticias();
 
     // Función para seleccionar una noticia
     const handleSelect = (id: number) => {

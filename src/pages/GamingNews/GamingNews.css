@@ -1,18 +1,11 @@
 .title_noticias{
-    margin-left: 5%;
+    padding-left: 20%; /*Aumentar para llevar titulo a la derecha*/
     font-size: 2rem;
-    text-align: left;
 }
-.portada-noticias {
-  width: 100vw;
-  max-width: 100vw;
-  min-width: 100vw;
+.img_portada {
+  width: 100%;
   height: 300px;
-  object-fit: cover;
   display: block;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  margin-left: auto;
+  margin-right: 0;
 }

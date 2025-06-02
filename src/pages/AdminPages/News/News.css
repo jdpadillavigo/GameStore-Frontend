@@ -1,74 +1,33 @@
-.title_noticias{
-    margin-left: 340px;
-    font-size: 2rem;
-    text-align: left;
-}
-.portada-noticias {
-  width: 100vw;
-  max-width: 100vw;
-  min-width: 100vw;
-  height: 300px; /* Ajusta la altura según tu preferencia */
-  object-fit: cover;
+.img_portadaAdmin {
+  width: 1545px; /*Disminuye/aumenta para ajustar ancho*/
+  height: 250px; /*Altura fija*/
   display: block;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-}
-.admin-bar {
-  display: flex;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 36px;
-  margin: 32px 5px 32px auto;         /* Centra horizontalmente */
-  padding: 32px 48px;
-  border: 4px solid #b23a48;
-  border-radius: 16px;
-  background: #b23a48;
-  max-width: 1000px;          /* Limita el ancho máximo */
-  width:60%;
-  position: relative;
-  left: 0;
-  margin-left: 340px;
+  margin-left: auto;
   margin-right: 0;
 }
-.admin-description h1 {
-  margin: 0;
-  padding: 0;
+.title_noticiasAdmin{
+  padding-right: 74%; /*Disminuir para llevar titulo a la derecha*/
+  font-size: 2rem;
+  text-align: right;
 }
-.admin-description {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 1.15rem;
-  max-width: 100%;
-  width: 100%;
-  justify-content: center;
-  margin-left: 0;
-  color: #e4e4e4; /* Texto blanco */
+.borrar_temporal{
+  margin-left: 370px;
 }
-.admin-description strong {
-  color: #d4d4d4 !important; /* Negro, sobrescribe cualquier otro color */
-}
-.admin-btn {
-  padding: 20px 48px;
-  border: 2px solid #b23a48;
-  border-radius: 10px;
+.admin-btn.crear{
   background: #fff;
-  color: #b23a48;
-  font-size: 1.15rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-  margin-right: 18px;
+  color: #28a745;
 }
-.admin-btn.crear { background: #fff; color: #28a745; }
-.admin-btn.editar { background: #fff; color: #ffc107; }
-.admin-btn.eliminar { background: #fff; color: #dc3545; }
-
+.admin-btn.editar{
+  background: #fff;
+  color: blue;
+}
+.admin-btn.eliminar{
+  background: #fff;
+  color: orangered;
+}
 .admin-btn:hover {
-  background: #f7eaea;
+  border-color: red;
+  border-width: 3px;
+  background-color: rgb(165, 165, 165);
   opacity: 0.92;
 }

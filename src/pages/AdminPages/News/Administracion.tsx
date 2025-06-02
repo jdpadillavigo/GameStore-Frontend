@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import portadaNoticias from "../../../../public/images/news/Portada_noticias.jpg"
-import { useNoticias } from '../../../components/Tidings/noticiasContext'
+import { useNoticias } from '../../../contexts/noticiasContext'
 import { nota } from '../../../components/Tidings/listaTidings';
 import { useRef, useState } from 'react';
 import CrearTidings from '../../../components/Tidings/Admin/crearTidings';
