@@ -1,10 +1,9 @@
 import './GamingNews.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import VerNoticias from '../../components/Tidings/viewTidings'
+import VerNoticias, { nota } from '../../components/Tidings/viewTidings'
 import { typeCategory } from '../../components/Tidings/viewTidings';
 import { useNoticias } from '../../contexts/noticiasContext';
-import { nota } from '../../components/Tidings/listaTidings';
 import portadaNoticias from '../../../public/images/news/Portada_noticias.jpg'
 
 const Explore = () => {
@@ -12,8 +11,8 @@ const Explore = () => {
 
   useEffect(() => {
     const rol = localStorage.getItem('rol')
-    if (rol === 'usuario') {
-      navigate('/a/noticias', { replace: true })
+    if (rol === 'admin') {
+      navigate('/a/noticias')
     }
   }, [navigate])
 

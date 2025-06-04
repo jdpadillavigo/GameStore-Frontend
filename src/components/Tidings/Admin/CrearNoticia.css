@@ -1,0 +1,109 @@
+.modal-crear-noticia {
+  position: static;
+  width: 100%;
+  height: auto;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: auto;
+  margin-top: 5px
+}
+
+.modal-content {
+  background: #fff;
+  padding: 2.5rem 2.625rem; /* Aumenta 10px a izquierda y derecha (2rem + 0.625rem ≈ 40px + 10px) */
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(178, 58, 72, 0.18); /* Sombra rojiza clara */
+  min-width: 370px; /* +20px respecto a antes */
+  max-width: 95vw;
+  width: 420px;     /* +20px respecto a antes */
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.modal-content h2 {
+  margin: 0 0 1rem 0;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #b23a48;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #b23a48;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.5rem 0.7rem;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #f9f9f9;
+  transition: border-color 0.2s;
+  resize: none;
+}
+
+.form-group input:hover,
+.form-group textarea:hover,
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #b23a48;
+  outline: none;
+}
+
+.form-group textarea {
+  min-height: 70px;
+  max-height: 200px;
+  resize: vertical;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: center; /* Centra los botones horizontalmente */
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.new_noticia_btn_crear,
+.new_noticia_btn_volver {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s, box-shadow 0.2s;
+}
+
+.new_noticia_btn_crear {
+  background: #b23a48;
+  color: #fff;
+}
+
+.new_noticia_btn_crear:hover {
+  background: #7b2530;
+}
+
+.new_noticia_btn_volver {
+  background: #bdbdbd;
+  color: #222;
+}
+
+.new_noticia_btn_volver:hover {
+  background: #757575;
+  color: #fff;
+}
+
+.new_noticia_btn_crear:active,
+.new_noticia_btn_volver:active {
+  border: 2px solid red;
+  box-shadow: 0 0 0 2px red;
+}

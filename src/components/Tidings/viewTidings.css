@@ -1,39 +1,22 @@
-/*elementos .css de viewtidings*/
 .vistaNoticia {
     display: flex;
     align-items: flex-start;
     box-sizing: border-box;
 }
-.noticia-container {
+
+/*corresponde dentro del div noticia-container*/
+.noticia_container {
     flex: 8 1 0;
     margin-left: 380px;
 }
-.filter-container {
-    flex: 2 1 0;
-    margin-right: 50px;
-    margin-bottom: 50px;
-    border: 2px solid #b23a48;
-    border-radius: 12px;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-.filter-container a {
-    color: black;
-    cursor: pointer;
-}
-.filter-container a:hover {
-    color: red;
-}
-
-/*elementos .css de lista tidings*/
 .noticia {
   display: flex;
   border: 2px solid #ccc;
-  border-radius: 40px;
+  border-radius: 30px;
   padding: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
   margin-right: 40px;
-  box-shadow: 0 5px 7px rgba(0,0,0,0.1);
+  box-shadow: 0 3px 9px rgb(193, 193, 193);
   background-color: #f9f9f9;
 }
 .contenido_nota{
@@ -60,4 +43,22 @@
   display: block;
   margin: 5px auto 5px auto;
   border-radius: 15px;
+  box-shadow: 0 10px 9px rgb(133, 133, 133);
+}
+
+/*corresponde dentro del div filter-container*/
+.filter_container {
+    flex: 2 1 0;
+    margin-right: 50px;
+    margin-bottom: 50px;
+    border: 2px solid #b23a48;
+    border-radius: 12px;
+    background: #fff;
+}
+.filter-container a {
+    color: black;
+    cursor: pointer;
+}
+.filter-container a:hover {
+    color: red;
 }

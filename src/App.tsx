@@ -24,7 +24,6 @@ import PaymentBlock from './components/PaymentBlock/PaymentBlock'
 import { GamesProvider } from './contexts/GamesContext';
 
 import './App.css'
-import GestionNoticia from './pages/AdminPages/News/Administracion'
 import { NoticiasProvider } from './contexts/noticiasContext'
 
 function App() {
@@ -49,7 +48,6 @@ function App() {
             <Route path='/a/usuarios' element={<AdminUsers />} />
             <Route path='/a/juegos' element={<AdminGames />} />
             <Route path='/a/noticias' element={<NoticiasProvider><AdminNews /></NoticiasProvider>} />
-            <Route path='/a/noticias/gestion' element={<NoticiasProvider><GestionNoticia /></NoticiasProvider>} />
             <Route path='/a/estadisticas' element={<AdminStats />} />
           </Routes>
         </main>

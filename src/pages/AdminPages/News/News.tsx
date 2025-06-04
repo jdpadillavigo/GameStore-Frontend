@@ -1,62 +1,87 @@
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
 import './News.css'
 import portadaNoticias from "../../../../public/images/news/Portada_noticias.jpg"
-import { nota } from '../../../components/Tidings/listaTidings'
-import VerNoticias from '../../../components/Tidings/viewTidings'
-import { typeCategory } from '../../../components/Tidings/viewTidings'
 import { useNoticias } from '../../../contexts/noticiasContext'
-import { useState } from 'react'
+import { nota } from '../../../components/Tidings/viewTidings'
+import CrearNoticia from '../../../components/Tidings/Admin/CrearNoticia'
 
-const ExploreAD = () => {
-  const { listaDeNoticias } = useNoticias()
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string>('Todos')
-  const navigate = useNavigate()
-  const noticiasSeleccionadas = (datos: nota[]) => {
-    if (categoriaSeleccionada === 'Todos') return datos
-    return datos.filter((elem: nota) => elem.categoria === categoriaSeleccionada)
-  }
-  const categoriasUnicas = (datos : nota[]) => {
-    const todasCategorias = datos.map((elem : nota) => elem.categoria)
-    const [categorias,setCategorias] = useState <typeCategory[]>(['Todos'])
-    todasCategorias.map((item : typeCategory)=>{
-      if(!categorias.includes(item)){
-        setCategorias([...categorias,item])
-      }
-    })
-    return categorias
-  }
-  return (
-      <div>
-          <img src={portadaNoticias} alt="Portada_noticias" className='img_portadaAdmin'/>
-          <h1 className='title_noticiasAdmin'>Noticias</h1>
-          <VerNoticias
-            registros={noticiasSeleccionadas(listaDeNoticias)}
-            categorias={categoriasUnicas(listaDeNoticias)}
-            categoriaSeleccionada={categoriaSeleccionada}
-            setCategoriaSeleccionada={setCategoriaSeleccionada}
-          />
-          <div className='borrar_temporal'>
-            <button
-              className="admin-btn crear"
-              onClick={() => navigate('/a/noticias/gestion', { state: { accion: 'crear' } })}
-            >
-              Crear
-            </button>
-            <button
-              className="admin-btn editar"
-              onClick={() => navigate('/a/noticias/gestion', { state: { accion: 'editar' } })}
-            >
-              Editar
-            </button>
-            <button
-              className="admin-btn eliminar"
-              onClick={() => navigate('/a/noticias/gestion', { state: { accion: 'eliminar' } })}
-            >
-              Eliminar
-            </button>
-          </div>
+const ExploreAD = ({
+  CrearNoticiaComponent = CrearNoticia // Permite inyectar el componente de crear noticia
+  }:
+  {CrearNoticiaComponent?:
+    React.ComponentType<{
+    onCrear: (nueva: nota) => void,
+    onVolver: () => void,
+    totalNoticias: number
+    }>
+  } = {}) => {
+    const { listaDeNoticias, setListaDeNoticias } = useNoticias()
+    const [creando, setCreando] = useState(false)
+    const volverANoticias = () => setCreando(false)
+    const crearNoticia = (nueva: nota) => {
+      setListaDeNoticias([...listaDeNoticias, nueva])
+      setCreando(false)
+    }
+    const eliminarOnClick = (id: number) => {
+      setListaDeNoticias(listaDeNoticias.filter(noticia => noticia.id !== id))
+    }
+  return <div>
+      <img src={portadaNoticias} alt="Portada_noticias" className='img_portadaAdmin' />
+      <div className='container'>
+        <div className='workspace_container'>
+          {creando
+            ? (<CrearNoticiaComponent
+              onCrear={crearNoticia}
+              onVolver={volverANoticias}
+              totalNoticias={listaDeNoticias.length}
+              />)
+            : (<>
+              <div className='title_noticiasAdmin'>LISTA DE NOTICIAS</div>
+              <div className="ad_crear_noticia_row">
+                <div><strong>Crear una noticia:</strong>    </div>
+                <button
+                  className="ad_noticia_btn_crear"
+                  onClick={() => setCreando(true)}
+                >
+                  Crear
+                </button>
+              </div>
+              <div className='ad_vistaNoticia'>
+                <div className='ad_noticia_container'>
+                  {listaDeNoticias.map((elemento: nota) => {
+                    return (
+                      <div className="ad_noticia" key={elemento.id}>
+                        <div className='ad_noticia_contenido'>
+                          <div className="ad_contenido_nota">
+                            <div className="ad_titulo_nota"><strong>Titulo:</strong> {elemento.title} </div>
+                            <div className="ad_autor_nota"><strong>Autor:</strong> {elemento.autor} </div>
+                            <div className="ad_categoria_nota"><strong>Categoria:</strong> {elemento.categoria} </div>
+                            <div className="ad_dias_nota"><strong>Redactado hace</strong> {elemento.dias} <strong>dias</strong> </div>
+                          </div>
+                          <div className="ad_img_nota">
+                            <img src={elemento.image} alt="imgNoticias" />
+                          </div>
+                        </div>
+                        <div className='ad_noticia_btns'>
+                          <button className="ad_noticia_btn_editar">
+                            Editar
+                          </button>
+                          <button
+                            className="ad_noticia_btn_eliminar"
+                            onClick={() => eliminarOnClick(elemento.id)}
+                            >
+                            Eliminar
+                          </button>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+              </>)
+          }
+        </div>
       </div>
-  )
+  </div>
 }
-
-export default ExploreAD;
+export default ExploreAD

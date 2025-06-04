@@ -1,6 +1,7 @@
 .title_noticias{
-    padding-left: 20%; /*Aumentar para llevar titulo a la derecha*/
+    padding-left: 340px; /*Aumentar para llevar titulo a la derecha*/
     font-size: 2rem;
+    text-align: left;
 }
 .img_portada {
   width: 100%;
