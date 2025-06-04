@@ -2,9 +2,8 @@ import './GamingNews.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import VerNoticias, { nota } from '../../components/Tidings/viewTidings'
-import { typeCategory } from '../../components/Tidings/viewTidings';
-import { useNoticias } from '../../contexts/noticiasContext';
-import portadaNoticias from '../../../public/images/news/Portada_noticias.jpg'
+import { typeCategory } from '../../components/Tidings/viewTidings'
+import { useNoticias } from '../../contexts/noticiasContext'
 
 const Explore = () => {
   const navigate = useNavigate()
@@ -34,7 +33,9 @@ const Explore = () => {
   }
   return (
       <div>
-          <img src={portadaNoticias} alt="Portada_noticias" className='img_portada'/>
+          <div className="img_portadaNews-gradient">
+            <img src='/images/news/Portada_noticias.jpg' alt="Portada_noticias" className='img_portada'/>
+          </div>
           <h1 className='title_noticias'>Noticias</h1>
           <VerNoticias
             registros={noticiasSeleccionadas(listaDeNoticias)}

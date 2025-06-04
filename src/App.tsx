@@ -22,9 +22,9 @@ import Cart from './pages/Cart/Cart'
 import PaymentBlock from './components/PaymentBlock/PaymentBlock'
 
 import { GamesProvider } from './contexts/GamesContext';
+import { NoticiasProvider } from './contexts/noticiasContext'
 
 import './App.css'
-import { NoticiasProvider } from './contexts/noticiasContext'
 
 function App() {
   return (

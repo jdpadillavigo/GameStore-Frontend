@@ -51,14 +51,41 @@
     flex: 2 1 0;
     margin-right: 50px;
     margin-bottom: 50px;
-    border: 2px solid #b23a48;
+    padding: 5px;
+    box-shadow: 0 3px 9px rgb(193, 193, 193);
+    background-color: #f9f9f9;
+    border: 2px solid #ccc;
     border-radius: 12px;
     background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.filter_container p {
+  font-size: medium;
+  font-weight: bold;
+  padding: 10px 0 10px 0;
+  margin: 0 0 10px 0;
+}
+.filter_container > div {
+    margin-bottom: 5px;
 }
 .filter-container a {
     color: black;
     cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
 }
-.filter-container a:hover {
-    color: red;
+.filter_container input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: #b23a48;
+    cursor: pointer;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+.filter_container input[type="checkbox"]:checked {
+    outline: 2px solid #b23a48;
+    box-shadow: 0 0 0 2px #b23a48;
 }

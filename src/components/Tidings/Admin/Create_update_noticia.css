@@ -1,4 +1,4 @@
-.modal-crear-noticia {
+.modal_crear_noticia {
   position: static;
   width: 100%;
   height: auto;
@@ -7,42 +7,40 @@
   align-items: center;
   justify-content: center;
   z-index: auto;
-  margin-top: 5px
+  margin-top: 30px
 }
 
-.modal-content {
+.modal_content {
   background: #fff;
-  padding: 2.5rem 2.625rem; /* Aumenta 10px a izquierda y derecha (2rem + 0.625rem ≈ 40px + 10px) */
+  padding: 15px;
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(178, 58, 72, 0.18); /* Sombra rojiza clara */
-  min-width: 370px; /* +20px respecto a antes */
-  max-width: 95vw;
-  width: 420px;     /* +20px respecto a antes */
+  box-shadow: 0 8px 32px rgba(178, 58, 72, 0.18);
+  width: 600px;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
 }
 
-.modal-content h2 {
+.modal_content h2 {
   margin: 0 0 1rem 0;
   text-align: center;
   font-size: 1.5rem;
   color: #b23a48;
+  margin-bottom: 15px;
 }
 
-.form-group {
+.form_group {
   display: flex;
   flex-direction: column;
 }
 
-.form-group label {
+.form_group label {
   font-weight: 600;
   margin-bottom: 0.3rem;
   color: #b23a48;
 }
 
-.form-group input,
-.form-group textarea {
+.form_group input,
+.form_group textarea {
   padding: 0.5rem 0.7rem;
   border: 1px solid #bbb;
   border-radius: 6px;
@@ -52,28 +50,28 @@
   resize: none;
 }
 
-.form-group input:hover,
-.form-group textarea:hover,
-.form-group input:focus,
-.form-group textarea:focus {
+.form_group input:hover,
+.form_group textarea:hover,
+.form_group input:focus,
+.form_group textarea:focus {
   border-color: #b23a48;
   outline: none;
 }
 
-.form-group textarea {
+.form_group textarea {
   min-height: 70px;
   max-height: 200px;
   resize: vertical;
 }
 
-.form-footer {
+.form_footer {
   display: flex;
-  justify-content: center; /* Centra los botones horizontalmente */
-  gap: 1rem;
+  justify-content: center;
+  gap: 3rem;
   margin-top: 1.5rem;
 }
 
-.new_noticia_btn_crear,
+.Create_Update_noticia_btn,
 .new_noticia_btn_volver {
   padding: 0.5rem 1.2rem;
   border: none;
@@ -83,12 +81,12 @@
   transition: background 0.2s, border 0.2s, box-shadow 0.2s;
 }
 
-.new_noticia_btn_crear {
+.Create_Update_noticia_btn {
   background: #b23a48;
   color: #fff;
 }
 
-.new_noticia_btn_crear:hover {
+.Create_Update_noticia_btn:hover {
   background: #7b2530;
 }
 
@@ -102,7 +100,7 @@
   color: #fff;
 }
 
-.new_noticia_btn_crear:active,
+.Create_Update_noticia_btn:active,
 .new_noticia_btn_volver:active {
   border: 2px solid red;
   box-shadow: 0 0 0 2px red;

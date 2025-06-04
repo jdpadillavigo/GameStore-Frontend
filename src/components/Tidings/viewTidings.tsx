@@ -25,6 +25,9 @@ const VerNoticias = (props : Reg) => {
         const categoria = e.currentTarget.innerText
         props.setCategoriaSeleccionada(categoria)
     }
+    const handleCheckboxChange = (tipo: typeCategory) => {
+        props.setCategoriaSeleccionada(tipo)
+    }
     return <div className='vistaNoticia'>
         <div className='noticia_container'>
             {props.registros.map((elemento : nota) => {
@@ -43,9 +46,9 @@ const VerNoticias = (props : Reg) => {
             })}
         </div>
         <div className='filter_container'>
-            <h3>Quiere ver por categoría</h3>
+            <p>Categorías:</p>
             {props.categorias.map((tipo : typeCategory) => {
-                return <div>
+                return <div key={tipo}>
                     <a
                         onClick={obtenerCategoria}
                         className={props.categoriaSeleccionada === tipo ? "selected" : ""}
@@ -55,7 +58,8 @@ const VerNoticias = (props : Reg) => {
                             name="categoria"
                             value={tipo}
                             checked={props.categoriaSeleccionada === tipo}
-                            onChange={() => props.setCategoriaSeleccionada(tipo)}
+                            onChange={() => handleCheckboxChange(tipo)}
+                            onClick={e => e.stopPropagation()} // Evita que el click en el checkbox dispare el click del <a>
                         />
                         {tipo}
                     </a>
