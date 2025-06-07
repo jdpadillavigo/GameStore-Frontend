@@ -49,7 +49,7 @@ const ExploreAD = () => {
   return (
     <div>
       <div className="img_portadaAdmin-gradient">
-        <img src="/images/news/imagen_portada_prueba3.gif" alt="Portada_noticias" className="img_portadaAdmin" />
+        <img src="/images/news/imagen_portada_admin.gif" alt="Portada_noticias" className="img_portadaAdmin" />
       </div>
       <div className='container'>
         <div className='workspace_container'>
