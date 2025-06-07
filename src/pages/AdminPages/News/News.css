@@ -1,6 +1,6 @@
 .img_portadaAdmin {
-  width: calc(100vw - 185px); /* Calculo del ancho de la imagen hasta el borde derecho */
-  height: 200px;
+  width: calc(100vw - 185px); /* Calculo del ancho de la imagen hasta el borde derecho(modificar ultimo valor) */
+  height: 250px; /* es necesario ajustar los dos para modificar la altura de imagen*/
   margin-left: 185px;
   display: block;
   max-width: auto;
@@ -9,29 +9,11 @@
   margin: 0; /* Asegura que no tenga margen */
   max-width: none; /* Corrige el valor inválido anterior */
 }
-.img_portadaAdmin-gradient::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 60px; /* Ajusta la altura del degradado */
-  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
-  pointer-events: none;
-  z-index: 2;
-}
 .img_portadaAdmin-gradient {
   position: relative;
   width: calc(100vw - 185px);
-  height: 200px;
+  height: 250px; /* es necesario ajustar los dos para modificar la altura de imagen*/
   margin-left: 185px;
-  display: block;
-  overflow: hidden;
-}
-.img_portadaAdmin-gradient img {
-  width: 100%;
-  height: 100%;
-  display: block;
 }
 .img_portadaAdmin-gradient::after {
   content: "";
@@ -39,7 +21,7 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 60px; /* Ajusta la altura del degradado */
+  height: 15px; /* Ajusta la altura del degradado */
   background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
   pointer-events: none;
   z-index: 2;
@@ -72,14 +54,14 @@
   margin: 10px 0 10px 0;
   font-size: larger;
   font-weight: 900;
-  color: #b23a48;
-
+  color: var(--main-color);
 }
 .ad_crear_noticia_row {
   display: flex;
   align-items: center;
   gap: 10px;
   padding-left: 10px;
+  color: var(--main-color);
 }
 .ad_noticia_btn_crear{
   width: 70px;
@@ -120,7 +102,7 @@
   padding: 10px;
   margin-bottom: 15px;
   box-shadow: 0 3px 9px rgb(193, 193, 193);
-  background-color: #b23a48;
+  background-color: var(--main-color);
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;

@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { nota } from '../viewTidings'
 import './Create_update_noticia.css'
+import { listaCategoriasNoticias } from '../../../contexts/noticiasContext' 
 
 interface CrearNoticiaProps {
   onCrear?: (nueva: nota) => void
@@ -8,6 +9,7 @@ interface CrearNoticiaProps {
   onVolver: () => void
   totalNoticias: number
   noticiaEditar?: nota
+  noticiaEliminada?: nota // Nuevo prop
 }
 
 const CrearNoticia = ({
@@ -15,7 +17,8 @@ const CrearNoticia = ({
   onEditar,
   onVolver,
   totalNoticias,
-  noticiaEditar
+  noticiaEditar,
+  noticiaEliminada
 }: CrearNoticiaProps) => {
   const [form, setForm] = useState({
     title: '',
@@ -24,6 +27,16 @@ const CrearNoticia = ({
     redaccion: '',
     image: ''
   })
+
+  // Muestra el mensaje de eliminación y despues de un tiempo sale de la ventana
+  useEffect(() => {
+    if (noticiaEliminada) {
+      const timer = setTimeout(() => {
+        onVolver()
+      }, 2000)
+      return () => clearTimeout(timer)
+    }
+  }, [noticiaEliminada, onVolver])
 
   useEffect(() => {
     if (noticiaEditar) {
@@ -45,7 +58,7 @@ const CrearNoticia = ({
     }
   }, [noticiaEditar])
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
@@ -72,6 +85,28 @@ const CrearNoticia = ({
     }
   }
 
+  if (noticiaEliminada) {
+    return (
+      <div className="modal_crear_noticia">
+        <div className="modal_content">
+          <div className="noticia_eliminada_titulo">
+            {noticiaEliminada.title.toUpperCase()}
+          </div>
+          <div className="noticia_eliminada_imagen">
+            <img
+              src={noticiaEliminada.image}
+              alt={noticiaEliminada.title}
+              className="noticia_eliminada_img"
+            />
+          </div>
+          <div className="noticia_eliminada_mensaje">
+            NOTICIA ELIMINADA
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="modal_crear_noticia">
       <div className="modal_content">
@@ -83,7 +118,17 @@ const CrearNoticia = ({
           </div>
           <div className="form_group">
             <label>Categoría</label>
-            <input name="categoria" value={form.categoria} onChange={handleChange} required />
+            <select
+              name="categoria"
+              value={form.categoria}
+              onChange={handleChange}
+              required
+            >
+              <option value="" hidden>Selecciona una categoría</option>
+              {listaCategoriasNoticias.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
           </div>
           <div className="form_group">
             <label>Autor</label>

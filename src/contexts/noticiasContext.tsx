@@ -3,6 +3,19 @@ import { nota } from '../components/Tidings/viewTidings'
 
 const noticiasPorDefecto: nota[] = []
 
+export const listaCategoriasNoticias = [
+  'Acción',
+  'Aventura',
+  'RPG',
+  'Estrategia',
+  'Deportes',
+  'Indie',
+  'Simulación',
+  'Terror',
+  'Shooter',
+  'Puzzle'
+]
+
 type NoticiasContextType = {
   listaDeNoticias: nota[]
   setListaDeNoticias: React.Dispatch<React.SetStateAction<nota[]>>

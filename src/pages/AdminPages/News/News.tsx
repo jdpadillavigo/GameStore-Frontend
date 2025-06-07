@@ -8,10 +8,12 @@ const ExploreAD = () => {
   const { listaDeNoticias, setListaDeNoticias } = useNoticias()
   const [creando, setCreando] = useState(false)
   const [editando, setEditando] = useState<nota | null>(null)
+  const [eliminada, setEliminada] = useState<nota | null>(null)
 
   const volverANoticias = () => {
     setCreando(false)
     setEditando(null)
+    setEliminada(null)
   }
 
   const crearNoticia = (nueva: nota) => {
@@ -29,22 +31,35 @@ const ExploreAD = () => {
   }
 
   const eliminarOnClick = (id: number) => {
+    const noticia = listaDeNoticias.find(noticia => noticia.id === id)
     setListaDeNoticias(listaDeNoticias.filter(noticia => noticia.id !== id))
+    if (noticia) {
+      setEliminada(noticia)
+      setCreando(false)
+      setEditando(null)
+    }
   }
 
   const handleEditarClick = (noticia: nota) => {
     setEditando(noticia)
     setCreando(false)
+    setEliminada(null)
   }
 
   return (
     <div>
       <div className="img_portadaAdmin-gradient">
-        <img src="/images/news/Portada_noticias.jpg" alt="Portada_noticias" className="img_portadaAdmin" />
+        <img src="/images/news/imagen_portada_prueba3.gif" alt="Portada_noticias" className="img_portadaAdmin" />
       </div>
       <div className='container'>
         <div className='workspace_container'>
-          {creando ? (
+          {eliminada ? (
+            <CrearNoticia
+              noticiaEliminada={eliminada}
+              onVolver={volverANoticias}
+              totalNoticias={listaDeNoticias.length}
+            />
+          ) : creando ? (
             <CrearNoticia
               onCrear={crearNoticia}
               onVolver={volverANoticias}

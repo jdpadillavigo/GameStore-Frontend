@@ -27,8 +27,8 @@
   font-size: large;
 }
 .categoria_nota{
-  color: red;
-  font-weight: 400;
+  color: var(--main-color);
+  font-weight: 600;
 }
 .extra_nota{
   color: grey;
@@ -61,6 +61,15 @@
     flex-direction: column;
     align-items: flex-start;
 }
+.title_filter_container {
+  font-weight: bold;
+  font-size: large;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .filter_container p {
   font-size: medium;
   font-weight: bold;
@@ -80,12 +89,12 @@
 .filter_container input[type="checkbox"] {
     width: 15px;
     height: 15px;
-    accent-color: #b23a48;
+    accent-color: var(--main-color);
     cursor: pointer;
     margin-right: 8px;
     vertical-align: middle;
 }
 .filter_container input[type="checkbox"]:checked {
-    outline: 2px solid #b23a48;
-    box-shadow: 0 0 0 2px #b23a48;
+    outline: 2px solid var(--main-color);
+    box-shadow: 0 0 0 2px var(--main-color);
 }

@@ -1,7 +1,5 @@
 import "./viewTidings.css"
 
-export type typeCategory = string
-
 export interface nota {
     id : number
     title : string
@@ -15,9 +13,14 @@ export interface nota {
 
 interface Reg {
     registros : nota[]
-    categorias : typeCategory[]
+    categorias : string[]
     categoriaSeleccionada : string
     setCategoriaSeleccionada : (categoria: string) => void
+    autores: string[]
+    autorSeleccionado: string
+    setAutorSeleccionado: (autor: string) => void
+    orden: 'antiguo' | 'actual'
+    setOrden: (orden: 'antiguo' | 'actual') => void
 }
 const VerNoticias = (props : Reg) => {
     const obtenerCategoria = (e : React.MouseEvent<HTMLAnchorElement>) => {
@@ -25,12 +28,28 @@ const VerNoticias = (props : Reg) => {
         const categoria = e.currentTarget.innerText
         props.setCategoriaSeleccionada(categoria)
     }
-    const handleCheckboxChange = (tipo: typeCategory) => {
+    const handleCheckboxChange = (tipo: string) => {
         props.setCategoriaSeleccionada(tipo)
+    }
+    const obtenerAutor = (e : React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault()
+        const autor = e.currentTarget.innerText
+        props.setAutorSeleccionado(autor)
+    }
+    const handleAutorCheckboxChange = (autor: string) => {
+        props.setAutorSeleccionado(autor)
+    }
+    const handleOrdenCheckboxChange = (orden: 'antiguo' | 'actual') => {
+        props.setOrden(orden)
     }
     return <div className='vistaNoticia'>
         <div className='noticia_container'>
-            {props.registros.map((elemento : nota) => {
+            {props.registros.length === 0 ? (
+                <div className="no-noticias-msg">
+                    No existe noticia relacionada
+                </div>
+            ) : 
+            props.registros.map((elemento : nota) => {
                 return (
                     <div className="noticia" key={elemento.id}>
                         <div className="contenido_nota">
@@ -46,9 +65,10 @@ const VerNoticias = (props : Reg) => {
             })}
         </div>
         <div className='filter_container'>
+            <div className="title_filter_container"> Filtrar </div>
             <p>Categorías:</p>
-            {props.categorias.map((tipo : typeCategory) => {
-                return <div key={tipo}>
+            {props.categorias.map((tipo : string) => (
+                <div key={tipo}>
                     <a
                         onClick={obtenerCategoria}
                         className={props.categoriaSeleccionada === tipo ? "selected" : ""}
@@ -59,12 +79,64 @@ const VerNoticias = (props : Reg) => {
                             value={tipo}
                             checked={props.categoriaSeleccionada === tipo}
                             onChange={() => handleCheckboxChange(tipo)}
-                            onClick={e => e.stopPropagation()} // Evita que el click en el checkbox dispare el click del <a>
+                            onClick={e => e.stopPropagation()}
                         />
                         {tipo}
                     </a>
                 </div>
-            })}
+            ))}
+            <p>Autores:</p>
+            {props.autores.map((autor : string) => (
+                <div key={autor}>
+                    <a
+                        onClick={obtenerAutor}
+                        className={props.autorSeleccionado === autor ? "selected" : ""}
+                    >
+                        <input
+                            type="checkbox"
+                            name="autor"
+                            value={autor}
+                            checked={props.autorSeleccionado === autor}
+                            onChange={() => handleAutorCheckboxChange(autor)}
+                            onClick={e => e.stopPropagation()}
+                        />
+                        {autor}
+                    </a>
+                </div>
+            ))}
+            <p>Orden:</p>
+            <div>
+                <a
+                    onClick={e => { e.preventDefault(); props.setOrden('actual') }}
+                    className={props.orden === 'actual' ? "selected" : ""}
+                >
+                    <input
+                        type="checkbox"
+                        name="orden"
+                        value="actual"
+                        checked={props.orden === 'actual'}
+                        onChange={() => handleOrdenCheckboxChange('actual')}
+                        onClick={e => e.stopPropagation()}
+                    />
+                    Más actual al antiguo
+                </a>
+            </div>
+            <div>
+                <a
+                    onClick={e => { e.preventDefault(); props.setOrden('antiguo') }}
+                    className={props.orden === 'antiguo' ? "selected" : ""}
+                >
+                    <input
+                        type="checkbox"
+                        name="orden"
+                        value="antiguo"
+                        checked={props.orden === 'antiguo'}
+                        onChange={() => handleOrdenCheckboxChange('antiguo')}
+                        onClick={e => e.stopPropagation()}
+                    />
+                    Más antiguo al actual
+                </a>
+            </div>
         </div>
     </div>
 }
