@@ -9,7 +9,6 @@
   z-index: auto;
   margin-top: 30px
 }
-
 .modal_content {
   background: #fff;
   padding: 15px;
@@ -19,99 +18,7 @@
   display: flex;
   flex-direction: column;
 }
-
-.modal_content h2 {
-  margin: 0 0 1rem 0;
-  text-align: center;
-  font-size: 1.5rem;
-  color: var(--main-color);
-  margin-bottom: 15px;
-}
-
-.form_group {
-  display: flex;
-  flex-direction: column;
-}
-
-.form_group label {
-  font-weight: 600;
-  margin-bottom: 0.3rem;
-  color: var(--main-color);
-}
-
-.form_group input,
-.form_group textarea,
-.form_group select {
-  padding: 0.5rem 0.7rem;
-  border: 1px solid #bbb;
-  border-radius: 6px;
-  font-size: 15px;
-  background: #f9f9f9;
-  color: var(--main-color);
-  transition: border-color 0.2s;
-  font-family: Arial, Helvetica, sans-serif;
-  box-sizing: border-box;
-  appearance: none; /* Quita el estilo nativo en la mayoría de navegadores */
-}
-
-.form_group input:hover,
-.form_group textarea:hover,
-.form_group select:hover,
-.form_group input:focus,
-.form_group textarea:focus,
-.form_group select:focus {
-  border-color: var(--secondary-color);
-  outline: none;
-}
-
-.form_group textarea {
-  min-height: 40px;
-  max-height: 200px;
-  resize: vertical;
-}
-
-.form_footer {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  margin-top: 1.5rem;
-}
-
-.Create_Update_noticia_btn,
-.new_noticia_btn_volver {
-  padding: 0.5rem 1.2rem;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s, border 0.2s, box-shadow 0.2s;
-}
-
-.Create_Update_noticia_btn {
-  background: var(--main-color);
-  color: #fff;
-}
-
-.Create_Update_noticia_btn:hover {
-  background: var(--secondary-color);
-}
-
-.new_noticia_btn_volver {
-  background: #bdbdbd;
-  color: #222;
-}
-
-.new_noticia_btn_volver:hover {
-  background: var(--secondary-color);
-  color: #fff;
-}
-
-.Create_Update_noticia_btn:active,
-.new_noticia_btn_volver:active {
-  border: 2px solid red;
-  box-shadow: 0 0 0 2px red;
-}
-
+/* Para ventana de noticiaEliminada */
 .noticia_eliminada_titulo {
   font-size: 2rem;
   font-weight: bold;
@@ -129,23 +36,12 @@
   white-space: normal;
   max-width: 100%;
 }
-
-.noticia_eliminada_mensaje {
-  font-size: 1.1rem;
-  text-align: center;
-  color: var(--main-color);
-  font-weight: 500;
-}
-
 .noticia_eliminada_imagen {
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1rem;
 }
-
-.noticia_eliminada_img {
+.noticia_eliminada_imagen img {
   max-width: 220px;
   max-height: 140px;
   width: 100%;
@@ -153,5 +49,92 @@
   object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 10px 9px rgb(133, 133, 133);
-  display: block;
+  margin-bottom: 20px;
+}
+.noticia_eliminada_mensaje {
+  font-size: 1.1rem;
+  text-align: center;
+  color: var(--main-color);
+  font-weight: 500;
+}
+
+/* Para ventana de crear y actualizar noticia */
+.modal_content h2 {
+  margin: 0 0 1rem 0;
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--main-color);
+  margin-bottom: 15px;
+}
+.form_group {
+  display: flex;
+  flex-direction: column;
+}
+.form_group label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: var(--main-color);
+}
+.form_group input,
+.form_group textarea,
+.form_group select {
+  padding: 0.5rem 0.7rem;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  font-size: 15px;
+  background: #f9f9f9;
+  color: var(--main-color);
+  transition: border-color 0.2s;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  appearance: none; /* Quita el estilo nativo en la mayoría de navegadores */
+}
+.form_group textarea {
+  min-height: 40px;
+  max-height: 200px;
+  resize: vertical;
+}
+.form_group input:hover,
+.form_group textarea:hover,
+.form_group select:hover,
+.form_group input:focus,
+.form_group textarea:focus,
+.form_group select:focus {
+  border-color: var(--secondary-color);
+  outline: none;
+}
+.form_footer {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 1.5rem;
+}
+.Create_Update_noticia_btn,
+.new_noticia_btn_volver {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s, box-shadow 0.2s;
+}
+.Create_Update_noticia_btn {
+  background: var(--main-color);
+  color: #fff;
+}
+.Create_Update_noticia_btn:hover {
+  background: var(--secondary-color);
+}
+.new_noticia_btn_volver {
+  background: #bdbdbd;
+  color: #222;
+}
+.new_noticia_btn_volver:hover {
+  background: var(--secondary-color);
+  color: #fff;
+}
+.Create_Update_noticia_btn:active,
+.new_noticia_btn_volver:active {
+  border: 2px solid red;
+  box-shadow: 0 0 0 2px red;
 }

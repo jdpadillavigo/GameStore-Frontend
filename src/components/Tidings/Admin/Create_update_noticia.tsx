@@ -96,7 +96,6 @@ const CrearNoticia = ({
             <img
               src={noticiaEliminada.image}
               alt={noticiaEliminada.title}
-              className="noticia_eliminada_img"
             />
           </div>
           <div className="noticia_eliminada_mensaje">
@@ -114,7 +113,14 @@ const CrearNoticia = ({
         <form onSubmit={handleSubmit}>
           <div className="form_group">
             <label>Título</label>
-            <input name="title" value={form.title} onChange={handleChange} required />
+            <input
+              name="title"
+              value={form.title}
+              onChange={handleChange}
+              required
+              onInvalid={e => (e.currentTarget.setCustomValidity('No ingresó el titulo'))}
+              onInput={e => (e.currentTarget.setCustomValidity(''))}
+            />
           </div>
           <div className="form_group">
             <label>Categoría</label>
@@ -123,6 +129,8 @@ const CrearNoticia = ({
               value={form.categoria}
               onChange={handleChange}
               required
+              onInvalid={e => (e.currentTarget.setCustomValidity('No seleccionó la categoria'))}
+              onInput={e => (e.currentTarget.setCustomValidity(''))}
             >
               <option value="" hidden>Selecciona una categoría</option>
               {listaCategoriasNoticias.map(cat => (
@@ -132,15 +140,45 @@ const CrearNoticia = ({
           </div>
           <div className="form_group">
             <label>Autor</label>
-            <input name="autor" value={form.autor} onChange={handleChange} required />
+            <input
+              name="autor"
+              value={form.autor}
+              onChange={handleChange}
+              required
+              onInvalid={e => (e.currentTarget.setCustomValidity('No ingresó el autor'))}
+              onInput={e => (e.currentTarget.setCustomValidity(''))}
+            />
           </div>
           <div className="form_group">
             <label>Redacción</label>
-            <textarea name="redaccion" value={form.redaccion} onChange={handleChange} required />
+            <textarea
+              name="redaccion"
+              value={form.redaccion}
+              onChange={handleChange}
+              required
+              onInvalid={e => (e.currentTarget.setCustomValidity('No ingresó el redacción'))}
+              onInput={e => (e.currentTarget.setCustomValidity(''))}
+            />
           </div>
           <div className="form_group">
             <label>Imagen (URL):</label>
-            <input name="image" value={form.image} onChange={handleChange} required />
+            <input
+              name="image"
+              value={form.image}
+              onChange={handleChange}
+              required
+              pattern="https://*"
+              onInvalid={e =>{
+                if (!e.currentTarget.value) {
+                  e.currentTarget.setCustomValidity('No ingresó la url de la imagen');
+                } else if (!/^https:\/\/.*/.test(e.currentTarget.value)) {
+                  e.currentTarget.setCustomValidity('Ingresó una URL incorrecta');
+                } else {
+                  e.currentTarget.setCustomValidity('');
+                }
+              }}
+              onInput={e => (e.currentTarget.setCustomValidity(''))}
+            />
           </div>
           <div className="form_footer">
             <button type="submit" className="Create_Update_noticia_btn">
