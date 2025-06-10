@@ -1,3 +1,32 @@
+/* Para ventana de noticiaEliminada */
+.modal_eliminar {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal_eliminar_content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px;
+  min-width: 320px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+  text-align: center;
+}
+.modal_eliminar_content_mensaje {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+.modal_eliminar_content_buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* Para ventana de crear y actualizar noticia */
 .modal_crear_noticia {
   position: static;
   width: 100%;
@@ -18,47 +47,6 @@
   display: flex;
   flex-direction: column;
 }
-/* Para ventana de noticiaEliminada */
-.noticia_eliminada_titulo {
-  font-size: 2rem;
-  font-weight: bold;
-  color: var(--main-color);
-  letter-spacing: 1px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 10px 1.2rem 10px;
-  text-align: center;
-  width: 100%;
-  box-sizing: border-box;
-  word-break: break-word;
-  overflow-wrap: break-word;
-  white-space: normal;
-  max-width: 100%;
-}
-.noticia_eliminada_imagen {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.noticia_eliminada_imagen img {
-  max-width: 220px;
-  max-height: 140px;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 10px 9px rgb(133, 133, 133);
-  margin-bottom: 20px;
-}
-.noticia_eliminada_mensaje {
-  font-size: 1.1rem;
-  text-align: center;
-  color: var(--main-color);
-  font-weight: 500;
-}
-
-/* Para ventana de crear y actualizar noticia */
 .modal_content h2 {
   margin: 0 0 1rem 0;
   text-align: center;

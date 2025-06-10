@@ -6,19 +6,21 @@ import { listaCategoriasNoticias } from '../../../contexts/noticiasContext'
 interface CrearNoticiaProps {
   onCrear?: (nueva: nota) => void
   onEditar?: (editada: nota) => void
+  onEliminar?: (id: number) => void // Nuevo: para eliminar
   onVolver: () => void
-  totalNoticias: number
+  generarID: number
   noticiaEditar?: nota
-  noticiaEliminada?: nota // Nuevo prop
+  modoEliminar?: boolean // Nuevo: para saber si mostrar la vista de eliminar
 }
 
 const CrearNoticia = ({
   onCrear,
   onEditar,
+  onEliminar,
   onVolver,
-  totalNoticias,
+  generarID,
   noticiaEditar,
-  noticiaEliminada
+  modoEliminar
 }: CrearNoticiaProps) => {
   const [form, setForm] = useState({
     title: '',
@@ -27,16 +29,6 @@ const CrearNoticia = ({
     redaccion: '',
     image: ''
   })
-
-  // Muestra el mensaje de eliminación y despues de un tiempo sale de la ventana
-  useEffect(() => {
-    if (noticiaEliminada) {
-      const timer = setTimeout(() => {
-        onVolver()
-      }, 2000)
-      return () => clearTimeout(timer)
-    }
-  }, [noticiaEliminada, onVolver])
 
   useEffect(() => {
     if (noticiaEditar) {
@@ -72,7 +64,7 @@ const CrearNoticia = ({
       onEditar(noticiaActualizada)
     } else if (onCrear) {
       const nuevaNoticia: nota = {
-        id: totalNoticias + 1,
+        id: generarID,
         title: form.title,
         categoria: form.categoria,
         autor: form.autor,
@@ -85,27 +77,37 @@ const CrearNoticia = ({
     }
   }
 
-  if (noticiaEliminada) {
+  // Vista de confirmación de eliminación
+  if (modoEliminar && noticiaEditar) {
     return (
-      <div className="modal_crear_noticia">
-        <div className="modal_content">
-          <div className="noticia_eliminada_titulo">
-            {noticiaEliminada.title.toUpperCase()}
+      <div className="modal_eliminar">
+        <div className="modal_eliminar_content">
+          <div className="modal_eliminar_content_mensaje">
+            ¿Esta seguro que ud. quiere eliminar la noticia?
           </div>
-          <div className="noticia_eliminada_imagen">
-            <img
-              src={noticiaEliminada.image}
-              alt={noticiaEliminada.title}
-            />
-          </div>
-          <div className="noticia_eliminada_mensaje">
-            NOTICIA ELIMINADA
+          <div className="modal_eliminar_content_buttons">
+            {/*Create_Update_noticia_btn y new_noticia_btn_volver estan al final del Create_update_noticia.css*/}
+            <button
+              className="Create_Update_noticia_btn"
+              onClick={() => {
+                if (onEliminar) onEliminar(noticiaEditar.id)
+              }}
+            >
+              Confirmar
+            </button>
+            <button
+              className="new_noticia_btn_volver"
+              onClick={onVolver}
+            >
+              Volver
+            </button>
           </div>
         </div>
       </div>
     )
   }
 
+  // Vista normal de crear/editar
   return (
     <div className="modal_crear_noticia">
       <div className="modal_content">
@@ -167,7 +169,7 @@ const CrearNoticia = ({
               value={form.image}
               onChange={handleChange}
               required
-              pattern="https://*"
+              pattern="https://.*"
               onInvalid={e =>{
                 if (!e.currentTarget.value) {
                   e.currentTarget.setCustomValidity('No ingresó la url de la imagen');
@@ -185,6 +187,20 @@ const CrearNoticia = ({
               {noticiaEditar ? "Editar" : "Crear"}
             </button>
             <button type="button" className="new_noticia_btn_volver" onClick={onVolver}>Volver</button>
+            {noticiaEditar && onEliminar && (
+              <button
+                type="button"
+                className="ad_noticia_btn_eliminar"
+                style={{ marginLeft: 8 }}
+                onClick={e => {
+                  e.preventDefault()
+                  // Cambia a modo eliminar
+                  window.dispatchEvent(new CustomEvent('activarModoEliminar'))
+                }}
+              >
+                Eliminar
+              </button>
+            )}
           </div>
         </form>
       </div>
