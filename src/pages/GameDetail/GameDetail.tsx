@@ -112,9 +112,6 @@ const GameDetail = () => {
       {addedToCart && (
         <div className="notification-message">
           <p>El juego fue añadido al carrito</p>
-          <button onClick={() => navigate('/cart')} className="notification-btn">
-            Ver carrito
-          </button>
         </div>
       )}
 
