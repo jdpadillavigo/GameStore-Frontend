@@ -2,27 +2,35 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useGamesContext, Game } from '../../contexts/GamesContext';
 import { FaWindows, FaApple, FaLinux, FaPlaystation, FaXbox } from 'react-icons/fa';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 import './GameCatalog.css';
 
 const GameCatalog = () => {
   const { games } = useGamesContext();
 
-  type FilterType = 'categories' | 'platforms' | 'discounts';
+  const minPrice = 0;
+  const maxPrice = 300;
+  const [priceRange, setPriceRange] = useState<[number, number]>([minPrice, maxPrice]);
+
+  type FilterType = 'categories' | 'platforms' | 'discounts' | 'prices';
 
   const [filteredGames, setFilteredGames] = useState<{ [key: string]: Game }>({});
   const [filters, setFilters] = useState<{
     categories: string[];
     platforms: string[];
     discounts: boolean;
+    prices: boolean;
   }>({
     categories: [],
     platforms: [],
     discounts: false,
+    prices: false,
   });
 
   useEffect(() => {
     applyFilters();
-  }, [games, filters]);
+  }, [games, filters, priceRange]);
 
   const handleCheckboxChange = (type: FilterType, value?: string) => {
     setFilters((prev) => {
@@ -42,6 +50,12 @@ const GameCatalog = () => {
   const applyFilters = () => {
     const result = Object.fromEntries(
       Object.entries(games).filter(([_, game]) => {
+        const finalPrice = game.discount > 0
+          ? game.base_price * (100 - game.discount) / 100
+          : game.base_price;
+
+        const matchPrice = finalPrice >= priceRange[0] && finalPrice <= priceRange[1];
+
         const matchCategory =
           filters.categories.length === 0 ||
           filters.categories.some(cat =>
@@ -58,7 +72,7 @@ const GameCatalog = () => {
 
         const matchDiscount = !filters.discounts || game.discount > 0;
 
-        return matchCategory && matchPlatform && matchDiscount;
+        return matchPrice && matchCategory && matchPlatform && matchDiscount;
       })
     );
 
@@ -119,6 +133,56 @@ const GameCatalog = () => {
         </div>
         <div className="catalog-page__content__filters">
           <h3>Filtrar por</h3>
+
+          <div className="catalog-page__content__filters__section">
+            <h4>Precio (S/.)</h4>
+            <div className="catalog-page__content__filters__section__price">
+              <div className="catalog-page__content__filters__section__price__inputs">
+                <div className="catalog-page__content__filters__section__price__inputs__min-max">
+                  <label>Mínimo:</label>
+                  <input
+                    type="number"
+                    value={priceRange[0]}
+                    min={minPrice}
+                    max={priceRange[1]}
+                    onChange={(e) => setPriceRange([+e.target.value, priceRange[1]])}
+                  />
+                </div>
+                <div className="catalog-page__content__filters__section__price__inputs__min-max">
+                  <label>Máximo:</label>
+                  <input
+                    type="number"
+                    value={priceRange[1]}
+                    min={priceRange[0]}
+                    max={maxPrice}
+                    onChange={(e) => setPriceRange([priceRange[0], +e.target.value])}
+                  />
+                </div>
+              </div>
+
+              <div className="catalog-page__content__filters__section__price__range">
+                {/* <label>Rango:</label> */}
+                <Slider
+                  range
+                  min={minPrice}
+                  max={maxPrice}
+                  step={1}
+                  value={priceRange}
+                  onChange={(value: [number, number]) => setPriceRange(value)}
+                  railStyle={{ backgroundColor: '#ccc', height: 5 }}
+                  trackStyle={{ backgroundColor: 'darkred', height: 5 }}
+                  handleStyle={{
+                    border: 0,
+                    backgroundColor: 'darkred',
+                    height: 12,
+                    width: 12,
+                    marginTop: -3,
+                  }}
+                />
+                {/* <span>De S/. {priceRange[0]} a S/. {priceRange[1]}</span> */}
+              </div>
+            </div>
+          </div>
 
           <div className="catalog-page__content__filters__section">
             <h4>Categorías</h4>

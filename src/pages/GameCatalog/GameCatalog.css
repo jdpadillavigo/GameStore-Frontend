@@ -56,23 +56,34 @@
     margin-right: 30px;
 }
 
+.catalog-page__content__games__info__title-stars {
+    min-width: 263px;
+}
+
 .catalog-page__content__games__info__title-stars p:nth-child(1) {
     font-weight: 600;
+    color: var(--main-color);
 }
 
 .catalog-page__content__games__info__date {
     opacity: 0.5;
+    width: 94px;
+    text-align: center;
 }
 
 .catalog-page__content__games__info__platform {
     display: flex;
     gap: 8px;
+    min-width: 106px;
+    justify-content: center;
 }
 
 .catalog-page__content__games__info__discount-price {
     display: flex;
     place-items: center;
     gap: 30px;
+    min-width: 171px;
+    justify-content: right;
 }
 
 .catalog-page__content__games__info__discount-price__discount {
@@ -130,6 +141,17 @@
 .catalog-page__content__filters__section p input,
 .catalog-page__content__filters__section p label {
     cursor: pointer;
+}
+
+.catalog-page__content__filters__section__price__inputs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.catalog-page__content__filters__section__price__inputs__min-max {
+    display: flex;
+    flex-direction: column;
 }
 
 
