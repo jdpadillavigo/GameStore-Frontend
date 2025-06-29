@@ -1,12 +1,12 @@
 import { Routes, Route} from 'react-router-dom'
 import { GamesProvider } from './contexts/GamesContext';
+import { NoticiasProvider } from './contexts/noticiasContext'
 
 import Navbar from './components/Navbar/Navbar'
 import Home from './pages/Home/Home'
 import Games from './pages/GameCatalog/GameCatalog'
 import News from './pages/GamingNews/GamingNews'
 
-import ContenidoNoticia from './pages/GamingNews/Content'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
@@ -21,7 +21,6 @@ import AdminGames from './pages/AdminPages/Games/Games'
 import AdminNews from './pages/AdminPages/News/News'
 import AdminStats from './pages/AdminPages/Stats/Stats'
 
-import GestionNoticia from './pages/AdminPages/News/Administracion'
 import './App.css'
 
 function App() {
@@ -33,8 +32,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home/>} />
             <Route path='/juegos' element={<Games />} />
-            <Route path='/noticias' element={<News />} />
-            <Route path='/noticia/contenido' element={<ContenidoNoticia />} />
+            <Route path='/noticias' element={<NoticiasProvider><News /></NoticiasProvider>} />
 
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
@@ -46,8 +44,7 @@ function App() {
 
             <Route path='/a/usuarios' element={<AdminUsers />} />
             <Route path='/a/juegos' element={<AdminGames />} />
-            <Route path='/a/noticias' element={<AdminNews />} />
-            <Route path='/a/noticias/gestion' element={<GestionNoticia />} />
+            <Route path='/a/noticias' element={<NoticiasProvider><AdminNews /></NoticiasProvider>} />
             <Route path='/a/estadisticas' element={<AdminStats />} />
           </Routes>
         </main>

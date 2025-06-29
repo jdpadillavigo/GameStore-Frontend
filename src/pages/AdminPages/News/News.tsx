@@ -1,82 +1,164 @@
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import './News.css'
-import portadaNoticias from "/images/news/Portada_noticias.jpg"
-import { nota } from '../../../components/Tidings/listaTidings'
-import VerNoticias from '../../../components/Tidings/viewTidings'
-import { typeCategory } from '../../../components/Tidings/filterTidings'
-import { useNoticias } from '../../../components/Tidings/noticiasContext'
-import { useState } from 'react'
+import { useNoticias } from '../../../contexts/noticiasContext'
+import { nota } from '../../../components/Tidings/viewTidings'
+import CrearNoticia from '../../../components/Tidings/Admin/Create_update_noticia'
 
-const Explore = () => {
-  const { listaDeNoticias } = useNoticias()
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string>('Todos')
-  const navigate = useNavigate()
-  const noticiasSeleccionadas = (datos: nota[]) => {
-    if (categoriaSeleccionada === 'Todos') return datos
-    return datos.filter((elem: nota) => elem.categoria === categoriaSeleccionada)
+const ExploreAD = () => {
+  const { listaDeNoticias, setListaDeNoticias } = useNoticias()
+  const [creando, setCreando] = useState(false)
+  const [editando, setEditando] = useState<nota | null>(null)
+  const [eliminando, setEliminando] = useState<nota | null>(null)
+  const [modoEliminar, setModoEliminar] = useState(false)
+
+  useEffect(() => {
+    // Escucha el evento para activar modo eliminar desde CrearNoticia
+    const handler = () => setModoEliminar(true)
+    window.addEventListener('activarModoEliminar', handler)
+    return () => window.removeEventListener('activarModoEliminar', handler)
+  }, [])
+
+  const volverANoticias = () => {
+    setCreando(false)
+    setEditando(null)
+    setEliminando(null)
+    setModoEliminar(false)
   }
-  const categoriasUnicas = (datos : nota[]) => {
-    const todasCategorias = datos.map((elem : nota) => elem.categoria)
-    const [categorias,setCategorias] = useState <typeCategory[]>(['Todos'])
-    todasCategorias.map((item : typeCategory)=>{
-      if(!categorias.includes(item)){
-        setCategorias([...categorias,item])
-      }
-    })
-    return categorias
+
+  const crearNoticia = (nueva: nota) => {
+    setListaDeNoticias([...listaDeNoticias, nueva])
+    console.log("crear noticia",listaDeNoticias)
+    setCreando(false)
   }
+
+  const editarNoticia = (noticiaEditada: nota) => {
+    setListaDeNoticias(
+      listaDeNoticias.map(noticia =>
+        noticia.id === noticiaEditada.id ? noticiaEditada : noticia
+      )
+    )
+    setEditando(null)
+  }
+
+  const handleEditarClick = (noticia: nota) => {
+    setEditando(noticia)
+    setCreando(false)
+    setEliminando(null)
+    setModoEliminar(false)
+  }
+
+  const handleEliminarClick = (noticia: nota) => {
+    setEliminando(noticia)
+    setCreando(false)
+    setEditando(null)
+    setModoEliminar(true)
+  }
+
+  const eliminarNoticia = (id: number) => {
+    setListaDeNoticias(listaDeNoticias.filter(noticia => noticia.id !== id))
+    volverANoticias()
+  }
+
   return (
-    <div className='news-page'>
-        <img src={portadaNoticias} alt="Portada_noticias" className='portada-noticias'/>
-        <div className="admin-bar">
-          <div className="admin-description">
-            <h1>Modo administrador</h1>
-            <div>
-              Como administrador puede gestionar y controlar la visualización de todas las noticias que ven los usuarios. Es decir, tiene el poder de administrar el contenido publicado, asegurando que la información sea relevante y actualizada.
+    <div>
+      <div className="img_portadaAdmin-gradient">
+        <img src="/images/news/imagen_portada_admin.gif" alt="Portada_noticias" className="img_portadaAdmin" />
+      </div>
+      <div className='container'>
+        <div className='workspace_container'>
+          {/* Lista de noticias siempre visible */}
+          <>
+            <div className='title_noticiasAdmin'>LISTA DE NOTICIAS</div>
+            <div className="ad_crear_noticia_row">
+              <div><strong>Crear una noticia:</strong></div>
+              <button
+                className="ad_noticia_btn_crear"
+                onClick={() => setCreando(true)}
+              >
+                Crear
+              </button>
             </div>
-            <div>
-              <strong>Crear:</strong>
-              Agrega una nueva noticia a la página completando los campos requeridos. La noticia será visible para todos los usuarios una vez publicada.
+            <div className='ad_vistaNoticia'>
+              <div className='ad_noticia_container'>
+                {listaDeNoticias.map((elemento: nota) => (
+                  <div className="ad_noticia" key={elemento.id}>
+                    <div className='ad_noticia_contenido'>
+                      <div className="ad_contenido_nota">
+                        <div className="ad_titulo_nota"><strong>Titulo:</strong> {elemento.title} </div>
+                        <div className="ad_autor_nota"><strong>Autor:</strong> {elemento.autor} </div>
+                        <div className="ad_categoria_nota"><strong>Categoria:</strong> {elemento.categoria} </div>
+                        <div className="ad_dias_nota"><strong>Redactado hace</strong> {elemento.dias} <strong>dias</strong> </div>
+                      </div>
+                      <div className="ad_img_nota">
+                        <img src={elemento.image} alt="imgNoticias" />
+                      </div>
+                    </div>
+                    <div className='ad_noticia_btns'>
+                      <button
+                        className="ad_noticia_btn_editar"
+                        onClick={() => handleEditarClick(elemento)}
+                      >
+                        Editar
+                      </button>
+                      <button
+                        className="ad_noticia_btn_eliminar"
+                        onClick={() => handleEliminarClick(elemento)}
+                      >
+                        Eliminar
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div>
-              <strong>Editar:</strong>
-              Modifica el contenido de una noticia especifica; el contenido, la categoría u otros detalles del mismo. Esto permite mantener la información precisa y actualizada en todo momento.
+          </>
+          {/* Modales superpuestos */}
+          {creando && !modoEliminar && (
+            <div className="modal_overlay">
+              <CrearNoticia
+                onCrear={crearNoticia}
+                onVolver={volverANoticias}
+                generarID={
+                  listaDeNoticias.length === 0
+                    ? 1
+                    : Math.max(...listaDeNoticias.map(n => n.id)) + 1
+                }
+              />
             </div>
-            <div>
-              <strong>Eliminar:</strong>
-              Elimina de forma permanente la noticia seleccionada, quitándola tanto de la página como de la vista de los usuarios.
+          )}
+          {editando && !modoEliminar && (
+            <div className="modal_overlay">
+              <CrearNoticia
+                onEditar={editarNoticia}
+                noticiaEditar={editando}
+                onVolver={volverANoticias}
+                generarID={
+                  listaDeNoticias.length === 0
+                    ? 1
+                    : Math.max(...listaDeNoticias.map(n => n.id)) + 1
+                }
+              />
             </div>
-          </div>
-          <div className="admin-buttons-centered">
-            <button
-              className="admin-btn crear"
-              onClick={() => navigate('/a/noticias/gestion', { state: { accion: 'crear' } })}
-            >
-              Crear
-            </button>
-            <button
-              className="admin-btn editar"
-              onClick={() => navigate('/a/noticias/gestion', { state: { accion: 'editar' } })}
-            >
-              Editar
-            </button>
-            <button
-              className="admin-btn eliminar"
-              onClick={() => navigate('/a/noticias/gestion', { state: { accion: 'eliminar' } })}
-            >
-              Eliminar
-            </button>
-          </div>
+          )}
+          {modoEliminar && eliminando && (
+            <div className="modal_overlay">
+              <CrearNoticia
+                noticiaEditar={eliminando}
+                modoEliminar={true}
+                onEliminar={eliminarNoticia}
+                onVolver={volverANoticias}
+                generarID={
+                  listaDeNoticias.length === 0
+                    ? 1
+                    : Math.max(...listaDeNoticias.map(n => n.id)) + 1
+                }
+              />
+            </div>
+          )}
         </div>
-        <h1 className='title_noticias'>Noticias</h1>
-        <VerNoticias
-          registros={noticiasSeleccionadas(listaDeNoticias)}
-          categorias={categoriasUnicas(listaDeNoticias)}
-          categoriaSeleccionada={categoriaSeleccionada}
-          setCategoriaSeleccionada={setCategoriaSeleccionada}
-        />
+      </div>
     </div>
   )
 }
 
-export default Explore;
+export default ExploreAD
