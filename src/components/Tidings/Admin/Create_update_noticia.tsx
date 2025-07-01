@@ -13,7 +13,7 @@ interface CrearNoticiaProps {
   modoEliminar?: boolean // Nuevo: para saber si mostrar la vista de eliminar
 }
 
-const CrearNoticia = ({
+const CrudNoticia = ({
   onCrear,
   onEditar,
   onEliminar,
@@ -71,7 +71,6 @@ const CrearNoticia = ({
         redaccion: form.redaccion,
         image: form.image,
         dias: Math.floor(Math.random() * 26) + 5,
-        select: false
       }
       onCrear(nuevaNoticia)
     }
@@ -207,4 +206,4 @@ const CrearNoticia = ({
     </div>
   )
 }
-export default CrearNoticia
+export default CrudNoticia

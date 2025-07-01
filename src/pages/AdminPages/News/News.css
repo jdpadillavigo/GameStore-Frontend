@@ -1,30 +1,6 @@
-.img_portadaAdmin {
-  width: calc(100vw - 185px); /* Calculo del ancho de la imagen hasta el borde derecho(modificar ultimo valor) */
-  height: 250px; /* es necesario ajustar los dos para modificar la altura de imagen*/
-  margin-left: 185px;
-  display: block;
-  max-width: auto;
-  position: relative;
-  z-index: 1;
-  margin: 0; /* Asegura que no tenga margen */
-  max-width: none; /* Corrige el valor inválido anterior */
-}
-.img_portadaAdmin-gradient {
-  position: relative;
-  width: calc(100vw - 185px);
-  height: 250px; /* es necesario ajustar los dos para modificar la altura de imagen*/
-  margin-left: 185px;
-}
-.img_portadaAdmin-gradient::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
+.space_white_admin {
   width: 100%;
-  height: 15px; /* Ajusta la altura del degradado */
-  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
-  pointer-events: none;
-  z-index: 2;
+  height: 30px;
 }
 .container{
   display: flex;
@@ -49,19 +25,21 @@
   }
 }
 .title_noticiasAdmin{
-  padding-left: 20px; /*Aumentar para llevar titulo a la derecha*/
-  text-align: center;
+  padding-left: 25px; /*Aumentar para llevar titulo a la derecha*/
+  text-align: left;
   margin: 10px 0 10px 0;
-  font-size: larger;
+  font-size:xx-large;
   font-weight: 900;
   color: var(--main-color);
 }
 .ad_crear_noticia_row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding-left: 10px;
+  gap: 20px;
   color: var(--main-color);
+  padding-top: 20px;
+  padding-left: 25px;
+  padding-bottom: 10px;
 }
 .ad_noticia_btn_crear{
   width: 70px;
@@ -107,6 +85,7 @@
   max-width: 100%;
   box-sizing: border-box;
   overflow-x: auto;
+  cursor: pointer;
 }
 .ad_noticia_contenido {
     flex: 2 1 0;

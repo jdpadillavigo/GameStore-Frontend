@@ -19,6 +19,9 @@
   box-shadow: 0 3px 9px rgb(193, 193, 193);
   background-color: #f9f9f9;
 }
+.noticia:hover {
+  box-shadow: 0 1px 7px var(--main-color);
+}
 .contenido_nota{
   flex: 7 1 0;
 }
@@ -60,6 +63,10 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    cursor: pointer;
+}
+.filter_container:hover {
+  box-shadow: 0 1px 7px var(--main-color);
 }
 .title_filter_container {
   font-weight: bold;
@@ -69,6 +76,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.space_filter {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 .filter_container p {
   font-size: medium;

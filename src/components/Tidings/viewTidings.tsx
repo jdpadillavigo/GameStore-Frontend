@@ -8,7 +8,6 @@ export interface nota {
     redaccion: string
     image : string
     dias : number
-    select : boolean
 }
 
 interface Reg {
@@ -65,77 +64,80 @@ const VerNoticias = (props : Reg) => {
             })}
         </div>
         <div className='filter_container'>
-            <div className="title_filter_container"> Filtrar </div>
-            <p>Categorías:</p>
-            {props.categorias.map((tipo : string) => (
-                <div key={tipo}>
+            <div className="title_filter_container"> Filtra </div>
+            <div className="space_filter">
+                <p>Categorías:</p>
+                {props.categorias.map((tipo : string) => (
+                    <div key={tipo}>
+                        <a
+                            onClick={obtenerCategoria}
+                            className={props.categoriaSeleccionada === tipo ? "selected" : ""}
+                        >
+                            <input
+                                type="checkbox"
+                                name="categoria"
+                                value={tipo}
+                                checked={props.categoriaSeleccionada === tipo}
+                                onChange={() => handleCheckboxChange(tipo)}
+                                onClick={e => e.stopPropagation()}
+                            />
+                            {tipo}
+                        </a>
+                    </div>
+                ))}
+                <p>Autores:</p>
+                {props.autores.map((autor : string) => (
+                    <div key={autor}>
+                        <a
+                            onClick={obtenerAutor}
+                            className={props.autorSeleccionado === autor ? "selected" : ""}
+                        >
+                            <input
+                                type="checkbox"
+                                name="autor"
+                                value={autor}
+                                checked={props.autorSeleccionado === autor}
+                                onChange={() => handleAutorCheckboxChange(autor)}
+                                onClick={e => e.stopPropagation()}
+                            />
+                            {autor}
+                        </a>
+                    </div>
+                ))}
+                <p>Orden:</p>
+                <div>
                     <a
-                        onClick={obtenerCategoria}
-                        className={props.categoriaSeleccionada === tipo ? "selected" : ""}
+                        onClick={e => { e.preventDefault(); props.setOrden('actual') }}
+                        className={props.orden === 'actual' ? "selected" : ""}
                     >
                         <input
                             type="checkbox"
-                            name="categoria"
-                            value={tipo}
-                            checked={props.categoriaSeleccionada === tipo}
-                            onChange={() => handleCheckboxChange(tipo)}
+                            name="orden"
+                            value="actual"
+                            checked={props.orden === 'actual'}
+                            onChange={() => handleOrdenCheckboxChange('actual')}
                             onClick={e => e.stopPropagation()}
                         />
-                        {tipo}
+                        Más actual al antiguo
                     </a>
                 </div>
-            ))}
-            <p>Autores:</p>
-            {props.autores.map((autor : string) => (
-                <div key={autor}>
+                <div>
                     <a
-                        onClick={obtenerAutor}
-                        className={props.autorSeleccionado === autor ? "selected" : ""}
+                        onClick={e => { e.preventDefault(); props.setOrden('antiguo') }}
+                        className={props.orden === 'antiguo' ? "selected" : ""}
                     >
                         <input
                             type="checkbox"
-                            name="autor"
-                            value={autor}
-                            checked={props.autorSeleccionado === autor}
-                            onChange={() => handleAutorCheckboxChange(autor)}
+                            name="orden"
+                            value="antiguo"
+                            checked={props.orden === 'antiguo'}
+                            onChange={() => handleOrdenCheckboxChange('antiguo')}
                             onClick={e => e.stopPropagation()}
                         />
-                        {autor}
+                        Más antiguo al actual
                     </a>
                 </div>
-            ))}
-            <p>Orden:</p>
-            <div>
-                <a
-                    onClick={e => { e.preventDefault(); props.setOrden('actual') }}
-                    className={props.orden === 'actual' ? "selected" : ""}
-                >
-                    <input
-                        type="checkbox"
-                        name="orden"
-                        value="actual"
-                        checked={props.orden === 'actual'}
-                        onChange={() => handleOrdenCheckboxChange('actual')}
-                        onClick={e => e.stopPropagation()}
-                    />
-                    Más actual al antiguo
-                </a>
-            </div>
-            <div>
-                <a
-                    onClick={e => { e.preventDefault(); props.setOrden('antiguo') }}
-                    className={props.orden === 'antiguo' ? "selected" : ""}
-                >
-                    <input
-                        type="checkbox"
-                        name="orden"
-                        value="antiguo"
-                        checked={props.orden === 'antiguo'}
-                        onChange={() => handleOrdenCheckboxChange('antiguo')}
-                        onClick={e => e.stopPropagation()}
-                    />
-                    Más antiguo al actual
-                </a>
+
             </div>
         </div>
     </div>
