@@ -1,106 +1,386 @@
-.game-detail {
+.game-detail-page {
+  background-color: var(--main-color);
+}
+
+.game-detail-page {
+  overflow: hidden;
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  --c: red; /* Color */
+  background-color: black; /* Background color */
+  background-image: radial-gradient(4px 100px at 0px 235px, var(--c), #0000),
+      radial-gradient(4px 100px at 300px 235px, var(--c), #0000),
+      radial-gradient(1.5px 1.5px at 150px 117.5px, var(--c) 100%, #0000 150%),
+      radial-gradient(4px 100px at 0px 252px, var(--c), #0000),
+      radial-gradient(4px 100px at 300px 252px, var(--c), #0000),
+      radial-gradient(1.5px 1.5px at 150px 126px, var(--c) 100%, #0000 150%),
+      radial-gradient(4px 100px at 0px 150px, var(--c), #0000),
+      radial-gradient(4px 100px at 300px 150px, var(--c), #0000),
+      radial-gradient(1.5px 1.5px at 150px 75px, var(--c) 100%, #0000 150%),
+      radial-gradient(4px 100px at 0px 253px, var(--c), #0000),
+      radial-gradient(4px 100px at 300px 253px, var(--c), #0000),
+      radial-gradient(1.5px 1.5px at 150px 126.5px, var(--c) 100%, #0000 150%),
+      radial-gradient(4px 100px at 0px 204px, var(--c), #0000),
+      radial-gradient(4px 100px at 300px 204px, var(--c), #0000),
+      radial-gradient(1.5px 1.5px at 150px 102px, var(--c) 100%, #0000 150%),
+      radial-gradient(4px 100px at 0px 134px, var(--c), #0000),
+      radial-gradient(4px 100px at 300px 134px, var(--c), #0000),
+      radial-gradient(1.5px 1.5px at 150px 67px, var(--c) 100%, #0000 150%),
+      radial-gradient(4px 100px at 0px 179px, var(--c), #0000),
+      radial-gradient(4px 100px at 300px 179px, var(--c), #0000),
+      radial-gradient(1.5px 1.5px at 150px 89.5px, var(--c) 100%, #0000 150%),
+      radial-gradient(4px 100px at 0px 299px, var(--c), #0000),
+      radial-gradient(4px 100px at 300px 299px, var(--c), #0000),
+      radial-gradient(1.5px 1.5px at 150px 149.5px, var(--c) 100%, #0000 150%),
+      radial-gradient(4px 100px at 0px 215px, var(--c), #0000),
+      radial-gradient(4px 100px at 300px 215px, var(--c), #0000),
+      radial-gradient(1.5px 1.5px at 150px 107.5px, var(--c) 100%, #0000 150%),
+      radial-gradient(4px 100px at 0px 281px, var(--c), #0000),
+      radial-gradient(4px 100px at 300px 281px, var(--c), #0000),
+      radial-gradient(1.5px 1.5px at 150px 140.5px, var(--c) 100%, #0000 150%),
+      radial-gradient(4px 100px at 0px 158px, var(--c), #0000),
+      radial-gradient(4px 100px at 300px 158px, var(--c), #0000),
+      radial-gradient(1.5px 1.5px at 150px 79px, var(--c) 100%, #0000 150%),
+      radial-gradient(4px 100px at 0px 210px, var(--c), #0000),
+      radial-gradient(4px 100px at 300px 210px, var(--c), #0000),
+      radial-gradient(1.5px 1.5px at 150px 105px, var(--c) 100%, #0000 150%);
+  background-size:
+      300px 235px,
+      300px 235px,
+      300px 235px,
+      300px 252px,
+      300px 252px,
+      300px 252px,
+      300px 150px,
+      300px 150px,
+      300px 150px,
+      300px 253px,
+      300px 253px,
+      300px 253px,
+      300px 204px,
+      300px 204px,
+      300px 204px,
+      300px 134px,
+      300px 134px,
+      300px 134px,
+      300px 179px,
+      300px 179px,
+      300px 179px,
+      300px 299px,
+      300px 299px,
+      300px 299px,
+      300px 215px,
+      300px 215px,
+      300px 215px,
+      300px 281px,
+      300px 281px,
+      300px 281px,
+      300px 158px,
+      300px 158px,
+      300px 158px,
+      300px 210px,
+      300px 210px,
+      300px 210px;
+  animation: hi 150s linear infinite;
+}
+
+.game-detail-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: radial-gradient(
+      ellipse 1.5px 2px at 1.5px 50%,
+      #0000 0,
+      #0000 90%,
+      black 100% /* Background color */
+  );
+  background-size: 25px 8px;
+}
+
+@keyframes hi {
+  0% {
+      background-position:
+          0px 220px,
+          3px 220px,
+          151.5px 337.5px,
+          25px 24px,
+          28px 24px,
+          176.5px 150px,
+          50px 16px,
+          53px 16px,
+          201.5px 91px,
+          75px 224px,
+          78px 224px,
+          226.5px 350.5px,
+          100px 19px,
+          103px 19px,
+          251.5px 121px,
+          125px 120px,
+          128px 120px,
+          276.5px 187px,
+          150px 31px,
+          153px 31px,
+          301.5px 120.5px,
+          175px 235px,
+          178px 235px,
+          326.5px 384.5px,
+          200px 121px,
+          203px 121px,
+          351.5px 228.5px,
+          225px 224px,
+          228px 224px,
+          376.5px 364.5px,
+          250px 26px,
+          253px 26px,
+          401.5px 105px,
+          275px 75px,
+          278px 75px,
+          426.5px 180px;
+  }
+
+  to {
+      background-position:
+          0px 6800px,
+          3px 6800px,
+          151.5px 6917.5px,
+          25px 13632px,
+          28px 13632px,
+          176.5px 13758px,
+          50px 5416px,
+          53px 5416px,
+          201.5px 5491px,
+          75px 17175px,
+          78px 17175px,
+          226.5px 17301.5px,
+          100px 5119px,
+          103px 5119px,
+          251.5px 5221px,
+          125px 8428px,
+          128px 8428px,
+          276.5px 8495px,
+          150px 9876px,
+          153px 9876px,
+          301.5px 9965.5px,
+          175px 13391px,
+          178px 13391px,
+          326.5px 13540.5px,
+          200px 14741px,
+          203px 14741px,
+          351.5px 14848.5px,
+          225px 18770px,
+          228px 18770px,
+          376.5px 18910.5px,
+          250px 5082px,
+          253px 5082px,
+          401.5px 5161px,
+          275px 6375px,
+          278px 6375px,
+          426.5px 6480px;
+  }
+}
+
+.game-detail-container {
+  max-width: 900px;
+  margin: 90px auto;
+  margin-bottom: 0;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.06);
+  font-family: 'Segoe UI', sans-serif;
+  color: #1f2937;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  cursor: pointer;
+  color: #374151;
+  position: absolute;
+  left: 2rem;
+  top: 4.5rem;
+}
+
+.game-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--main-color);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
+}
+
+.game-description {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: #374151;
+  line-height: 1.8;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 400;
+  font-style: italic;
+  opacity: 0.95;
+}
+
+.media-slider {
+  position: relative;
+  max-width: 860px;
+  margin: 2rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-trailer-video,
+.media-image {
+  width: 100%;
+  height: 428px;
+  overflow: hidden;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  transition: opacity 0.25s ease-in-out;
+  opacity: 1;
+  background-color: black;
+}
+
+.media-image.hidden,
+.game-trailer-video.hidden {
+  opacity: 0;
+}
+
+.slider-btn {
+  background-color: transparent;
+  color: var(--main-color);
+  border: none;
+  font-size: 2.75rem;
+  cursor: pointer;
+  margin: 0 1rem;
+  transition: color 0.2s ease;
+  user-select: none;
+}
+
+.slider-btn:hover {
+  color: var(--secondary-color);
+}
+
+.game-reviews {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.game-reviews h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #111827;
+}
+
+.review-item {
+  margin-bottom: 0.8rem;
+  background-color: #f9fafb;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.review-item strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.review-item div {
+  font-size: 1.2rem;
+  color: var(--main-color);
+}
+
+.price-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
-.game-detail__header {
-  text-align: center;
-  margin-bottom: 20px;
+.price-normal {
+  font-size: 1.2rem;
+  color: #999;
+  text-decoration: line-through;
+  margin-bottom: 0.3rem;
 }
 
-.game-detail__header h1 {
-  font-size: 2rem;
-  color: var(--main-color);
-  font-weight: bold;
+.price-discount {
+  font-size: 1.75rem;
+  font-weight: 700;
+  background-color: #dcfce7;
+  color: #166534;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease;
 }
 
-.game-detail__header p {
-  font-size: 1rem;
-  color: black;
+.price-discount:hover {
+  transform: scale(1.05);
 }
 
-.game-detail__image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-}
 
-.game-detail__description {
-  font-size: 1rem;
-  color: black;
-  text-align: justify;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.game-detail__trailer {
-  width: 100%;
-  max-width: 800px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-}
-
-.game-detail__button-container {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-}
-
-.game-detail__buy-button {
+.buy-button {
   background-color: var(--main-color);
   color: white;
-  font-size: 1rem;
-  padding: 10px 20px;
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 9999px;
+  font-size: 1rem;
   cursor: pointer;
-  text-transform: uppercase;
-  font-weight: bold;
+  margin-top: 2rem;
   transition: background-color 0.3s ease;
 }
 
-.game-detail__buy-button:hover {
+.buy-button:hover {
   background-color: var(--secondary-color);
 }
 
-.game-detail__buy-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.game-detail__reviews {
-  margin-top: 30px;
-  width: 100%;
-  max-width: 800px;
-}
-
-.game-detail__reviews h2 {
-  color: var(--main-color);
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-
-.game-detail__review {
-  background-color: #f9f9f9;
+.notification-message {
+  background-color: white;
   padding: 15px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+  color: black;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
 }
 
-.game-detail__review p {
-  color: #333;
+.notification-btn {
+  background-color: var(--main-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.game-detail__review .review-author {
-  font-weight: bold;
-  color: var(--main-color);
+.notification-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+.added-message {
+  margin-top: 20px;
+  font-weight: 500;
+  color: black;
+  text-align: center;
 }

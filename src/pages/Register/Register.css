@@ -2,22 +2,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh;
   background-color: #f4f4f4;
+  margin-top: 50px;
 }
 
 .register-form {
-  background-color: #ffffff;
-  padding: 2rem;
+  background-color: white;
+  padding: 30px;
   border-radius: 12px;
-  width: 350px;
+  width: 500px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .register-form h2 {
   text-align: center;
   margin-bottom: 1.5rem;
-  font-size: 1.8rem;
+  margin-top: 0;
+  font-size: var(--font-size-subtitle);
   color: #333;
 }
 
@@ -26,19 +29,33 @@
   margin-top: 1rem;
   display: block;
   color: black;
+  font-size: var(--font-size-paragraph);
 }
 
-.register-form input {
+.register-form input,
+.register-form select {
   width: 100%;
   padding: 0.5rem;
   margin-top: 0.3rem;
   border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: var(--font-size-paragraph);
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.register-form select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23000' d='M2 0L0 2h4L2 0zm0 5L0 3h4l-2 2z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem center;
+  background-size: 0.65rem auto;
+  padding-right: 2rem;
+  cursor: pointer;
 }
 
 .register-form button {
-  margin-top: 1.8rem;
+  margin-top: 1.5rem;
   width: 100%;
   padding: 0.7rem;
   background-color: var(--main-color);
@@ -46,7 +63,7 @@
   border: none;
   border-radius: 8px;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: var(--font-size-paragraph);
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -58,7 +75,8 @@
 .link {
   text-align: center;
   margin-top: 1rem;
-  font-size: 0.95rem;
+  margin-bottom: 0;
+  font-size: var(--font-size-note);
 }
 
 .link a {
@@ -72,9 +90,9 @@
 
 .mensaje {
   margin-top: 1rem;
+  margin-bottom: 0;
   text-align: center;
   font-weight: bold;
-  color: black;
+  font-size: var(--font-size-note);
+  color: var(--blue-color);
 }
-
-

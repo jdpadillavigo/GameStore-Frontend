@@ -1,0 +1,159 @@
+.cart-container,
+.cart-message {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  color: #000;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 250px); 
+  scroll-margin-top: 80px;
+}
+
+.cart-container {
+  margin-top: 130px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+}
+
+.cart-container h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.cart-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.cart-item {
+  position: relative;
+  width: 220px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.cart-item:hover {
+  transform: translateY(-4px);
+}
+
+.cart-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.remove-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: var(--main-color);
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cart-actions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.cancel-btn,
+.confirm-btn {
+  padding: 0.75rem 1.75rem;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cancel-btn {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #000;
+}
+
+.cancel-btn:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.confirm-btn {
+  background-color: var(--main-color);
+  color: #fff;
+}
+
+.confirm-btn:hover {
+  background-color: var(--secondary-color);
+}
+
+.cart-message {
+  max-width: 500px;
+  text-align: center;
+}
+
+.cart-message-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.cart-message button {
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  background-color: var(--main-color);
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.cart-message button:hover {
+  background-color: var(--secondary-color);
+}
+
+.cart-prices {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.price-normal {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #555;
+  text-decoration: line-through;
+  margin-bottom: 0.25rem;
+}
+
+.price-discount {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: green;
+}

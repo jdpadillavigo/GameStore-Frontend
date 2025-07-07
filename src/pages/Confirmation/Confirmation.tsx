@@ -7,7 +7,14 @@ const Verification: React.FC = () => {
   const [mensaje, setMensaje] = useState('');
   const navigate = useNavigate();
 
-  const handleConfirm = () => {
+  const handleConfirm = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (confirmacionCodigo.trim() === '') {
+      setMensaje('Por favor, completa todos los campos ❗');
+      return;
+    }
+
     const codigoEsperado = localStorage.getItem('codigoConfirmacion');
     const email = localStorage.getItem('emailConfirmacion');
 
@@ -21,23 +28,23 @@ const Verification: React.FC = () => {
       localStorage.setItem('usuariosRegistrados', JSON.stringify(actualizados));
       localStorage.removeItem('codigoConfirmacion');
       localStorage.removeItem('emailConfirmacion');
-      setMensaje('✅ Código de confirmación válido');
+      setMensaje('Código de confirmación válido ✅');
 
       setTimeout(() => {
         navigate('/login');
       }, 1000);
     } else {
-      setMensaje('❌ Código de confirmación incorrecto');
+      setMensaje('Código de confirmación incorrecto ❌');
     }
   };
 
   return (
     <div className="confirmation-container">
       <form className="confirmation-form">
-        <h1>Por favor, Confirma tu Identidad</h1>
+        <h2>Por favor, confirma tu identidad</h2>
         <p>Te enviamos un código de confirmación. Ingrésalo a continuación:</p>
 
-        {mensaje && <p className="mensaje">{mensaje}</p>}
+        {mensaje && <p className="confirmation-form__mensaje">{mensaje}</p>}
 
         <label htmlFor="confirmationCode">Código de confirmación:</label>
         <input
@@ -48,7 +55,7 @@ const Verification: React.FC = () => {
           onChange={(e) => setConfirmacionCodigo(e.target.value)}
           required
         />
-        <button type="button" onClick={handleConfirm}>Verificar código de confirmación</button>
+        <button type="submit" onClick={handleConfirm}>Verificar código de confirmación</button>
       </form>
     </div>
   );

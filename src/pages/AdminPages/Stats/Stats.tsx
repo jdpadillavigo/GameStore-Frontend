@@ -1,32 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import './Stats.css';
 
-
-
 const Stats: React.FC = () => {
-const [totalUsuarios, setTotalUsuarios] = useState(0);
+  const [totalUsuarios, setTotalUsuarios] = useState(0);
 
-useEffect(() => {
-const datos = localStorage.getItem('usuariosRegistrados');
-const usuarios = datos ? JSON.parse(datos) : [];
-const soloUsuarios = usuarios.filter((usuario: any) => usuario.rol === 'usuario');
-setTotalUsuarios(soloUsuarios.length);
- }, []);
+  useEffect(() => {
+    const datos = localStorage.getItem('usuariosRegistrados');
+    const usuarios = datos ? JSON.parse(datos) : [];
+    const soloUsuarios = usuarios.filter((usuario: any) => usuario.rol === 'usuario');
+    setTotalUsuarios(soloUsuarios.length);
+  }, []);
 
-
-
- return (
-
-  <div className="Stats-container">
-   <h1 className="Stats-title">Estadísticas</h1>
-   <div className="Card-users">
-    <p className="Stats-title2">Total De Usuarios Registrados</p>
-    <h2 className="Totalusers">{totalUsuarios}</h2>
-   </div>
-  </div>
-
-)
-
+  return (
+    <div className="stats-page">
+      <div className="stats-container">
+        <h2 className="stats-title">Estadísticas</h2>
+        <div className="card-users">
+          <p>Total de usuarios registrados</p>
+          <h1>{totalUsuarios}</h1>
+        </div>
+      </div>
+    </div>
+  )
 };
 
 export default Stats;

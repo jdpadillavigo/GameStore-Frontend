@@ -1,9 +1,100 @@
-.vistaNoticia{
+.vistaNoticia {
     display: flex;
+    align-items: flex-start;
+    box-sizing: border-box;
 }
-.noticia-container {
-    width: 75%;
+
+/*corresponde dentro del div noticia-container*/
+.noticia_container {
+    flex: 8 1 0;
+    margin-left: 380px;
 }
-.filter-container {
-    width: 25%;
+.noticia {
+  display: flex;
+  border: 2px solid #ccc;
+  border-radius: 30px;
+  padding: 15px;
+  margin-bottom: 25px;
+  margin-right: 40px;
+  box-shadow: 0 3px 9px rgb(193, 193, 193);
+  background-color: #f9f9f9;
+}
+.contenido_nota{
+  flex: 7 1 0;
+}
+.titulo_nota{
+  font-weight: bold;
+  font-size: large;
+}
+.categoria_nota{
+  color: var(--main-color);
+  font-weight: 600;
+}
+.extra_nota{
+  color: grey;
+}
+.img_nota {
+  flex: 3 1 0;
+}
+.img_nota img {
+  width: 60%;
+  max-height: 300px;
+  object-fit: cover;
+  display: block;
+  margin: 5px auto 5px auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 9px rgb(133, 133, 133);
+}
+
+/*corresponde dentro del div filter-container*/
+.filter_container {
+    flex: 2 1 0;
+    margin-right: 50px;
+    margin-bottom: 50px;
+    padding: 5px;
+    box-shadow: 0 3px 9px rgb(193, 193, 193);
+    background-color: #f9f9f9;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.title_filter_container {
+  font-weight: bold;
+  font-size: large;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.filter_container p {
+  font-size: medium;
+  font-weight: bold;
+  padding: 10px 0 10px 0;
+  margin: 0 0 10px 0;
+}
+.filter_container > div {
+    margin-bottom: 5px;
+}
+.filter-container a {
+    color: black;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+}
+.filter_container input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--main-color);
+    cursor: pointer;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+.filter_container input[type="checkbox"]:checked {
+    outline: 2px solid var(--main-color);
+    box-shadow: 0 0 0 2px var(--main-color);
 }

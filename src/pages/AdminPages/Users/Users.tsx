@@ -13,19 +13,28 @@ const Users: React.FC = () => {
 
   return (
     <div className="user-list">
+
       <div className="user-list-inner">
         <h1>Usuarios Registrados</h1>
         <div className="user-list-container">
           {usuarios.length === 0 ? (
             <p className="no-users-message">Aún no hay usuarios registrados</p>
           ) : (
+
+      {usuarios.length === 0 ? (
+        <p className="no-users-message">Aún no hay usuarios registrados</p>
+      ) : (
+        <div className="user-list-inner">
+          <h2>Usuarios Registrados</h2>
+          <div className="user-list-container">
+>>>>>>> e77d823307234b3a8e85a030dd65d93f665fcab4
             <table>
               <thead>
                 <tr>
                   <th>ID</th>
                   <th>Nombre</th>
                   <th>Correo</th>
-                  <th>Contraseña</th>
+                  {/* <th>Contraseña</th> */}
                   <th>País</th>
                 </tr>
               </thead>
@@ -35,18 +44,17 @@ const Users: React.FC = () => {
                     <td>{index + 1}</td>
                     <td>{usuario.nombre}</td>
                     <td>{usuario.email}</td>
-                    <td>{usuario.contraseña}</td>
+                    {/* <td>{usuario.contraseña}</td> */}
                     <td>{usuario.pais}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-          )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
 
 export default Users;
-

@@ -2,34 +2,38 @@
   display: flex;
   justify-content: center;
   align-items: start;
-  padding: 40px;
-  margin-left: 350px;
   min-height: 100vh;
   background-color: #f5f5f5;
+  margin-left: 360px;
 }
 
 .user-list-inner {
   width: 100%;
-  max-width: 1000px;
+  max-width: 100%;
+  padding: 1.5rem 2rem;
 }
+
 
 .user-list h1 {
   font-size: 24px;
+}
+.user-list h2 {
+  font-size: var(--font-size-subtitle);
   font-weight: bold;
-  margin-bottom: 24px;
-  color: #b71c1c;
+  margin-block: 24px;
+  color: var(--main-color);
   text-align: center;
 }
 
 .user-list-container {
   overflow-x: auto;
+  border-radius: 12px;
 }
 
 .user-list table {
   width: 100%;
   border-collapse: collapse;
   background-color: white;
-  border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -40,20 +44,23 @@
   border-bottom: 1px solid #ddd;
   text-align: center; 
   vertical-align: middle; 
+  font-size: var(--font-size-paragraph);
 }
 
 .user-list th {
-  background-color: #b71c1c;
+  background-color: var(--main-color);
   color: white;
   font-weight: bold;
 }
 
-
 .no-users-message {
+  position: absolute;
+  top: 50%;
+  margin-inline: 1.5rem;
+  margin-block: 0;
   text-align: center;
-  font-size: 18px;
+  font-size: var(--font-size-subtitle);
   color: black;
-  margin-top: 100px;
   font-weight: bold;
 }
 
@@ -61,3 +68,28 @@
   border-bottom: none;
 }
 
+
+/* Responsive */
+@media (max-width: 1300px) {
+  .user-list {
+    margin-left: 240px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .user-list {
+    margin-left: 185px;
+  }
+}
+
+@media (max-width: 730px) {
+  .user-list {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .user-list {
+    margin-left: 27vw;
+  }
+}
