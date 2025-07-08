@@ -21,10 +21,11 @@ export interface Game {
 
 interface GamesContextType {
   games: Record<string, Game>;
-  addGame: (game: Game) => void;
-  removeGame: (title: string) => void;
-  updateGame: (title: string, updatedGame: Game) => void;
-  setGamesFromLocalStorage: () => void;
+  setGames: (games: Record<string, Game>) => void;
+  addGame: (key: string, game: Game) => Promise<void>;
+  removeGame: (key: string) => Promise<void>;
+  updateGame: (key: string, updatedGame: Game) => Promise<void>;
+  fetchGames: () => Promise<void>;
 }
 
 interface GamesProviderProps {
@@ -33,67 +34,105 @@ interface GamesProviderProps {
 
 const GamesContext = createContext<GamesContextType | undefined>(undefined);
 
+const BACKEND_URL = 'http://localhost:5000';
+
 export const GamesProvider = ({ children }: GamesProviderProps) => {
   const [games, setGames] = useState<Record<string, Game>>({});
 
   useEffect(() => {
-    setGamesFromLocalStorage();
+    fetchGames();
   }, []);
 
-  const setGamesFromLocalStorage = async () => {
-    const savedGames = localStorage.getItem('games');
-    if (savedGames) {
-      setGames(JSON.parse(savedGames));
-    } else {
-      try {
-        const response = await fetch('/data/gamesData.json');
-        if (!response.ok) {
-          throw new Error('No se pudo cargar el archivo gamesData.json');
-        }
-        const data = await response.json();
-        setGames(data);
-        saveGamesToLocalStorage(data);
-      } catch (error) {
-        console.error('Error al cargar juegos desde JSON:', error);
+  const fetchGames = async () => {
+    try {
+      const response = await fetch(`${BACKEND_URL}/juegos`);
+      const data = await response.json();
+      setGames(data);
+    } catch (error) {
+      console.error('Error al cargar juegos desde el backend:', error);
+    }
+  };
+
+  const addGame = async (key: string, game: Game) => {
+    try {
+      const response = await fetch(`${BACKEND_URL}/juegos`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ key, ...game }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.msg || 'Error al agregar juego');
       }
+
+      setGames((prev) => ({ ...prev, [key]: game }));
+    } catch (error) {
+      console.error('Error al agregar juego:', error);
     }
   };
 
-  const saveGamesToLocalStorage = (gamesData: Record<string, Game>) => {
-    localStorage.setItem('games', JSON.stringify(gamesData));
-  };
+  const updateGame = async (key: string, updatedGame: Game) => {
+    try {
+      const encodedKey = encodeURIComponent(key);
+      const response = await fetch(`${BACKEND_URL}/juego/${encodedKey}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedGame),
+      });
 
-  const addGame = (game: Game) => {
-    const newGames = { ...games, [game.title]: game };
-    setGames(newGames);
-    saveGamesToLocalStorage(newGames);
-  };
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.msg || 'Error al actualizar juego');
+      }
 
-  const removeGame = (title: string) => {
-    const newGames = { ...games };
-    delete newGames[title];
-    setGames(newGames);
-    saveGamesToLocalStorage(newGames);
-  };
+      setGames((prev) => ({
+        ...prev,
+        [updatedGame.title]: updatedGame,
+      }));
 
-  const updateGame = (title: string, updatedGame: Game) => {
-    const newGames = { ...games };
-    if (title !== updatedGame.title) {
-      delete newGames[title]; // Eliminar el anterior si cambió el nombre
+      if (key !== updatedGame.title) {
+        const updatedCopy = { ...games };
+        delete updatedCopy[key];
+        updatedCopy[updatedGame.title] = updatedGame;
+        setGames(updatedCopy);
+      }
+    } catch (error) {
+      console.error('Error al actualizar juego:', error);
     }
-    newGames[updatedGame.title] = updatedGame;
-    setGames(newGames);
-    saveGamesToLocalStorage(newGames);
+  };
+
+  const removeGame = async (key: string) => {
+    try {
+      const encodedKey = encodeURIComponent(key);
+      const response = await fetch(`${BACKEND_URL}/juego/${encodedKey}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.msg || 'Error al eliminar juego');
+      }
+
+      setGames((prev) => {
+        const updated = { ...prev };
+        delete updated[key];
+        return updated;
+      });
+    } catch (error) {
+      console.error('Error al eliminar juego:', error);
+    }
   };
 
   return (
     <GamesContext.Provider
       value={{
         games,
+        setGames,
         addGame,
         removeGame,
         updateGame,
-        setGamesFromLocalStorage,
+        fetchGames,
       }}
     >
       {children}
@@ -108,4 +147,3 @@ export const useGamesContext = () => {
   }
   return context;
 };
-

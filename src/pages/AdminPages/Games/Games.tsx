@@ -20,6 +20,7 @@ const Games = () => {
   };
 
   const openEditModal = (gameKey: string) => {
+    // const encodedGameKey = encodeURIComponent(gameKey);
     const game = games[gameKey]; // Obtener el juego con la clave pasada
     if (game) {
       setEditingGame(game); // Establecer el juego que estamos editando
@@ -72,7 +73,7 @@ const Games = () => {
     setForm({ ...form, [e.target.name]: e.target.value })
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const updated: Game = {
       title: form.name,
       description: form.description,
@@ -86,19 +87,40 @@ const Games = () => {
       platform: form.platform
     };
 
-    if (editingGame) {
-      updateGame(editingGame.title, updated)
+    const currentGameKey = editingGame ? Object.keys(games).find(key => games[key].title === editingGame.title) : null;
+
+    if (currentGameKey) {
+      if (form.id !== currentGameKey) {
+        const newKey = form.id;
+        const updatedGames = { ...games };
+
+        const { [currentGameKey]: oldGame, ...remainingGames } = updatedGames;
+
+        updatedGames[newKey] = { ...oldGame, ...updated };
+
+        delete updatedGames[currentGameKey];
+
+        await updateGame(newKey, updatedGames);
+      } else {
+        await updateGame(currentGameKey, updated);
+      }
     } else {
-      addGame(updated)
+      await addGame(updated);
     }
 
-    setShowModal(false)
+    setShowModal(false);
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     if (gameToDelete) {
-      removeGame(gameToDelete.title)
-      setShowDeleteModal(false)
+      const gameKey = Object.keys(games).find(key => games[key].title === gameToDelete.title);
+      
+      if (gameKey) {
+        await removeGame(gameKey);
+        setShowDeleteModal(false);
+      } else {
+        console.error("No se encontró la clave del juego para eliminarlo.");
+      }
     }
   };
 
