@@ -86,17 +86,12 @@ export const GamesProvider = ({ children }: GamesProviderProps) => {
         throw new Error(errorData.msg || 'Error al actualizar juego');
       }
 
-      setGames((prev) => ({
-        ...prev,
-        [updatedGame.title]: updatedGame,
-      }));
-
-      if (key !== updatedGame.title) {
-        const updatedCopy = { ...games };
-        delete updatedCopy[key];
-        updatedCopy[updatedGame.title] = updatedGame;
-        setGames(updatedCopy);
-      }
+      setGames((prev) => {
+        const updatedGames = { ...prev };
+        delete updatedGames[key];
+        updatedGames[updatedGame.title] = updatedGame;
+        return updatedGames;
+      });
     } catch (error) {
       console.error('Error al actualizar juego:', error);
     }

@@ -185,8 +185,9 @@
 
 .game-detail-container {
   max-width: 900px;
-  margin: 90px auto;
-  margin-bottom: 0;
+  margin-inline: auto;
+  margin-top: 130px;
+  margin-bottom: 40px;
   padding: 2rem;
   background-color: #ffffff;
   border-radius: 0.75rem;

@@ -62,8 +62,7 @@ const Explore = () => {
     return ['Todos', ...Array.from(new Set(todosAutores))]
   }
   return (
-      <div>
-          <div className="space_blank"/>
+      <div className='news-page'>
           <h1 className='title_noticias'>Noticias</h1>
           <VerNoticias
             registros={noticiasFiltradas(lista)}

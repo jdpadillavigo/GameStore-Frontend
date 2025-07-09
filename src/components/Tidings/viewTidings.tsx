@@ -64,9 +64,9 @@ const VerNoticias = (props : Reg) => {
             })}
         </div>
         <div className='filter_container'>
-            <div className="title_filter_container"> Filtra </div>
+            <div className="title_filter_container"> Filtrar por </div>
             <div className="space_filter">
-                <p>Categorías:</p>
+                <p>Categorías</p>
                 {props.categorias.map((tipo : string) => (
                     <div key={tipo}>
                         <a
@@ -85,7 +85,7 @@ const VerNoticias = (props : Reg) => {
                         </a>
                     </div>
                 ))}
-                <p>Autores:</p>
+                <p>Autores</p>
                 {props.autores.map((autor : string) => (
                     <div key={autor}>
                         <a
@@ -104,7 +104,7 @@ const VerNoticias = (props : Reg) => {
                         </a>
                     </div>
                 ))}
-                <p>Orden:</p>
+                <p>Orden</p>
                 <div>
                     <a
                         onClick={e => { e.preventDefault(); props.setOrden('actual') }}

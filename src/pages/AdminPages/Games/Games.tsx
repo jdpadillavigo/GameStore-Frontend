@@ -9,7 +9,7 @@ const Games = () => {
   const [editingGame, setEditingGame] = useState<Game | null>(null);
   const [gameToDelete, setGameToDelete] = useState<Game | null>(null);
 
-  const { games, addGame, removeGame, updateGame } = useGamesContext();
+  const { games, setGames, addGame, removeGame, updateGame } = useGamesContext();
 
   const [form, setForm] = useState({ id: "", name: "", description: "", category: "", price: "", discount: "", date: "", trailer: "", image1: "", image2: "", image3: "", image4: "", platform: "" })
 
@@ -20,10 +20,9 @@ const Games = () => {
   };
 
   const openEditModal = (gameKey: string) => {
-    // const encodedGameKey = encodeURIComponent(gameKey);
-    const game = games[gameKey]; // Obtener el juego con la clave pasada
+    const game = games[gameKey];
     if (game) {
-      setEditingGame(game); // Establecer el juego que estamos editando
+      setEditingGame(game);
       setForm({
         id: gameKey,
         name: game.title,
@@ -39,30 +38,9 @@ const Games = () => {
         image4: game.images[3],
         platform: game.platform
       });
-      setShowModal(true); // Mostrar el modal
+      setShowModal(true);
     }
   };
-  
-  
-  // (game: Game) => {
-  //   setEditingGame(game);
-  //   setForm({
-  //     id: key,
-  //     name: game.title,
-  //     description: game.description,
-  //     category: game.category,
-  //     price: String(game.base_price),
-  //     discount: String(game.discount),
-  //     date: game.release_date,
-  //     trailer: game.trailer,
-  //     image1: game.images[0],
-  //     image2: game.images[1],
-  //     image3: game.images[2],
-  //     image4: game.images[3],
-  //     platform: game.platform
-  //   });
-  //   setShowModal(true);
-  // };
 
   const openDeleteModal = (game: Game) => {
     setGameToDelete(game);
@@ -96,16 +74,19 @@ const Games = () => {
 
         const { [currentGameKey]: oldGame, ...remainingGames } = updatedGames;
 
-        updatedGames[newKey] = { ...oldGame, ...updated };
+        updatedGames[newKey] = { ...updated };
 
         delete updatedGames[currentGameKey];
 
-        await updateGame(newKey, updatedGames);
+        await updateGame(newKey, updatedGames[newKey]);
+        setGames(updatedGames);
       } else {
         await updateGame(currentGameKey, updated);
+        setGames({ ...games, [currentGameKey]: updated });
       }
     } else {
-      await addGame(updated);
+      await addGame(form.id, updated);
+      setGames({ ...games, [form.id]: updated });
     }
 
     setShowModal(false);
