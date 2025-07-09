@@ -11,6 +11,7 @@ const ExploreAD = () => {
   const [modoEliminar, setModoEliminar] = useState(false)
 
   const [ lista, setLista ] = useState<nota[]>([])
+
   const httpObtenerNoticias = async() => {
     try{
       const response = await fetch(`${URL}/noticias`)
@@ -78,15 +79,17 @@ const ExploreAD = () => {
     setModoEliminar(false)
   }
 
-  const crearNoticia = (nueva: nota) => {
-    console.log(nueva)
-    httpInsertarNoticia(nueva)
+  const crearNoticia = async (nueva: nota) => {
+    //console.log(nueva)
+    await httpInsertarNoticia(nueva)
+    await httpObtenerNoticias()
     setCreando(false)
   }
 
-  const editarNoticia = (noticiaEditada: nota) => {
+  const editarNoticia = async (noticiaEditada: nota) => {
     //console.log(noticiaEditada)
-    httpEditarNoticia(noticiaEditada)
+    await httpEditarNoticia(noticiaEditada)
+    await httpObtenerNoticias()
     setEditando(null)
   }
 
@@ -104,9 +107,10 @@ const ExploreAD = () => {
     setModoEliminar(true)
   }
 
-  const eliminarNoticia = (id: number) => {
+  const eliminarNoticia = async (id: number) => {
     //console.log(id)
-    httpEliminarNoticia(id)
+    await httpEliminarNoticia(id)
+    await httpObtenerNoticias()
     volverANoticias()
   }
 
@@ -177,7 +181,7 @@ const ExploreAD = () => {
                 onEditar={editarNoticia}
                 noticiaEditar={editando}
                 onVolver={volverANoticias}
-                generarID={new Date().getTime()}
+                generarID={0}
               />
             </div>
           )}
@@ -188,7 +192,7 @@ const ExploreAD = () => {
                 modoEliminar={true}
                 onEliminar={eliminarNoticia}
                 onVolver={volverANoticias}
-                generarID={new Date().getTime()}
+                generarID={0}
               />
             </div>
           )}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { nota } from '../viewTidings'
 import './Create_update_noticia.css'
-import { listaCategoriasNoticias } from '../../../contexts/noticiasContext' 
+import { listaCategoriasNoticias } from '../../../contexts/noticiasContext'
 
 interface CrearNoticiaProps {
   onCrear?: (nueva: nota) => void
@@ -70,7 +70,7 @@ const CrudNoticia = ({
         autor: form.autor,
         redaccion: form.redaccion,
         image: form.image,
-        dias: Math.floor(Math.random() * 26) + 5,
+        dias: 0,
       }
       onCrear(nuevaNoticia)
     }
@@ -117,6 +117,7 @@ const CrudNoticia = ({
             <input
               name="title"
               value={form.title}
+              placeholder={"Escribe el título"}
               onChange={handleChange}
               required
               onInvalid={e => (e.currentTarget.setCustomValidity('No ingresó el titulo'))}
@@ -144,6 +145,7 @@ const CrudNoticia = ({
             <input
               name="autor"
               value={form.autor}
+              placeholder={"Escribe el autor"}
               onChange={handleChange}
               required
               onInvalid={e => (e.currentTarget.setCustomValidity('No ingresó el autor'))}
@@ -155,6 +157,7 @@ const CrudNoticia = ({
             <textarea
               name="redaccion"
               value={form.redaccion}
+              placeholder={"Escribe la redacción"}
               onChange={handleChange}
               required
               onInvalid={e => (e.currentTarget.setCustomValidity('No ingresó el redacción'))}
@@ -162,10 +165,11 @@ const CrudNoticia = ({
             />
           </div>
           <div className="form_group">
-            <label>Imagen (URL):</label>
+            <label>Imagen</label>
             <input
               name="image"
               value={form.image}
+              placeholder={"Escribe el URL de la imagen"}
               onChange={handleChange}
               required
               pattern="https://.*"
