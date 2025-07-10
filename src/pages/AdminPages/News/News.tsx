@@ -34,7 +34,8 @@ const ExploreAD = () => {
         },
         body : JSON.stringify(elem)
       })
-      //const insert = await resp.json()
+      const data = await resp.json()
+      console.log('Noticias recibidas:', data)
     }catch(error){
       console.error(error)
     }
@@ -138,9 +139,9 @@ const ExploreAD = () => {
                     <div className='ad_noticia_contenido'>
                       <div className="ad_contenido_nota">
                         <div className="ad_titulo_nota"><strong>Titulo:</strong> {elemento.title} </div>
-                        <div className="ad_autor_nota"><strong>Autor:</strong> {elemento.autor} </div>
-                        <div className="ad_categoria_nota"><strong>Categoria:</strong> {elemento.categoria} </div>
-                        <div className="ad_dias_nota"><strong>Redactado hace</strong> {elemento.dias} <strong>dias</strong> </div>
+                        <div className="ad_autor_nota"><strong>Autor:</strong> {elemento.author} </div>
+                        <div className="ad_categoria_nota"><strong>Categoria:</strong> {elemento.category} </div>
+                        <div className="ad_dias_nota"><strong>Redactado hace {elemento.days} dias</strong> </div>
                       </div>
                       <div className="ad_img_nota">
                         <img src={elemento.image} alt="imgNoticias" />

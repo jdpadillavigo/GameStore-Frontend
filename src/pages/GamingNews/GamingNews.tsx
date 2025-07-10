@@ -37,28 +37,28 @@ const Explore = () => {
   const noticiasFiltradas = (datos: nota[]) => {
     let filtradas = datos
     if (categoriaSeleccionada !== 'Todos') {
-      filtradas = filtradas.filter(elem => elem.categoria === categoriaSeleccionada)
+      filtradas = filtradas.filter(elem => elem.category === categoriaSeleccionada)
     }
     if (autorSeleccionado !== 'Todos') {
-      filtradas = filtradas.filter(elem => elem.autor === autorSeleccionado)
+      filtradas = filtradas.filter(elem => elem.author === autorSeleccionado)
     }
     if (orden === 'actual') {
-      filtradas = [...filtradas].sort((a, b) => b.dias - a.dias)
+      filtradas = [...filtradas].sort((a, b) => b.days - a.days)
     } else {
-      filtradas = [...filtradas].sort((a, b) => a.dias - b.dias)
+      filtradas = [...filtradas].sort((a, b) => a.days - b.days)
     }
     return filtradas
   }
 
   // Categorías únicas
   const categoriasUnicas = (datos: nota[]) => {
-    const todasCategorias = datos.map(elem => elem.categoria)
+    const todasCategorias = datos.map(elem => elem.category)
     return ['Todos', ...Array.from(new Set(todasCategorias))]
   }
 
   // Autores únicos
   const autoresUnicos = (datos: nota[]) => {
-    const todosAutores = datos.map(elem => elem.autor)
+    const todosAutores = datos.map(elem => elem.author)
     return ['Todos', ...Array.from(new Set(todosAutores))]
   }
   return (

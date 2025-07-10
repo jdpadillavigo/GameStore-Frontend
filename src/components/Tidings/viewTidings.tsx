@@ -3,11 +3,11 @@ import "./viewTidings.css"
 export interface nota {
     id : number
     title : string
-    categoria : string
-    autor : string
-    redaccion: string
+    category : string
+    author : string
+    redaction: string
     image : string
-    dias : number
+    days : number
 }
 
 interface Reg {
@@ -53,8 +53,8 @@ const VerNoticias = (props : Reg) => {
                     <div className="noticia" key={elemento.id}>
                         <div className="contenido_nota">
                             <div className="titulo_nota">{elemento.title}</div><br></br>
-                            <div className="categoria_nota"> Redactado por {elemento.autor}</div>
-                            <div className="extra_nota"> Hace {elemento.dias} dias - {elemento.categoria}</div>
+                            <div className="categoria_nota"> Redactado por {elemento.author}</div>
+                            <div className="extra_nota"> Hace {elemento.days} dias - {elemento.category}</div>
                         </div>
                         <div className="img_nota">
                             <img src={elemento.image} alt="imgNoticias" />
@@ -137,7 +137,6 @@ const VerNoticias = (props : Reg) => {
                         Más antiguo al actual
                     </a>
                 </div>
-
             </div>
         </div>
     </div>

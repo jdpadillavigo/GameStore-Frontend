@@ -24,9 +24,9 @@ const CrudNoticia = ({
 }: CrearNoticiaProps) => {
   const [form, setForm] = useState({
     title: '',
-    categoria: '',
-    autor: '',
-    redaccion: '',
+    category: '',
+    author: '',
+    redaction: '',
     image: ''
   })
 
@@ -34,17 +34,17 @@ const CrudNoticia = ({
     if (noticiaEditar) {
       setForm({
         title: noticiaEditar.title,
-        categoria: noticiaEditar.categoria,
-        autor: noticiaEditar.autor,
-        redaccion: noticiaEditar.redaccion,
+        category: noticiaEditar.category,
+        author: noticiaEditar.author,
+        redaction: noticiaEditar.redaction,
         image: noticiaEditar.image
       })
     } else {
       setForm({
         title: '',
-        categoria: '',
-        autor: '',
-        redaccion: '',
+        category: '',
+        author: '',
+        redaction: '',
         image: ''
       })
     }
@@ -65,12 +65,8 @@ const CrudNoticia = ({
     } else if (onCrear) {
       const nuevaNoticia: nota = {
         id: generarID,
-        title: form.title,
-        categoria: form.categoria,
-        autor: form.autor,
-        redaccion: form.redaccion,
-        image: form.image,
-        dias: 0,
+        ...form,
+        days: 0,
       }
       onCrear(nuevaNoticia)
     }
@@ -127,8 +123,8 @@ const CrudNoticia = ({
           <div className="form_group">
             <label>Categoría</label>
             <select
-              name="categoria"
-              value={form.categoria}
+              name="category"
+              value={form.category}
               onChange={handleChange}
               required
               onInvalid={e => (e.currentTarget.setCustomValidity('No seleccionó la categoria'))}
@@ -143,8 +139,8 @@ const CrudNoticia = ({
           <div className="form_group">
             <label>Autor</label>
             <input
-              name="autor"
-              value={form.autor}
+              name="author"
+              value={form.author}
               placeholder={"Escribe el autor"}
               onChange={handleChange}
               required
@@ -155,8 +151,8 @@ const CrudNoticia = ({
           <div className="form_group">
             <label>Redacción</label>
             <textarea
-              name="redaccion"
-              value={form.redaccion}
+              name="redaction"
+              value={form.redaction}
               placeholder={"Escribe la redacción"}
               onChange={handleChange}
               required
