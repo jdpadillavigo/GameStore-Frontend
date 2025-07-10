@@ -7,6 +7,7 @@ interface Review {
 }
 
 export interface Game {
+  id: string;
   title: string;
   description: string;
   trailer: string;
@@ -22,9 +23,9 @@ export interface Game {
 interface GamesContextType {
   games: Record<string, Game>;
   setGames: (games: Record<string, Game>) => void;
-  addGame: (key: string, game: Game) => Promise<void>;
-  removeGame: (key: string) => Promise<void>;
-  updateGame: (key: string, updatedGame: Game) => Promise<void>;
+  addGame: (game: Game) => Promise<void>;
+  removeGame: (id: string) => Promise<void>;
+  updateGame: (id: string, updatedGame: Game) => Promise<void>;
   fetchGames: () => Promise<void>;
 }
 
@@ -47,18 +48,22 @@ export const GamesProvider = ({ children }: GamesProviderProps) => {
     try {
       const response = await fetch(`${BACKEND_URL}/juegos`);
       const data = await response.json();
-      setGames(data);
+      const gamesMap = data.reduce((acc: Record<string, Game>, game: Game) => {
+        acc[game.id] = game;
+        return acc;
+      }, {});
+      setGames(gamesMap);
     } catch (error) {
       console.error('Error al cargar juegos desde el backend:', error);
     }
   };
 
-  const addGame = async (key: string, game: Game) => {
+  const addGame = async (game: Game) => {
     try {
       const response = await fetch(`${BACKEND_URL}/juegos`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ key, ...game }),
+        body: JSON.stringify(game),
       });
 
       if (!response.ok) {
@@ -66,16 +71,16 @@ export const GamesProvider = ({ children }: GamesProviderProps) => {
         throw new Error(errorData.msg || 'Error al agregar juego');
       }
 
-      setGames((prev) => ({ ...prev, [key]: game }));
+      setGames((prev) => ({ ...prev, [game.id]: game }));
     } catch (error) {
       console.error('Error al agregar juego:', error);
     }
   };
 
-  const updateGame = async (key: string, updatedGame: Game) => {
+  const updateGame = async (id: string, updatedGame: Game) => {
     try {
-      const encodedKey = encodeURIComponent(key);
-      const response = await fetch(`${BACKEND_URL}/juego/${encodedKey}`, {
+      const encodedId = encodeURIComponent(id);
+      const response = await fetch(`${BACKEND_URL}/juego/${encodedId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedGame),
@@ -88,8 +93,7 @@ export const GamesProvider = ({ children }: GamesProviderProps) => {
 
       setGames((prev) => {
         const updatedGames = { ...prev };
-        delete updatedGames[key];
-        updatedGames[updatedGame.title] = updatedGame;
+        updatedGames[id] = updatedGame;
         return updatedGames;
       });
     } catch (error) {
@@ -97,10 +101,10 @@ export const GamesProvider = ({ children }: GamesProviderProps) => {
     }
   };
 
-  const removeGame = async (key: string) => {
+  const removeGame = async (id: string) => {
     try {
-      const encodedKey = encodeURIComponent(key);
-      const response = await fetch(`${BACKEND_URL}/juego/${encodedKey}`, {
+      const encodedId = encodeURIComponent(id);
+      const response = await fetch(`${BACKEND_URL}/juego/${encodedId}`, {
         method: 'DELETE',
       });
 
@@ -111,7 +115,7 @@ export const GamesProvider = ({ children }: GamesProviderProps) => {
 
       setGames((prev) => {
         const updated = { ...prev };
-        delete updated[key];
+        delete updated[id];
         return updated;
       });
     } catch (error) {
