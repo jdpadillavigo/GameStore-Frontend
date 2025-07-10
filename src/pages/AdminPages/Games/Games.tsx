@@ -19,12 +19,12 @@ const Games = () => {
     setShowModal(true)
   };
 
-  const openEditModal = (gameKey: string) => {
-    const game = games[gameKey];
+  const openEditModal = (gameId: string) => {
+    const game = games[gameId];
     if (game) {
       setEditingGame(game);
       setForm({
-        id: gameKey,
+        id: gameId,
         name: game.title,
         description: game.description,
         category: game.category,
@@ -53,6 +53,7 @@ const Games = () => {
 
   const handleSubmit = async () => {
     const updated: Game = {
+      id: form.id,
       title: form.name,
       description: form.description,
       trailer: form.trailer,
@@ -65,27 +66,27 @@ const Games = () => {
       platform: form.platform
     };
 
-    const currentGameKey = editingGame ? Object.keys(games).find(key => games[key].title === editingGame.title) : null;
+    const currentGameId = editingGame ? Object.keys(games).find(id => games[id].title === editingGame.title) : null;
 
-    if (currentGameKey) {
-      if (form.id !== currentGameKey) {
-        const newKey = form.id;
+    if (currentGameId) {
+      if (form.id !== currentGameId) {
+        const newId = form.id;
         const updatedGames = { ...games };
 
-        const { [currentGameKey]: oldGame, ...remainingGames } = updatedGames;
+        const { [currentGameId]: oldGame, ...remainingGames } = updatedGames;
 
-        updatedGames[newKey] = { ...updated };
+        updatedGames[newId] = { ...updated };
 
-        delete updatedGames[currentGameKey];
+        delete updatedGames[currentGameId];
 
-        await updateGame(newKey, updatedGames[newKey]);
+        await updateGame(newId, updatedGames[newId]);
         setGames(updatedGames);
       } else {
-        await updateGame(currentGameKey, updated);
-        setGames({ ...games, [currentGameKey]: updated });
+        await updateGame(currentGameId, updated);
+        setGames({ ...games, [currentGameId]: updated });
       }
     } else {
-      await addGame(form.id, updated);
+      await addGame(updated);
       setGames({ ...games, [form.id]: updated });
     }
 
@@ -94,10 +95,10 @@ const Games = () => {
 
   const handleDelete = async () => {
     if (gameToDelete) {
-      const gameKey = Object.keys(games).find(key => games[key].title === gameToDelete.title);
+      const gameId = Object.keys(games).find(id => games[id].title === gameToDelete.title);
       
-      if (gameKey) {
-        await removeGame(gameKey);
+      if (gameId) {
+        await removeGame(gameId);
         setShowDeleteModal(false);
       } else {
         console.error("No se encontró la clave del juego para eliminarlo.");
@@ -129,15 +130,15 @@ const Games = () => {
               </tr>
             </thead>
             <tbody>
-              {Object.entries(games).map(([key, game]) => (
-                <tr key={key}>
+              {Object.entries(games).map(([id, game]) => (
+                <tr id={id}>
                   <td>{game.release_date}</td>
                   <td>{game.category}</td>
                   <td>{game.title}</td>
                   <td>S/. {game.base_price.toFixed(2)}</td>
                   <td>{game.discount}%</td>
                   <td className="actions">
-                    <FaEdit className="edit-icon" onClick={() => openEditModal(key)} />
+                    <FaEdit className="edit-icon" onClick={() => openEditModal(id)} />
                     <FaTrash className="delete-icon" onClick={() => openDeleteModal(game)} />
                   </td>
                 </tr>
