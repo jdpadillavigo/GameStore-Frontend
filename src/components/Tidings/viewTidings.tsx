@@ -54,7 +54,11 @@ const VerNoticias = (props : Reg) => {
                         <div className="contenido_nota">
                             <div className="titulo_nota">{elemento.title}</div><br></br>
                             <div className="categoria_nota"> Redactado por {elemento.author}</div>
-                            <div className="extra_nota"> Hace {elemento.days} dias - {elemento.category}</div>
+                            <div className="extra_nota">
+                                {elemento.days === 0
+                                ? `Redactado hoy - ${elemento.category}`
+                                : `Redactado hace ${elemento.days} días - ${elemento.category}`}
+                            </div>
                         </div>
                         <div className="img_nota">
                             <img src={elemento.image} alt="imgNoticias" />

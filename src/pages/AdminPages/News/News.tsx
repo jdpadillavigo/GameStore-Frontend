@@ -141,7 +141,11 @@ const ExploreAD = () => {
                         <div className="ad_titulo_nota"><strong>Titulo:</strong> {elemento.title} </div>
                         <div className="ad_autor_nota"><strong>Autor:</strong> {elemento.author} </div>
                         <div className="ad_categoria_nota"><strong>Categoria:</strong> {elemento.category} </div>
-                        <div className="ad_dias_nota"><strong>Redactado hace {elemento.days} dias</strong> </div>
+                        <div className="ad_dias_nota">
+                          {elemento.days === 0
+                          ? `Redactado hoy`
+                          : `Redactado hace ${elemento.days} días`}
+                        </div>
                       </div>
                       <div className="ad_img_nota">
                         <img src={elemento.image} alt="imgNoticias" />
@@ -172,7 +176,7 @@ const ExploreAD = () => {
               <CrudNoticia
                 onCrear={crearNoticia}
                 onVolver={volverANoticias}
-                generarID={new Date().getTime()}
+                generarID={Math.floor(Math.random() * (2100000000 - 1000000000 + 1)) + 1000000000}
               />
             </div>
           )}

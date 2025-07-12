@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { nota } from '../viewTidings'
 import './Create_update_noticia.css'
 import { listaCategoriasNoticias } from '../../../contexts/noticiasContext'
@@ -29,6 +29,8 @@ const CrudNoticia = ({
     redaction: '',
     image: ''
   })
+  const [showCategorias, setShowCategorias] = useState(false);
+  const categoriasRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (noticiaEditar) {
@@ -49,6 +51,17 @@ const CrudNoticia = ({
       })
     }
   }, [noticiaEditar])
+
+  // Cierra el menú si se hace click fuera
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (categoriasRef.current && !categoriasRef.current.contains(event.target as Node)) {
+        setShowCategorias(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -122,19 +135,38 @@ const CrudNoticia = ({
           </div>
           <div className="form_group">
             <label>Categoría</label>
-            <select
-              name="category"
-              value={form.category}
-              onChange={handleChange}
-              required
-              onInvalid={e => (e.currentTarget.setCustomValidity('No seleccionó la categoria'))}
-              onInput={e => (e.currentTarget.setCustomValidity(''))}
+            <div
+              className="custom_select"
+              ref={categoriasRef}
+              tabIndex={0}
             >
-              <option value="" hidden>Selecciona una categoría</option>
-              {listaCategoriasNoticias.map(cat => (
-                <option key={cat} value={cat}>{cat}</option>
-              ))}
-            </select>
+              <input
+                className="custom_select_selected"
+                type="text"
+                readOnly
+                value={form.category || ""}
+                placeholder="Selecciona una categoría"
+                onClick={() => setShowCategorias((v) => !v)}
+                style={{ cursor: "pointer" }}
+                required
+              />
+              {showCategorias && (
+                <ul className="custom_select_list">
+                  {listaCategoriasNoticias.map((cat) => (
+                    <li
+                      key={cat}
+                      className={`custom_select_option${form.category === cat ? " selected" : ""}`}
+                      onClick={() => {
+                        setForm({ ...form, category: cat });
+                        setShowCategorias(false);
+                      }}
+                    >
+                      {cat}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
           <div className="form_group">
             <label>Autor</label>
