@@ -44,6 +44,7 @@
 }
 
 .home-page__content__grid__game:hover {
+    background-color: var(--secondary-color);
     transform: translateY(-5px);
     cursor: pointer;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);

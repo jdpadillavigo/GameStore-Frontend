@@ -29,6 +29,12 @@ body {
   min-height: 100vh; */
 }
 
+body::selection {
+  background-color: var(--main-color);
+  color: white;
+}
+
+
 @media (prefers-color-scheme: light) {
   :root {
     color: black;

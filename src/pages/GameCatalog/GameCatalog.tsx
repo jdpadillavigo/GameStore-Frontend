@@ -2,27 +2,35 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useGamesContext, Game } from '../../contexts/GamesContext';
 import { FaWindows, FaApple, FaLinux, FaPlaystation, FaXbox } from 'react-icons/fa';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 import './GameCatalog.css';
 
 const GameCatalog = () => {
   const { games } = useGamesContext();
 
-  type FilterType = 'categories' | 'platforms' | 'discounts';
+  const minPrice = 0;
+  const maxPrice = 300;
+  const [priceRange, setPriceRange] = useState<[number, number]>([minPrice, maxPrice]);
+
+  type FilterType = 'categories' | 'platforms' | 'discounts' | 'prices';
 
   const [filteredGames, setFilteredGames] = useState<{ [key: string]: Game }>({});
   const [filters, setFilters] = useState<{
     categories: string[];
     platforms: string[];
     discounts: boolean;
+    prices: boolean;
   }>({
     categories: [],
     platforms: [],
     discounts: false,
+    prices: false,
   });
 
   useEffect(() => {
     applyFilters();
-  }, [games, filters]);
+  }, [games, filters, priceRange]);
 
   const handleCheckboxChange = (type: FilterType, value?: string) => {
     setFilters((prev) => {
@@ -30,7 +38,15 @@ const GameCatalog = () => {
         return { ...prev, discounts: !prev.discounts };
       }
 
-      const list = prev[type as 'categories' | 'platforms'];
+      if (type === "categories" && value) {
+        const updatedCategories = prev.categories.includes(value)
+          ? []
+          : [value];
+
+        return { ...prev, categories: updatedCategories };
+      }
+
+      const list = prev[type as 'platforms'];
       const updatedList = list.includes(value || '')
         ? list.filter((item) => item !== value)
         : [...list, value];
@@ -42,6 +58,12 @@ const GameCatalog = () => {
   const applyFilters = () => {
     const result = Object.fromEntries(
       Object.entries(games).filter(([_, game]) => {
+        const finalPrice = game.discount > 0
+          ? game.base_price * (100 - game.discount) / 100
+          : game.base_price;
+
+        const matchPrice = finalPrice >= priceRange[0] && finalPrice <= priceRange[1];
+
         const matchCategory =
           filters.categories.length === 0 ||
           filters.categories.some(cat =>
@@ -58,7 +80,7 @@ const GameCatalog = () => {
 
         const matchDiscount = !filters.discounts || game.discount > 0;
 
-        return matchCategory && matchPlatform && matchDiscount;
+        return matchPrice && matchCategory && matchPlatform && matchDiscount;
       })
     );
 
@@ -74,12 +96,17 @@ const GameCatalog = () => {
             <p className='catalog-page__content__games__no-results'>No se encontraron resultados.</p>
           :
             Object.entries(filteredGames).map(([key, game]) => (
-              <Link to={`/game/${key}`}>
+              <Link to={`/juego/${key}`}>
                 <img src={game.images[0]} alt={game.title} />
                 <div className='catalog-page__content__games__info'>
                   <div className='catalog-page__content__games__info__title-stars'>
                     <p>{game.title}</p>
-                    <p>Valoración: {(game.reviews.reduce((sum, review) => sum + review.stars, 0) / game.reviews.length).toFixed(1)} de 5 estrellas</p>
+                    <p>
+                      Valoración:
+                      {game.reviews.length > 0
+                        ? ` ${(game.reviews.reduce((sum, review) => sum + review.stars, 0) / game.reviews.length).toFixed(1)} de 5 estrellas`
+                        : " Desconocida"}
+                    </p>
                   </div>
                   <div className='catalog-page__content__games__info__date'>
                     <p>{game.release_date}</p>
@@ -121,11 +148,68 @@ const GameCatalog = () => {
           <h3>Filtrar por</h3>
 
           <div className="catalog-page__content__filters__section">
+            <h4>Precio (S/.)</h4>
+            <div className="catalog-page__content__filters__section__price">
+              <div className="catalog-page__content__filters__section__price__inputs">
+                <div className="catalog-page__content__filters__section__price__inputs__min-max">
+                  <label>Mínimo:</label>
+                  <input
+                    type="number"
+                    value={priceRange[0]}
+                    min={minPrice}
+                    max={priceRange[1]}
+                    onChange={(e) => setPriceRange([+e.target.value, priceRange[1]])}
+                  />
+                </div>
+                <div className="catalog-page__content__filters__section__price__inputs__min-max">
+                  <label>Máximo:</label>
+                  <input
+                    type="number"
+                    value={priceRange[1]}
+                    min={priceRange[0]}
+                    max={maxPrice}
+                    onChange={(e) => setPriceRange([priceRange[0], +e.target.value])}
+                  />
+                </div>
+              </div>
+
+              <div className="catalog-page__content__filters__section__price__range">
+                {/* <label>Rango:</label> */}
+                <Slider
+                  range
+                  min={minPrice}
+                  max={maxPrice}
+                  step={1}
+                  value={priceRange}
+                  onChange={(value: number | number[]) => {
+                    if (Array.isArray(value)) {
+                      setPriceRange([value[0], value[1]]);
+                    } else {
+                      setPriceRange([value, value]);
+                    }
+                  }}
+                  railStyle={{ backgroundColor: '#ccc', height: 5 }}
+                  trackStyle={{ backgroundColor: 'darkred', height: 5 }}
+                  handleStyle={{
+                    border: 0,
+                    backgroundColor: 'darkred',
+                    height: 12,
+                    width: 12,
+                    marginTop: -3,
+                  }}
+                />
+                {/* <span>De S/. {priceRange[0]} a S/. {priceRange[1]}</span> */}
+              </div>
+            </div>
+          </div>
+
+          <div className="catalog-page__content__filters__section">
             <h4>Categorías</h4>
             <p>
               <input
                 type="checkbox"
                 id="top-sellers"
+                checked={filters.categories.includes("más vendido")}
                 onChange={() => handleCheckboxChange("categories", "más vendido")}
               />
               <label htmlFor="top-sellers">Más vendidos</label>
@@ -134,6 +218,7 @@ const GameCatalog = () => {
               <input
                 type="checkbox"
                 id="top-rated"
+                checked={filters.categories.includes("mejor valorado")}
                 onChange={() => handleCheckboxChange("categories", "mejor valorado")}
               />
               <label htmlFor="top-rated">Mejor valorados</label>
@@ -142,6 +227,7 @@ const GameCatalog = () => {
               <input
                 type="checkbox"
                 id="free"
+                checked={filters.categories.includes("gratuito")}
                 onChange={() => handleCheckboxChange("categories", "gratuito")}
               />
               <label htmlFor="free">Gratuitos</label>
@@ -150,6 +236,7 @@ const GameCatalog = () => {
               <input
                 type="checkbox"
                 id="multiplayer"
+                checked={filters.categories.includes("multijugador")}
                 onChange={() => handleCheckboxChange("categories", "multijugador")}
               />
               <label htmlFor="multiplayer">Multijugador</label>
@@ -158,6 +245,7 @@ const GameCatalog = () => {
               <input
                 type="checkbox"
                 id="early-access"
+                checked={filters.categories.includes("acceso temprano")}
                 onChange={() => handleCheckboxChange("categories", "acceso temprano")}
               />
               <label htmlFor="early-access">Acceso temprano</label>

@@ -77,7 +77,7 @@ const Slider = ({ slides }: SliderProps) => {
           backgroundImage: `url(${slides[currentIndex].url})`,
         }}
       >
-        <Link to={`/game/${slides[currentIndex].key}`}>
+        <Link to={`/juego/${slides[currentIndex].key}`}>
           Ver juego
         </Link>
       </div>

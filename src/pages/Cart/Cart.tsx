@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useGamesContext } from '../../contexts/GamesContext';
 import { useNavigate } from 'react-router-dom';
+import { useGamesContext } from '../../contexts/GamesContext';
 import './Cart.css';
 
 const Cart = () => {
@@ -56,44 +56,46 @@ const Cart = () => {
 
 
   return (
-    <div className="cart-container">
-      <h2>Tu Carrito</h2>
+    <div className='cart-page'>
+      <div className="cart-container">
+        <h2>Tu Carrito</h2>
 
-      {cart.length === 0 ? (
-        <p>No tienes juegos agregados.</p>
-      ) : (
-        <>
-          <div className="cart-list">
-            {cart.map((id: number) => {
-              const game = games[id];
-              if (!game) return null;
-              return (
-                <div key={id} className="cart-item">
-                  <img
-                    src={game.images[1]}
-                    alt={game.title}
-                    className="cart-img"
-                  />
-                  <button className="remove-btn" onClick={() => handleRemove(id)}>✖</button>
-                </div>
-              );
-            })}
-          </div>
+        {cart.length === 0 ? (
+          <p>No tienes juegos agregados.</p>
+        ) : (
+          <>
+            <div className="cart-list">
+              {cart.map((id: number) => {
+                const game = games[id];
+                if (!game) return null;
+                return (
+                  <div key={id} className="cart-item">
+                    <img
+                      src={game.images[1]}
+                      alt={game.title}
+                      className="cart-img"
+                    />
+                    <button className="remove-btn" onClick={() => handleRemove(id)}>✖</button>
+                  </div>
+                );
+              })}
+            </div>
 
-          <div className="cart-prices">
-            <p className="price-normal">S/ Total {totalPrice.toFixed(2)}</p>
-            <p className="price-discount">S/ Con Descuento {totalDiscountedPrice.toFixed(2)}</p>
-          </div>
+            <div className="cart-prices">
+              <p className="price-normal">S/ Total {totalPrice.toFixed(2)}</p>
+              <p className="price-discount">S/ Con Descuento {totalDiscountedPrice.toFixed(2)}</p>
+            </div>
 
 
-          <div className="cart-actions">
-            <button className="cancel-btn" onClick={handleClear}>Vaciar Carrito</button>
-            <button className="confirm-btn" onClick={handleConfirm}>Realizar Pago</button>
-          </div>
-        </>
-      )}
+            <div className="cart-actions">
+              <button className="cancel-btn" onClick={handleClear}>Vaciar Carrito</button>
+              <button className="confirm-btn" onClick={handleConfirm}>Realizar Pago</button>
+            </div>
+          </>
+        )}
+      </div>
     </div>
-  );
-};
+  )
+}
 
 export default Cart;

@@ -34,7 +34,7 @@ const Home = () => {
         <h2>Juegos Destacados</h2>
         <div className="home-page__content__grid">
           {Object.entries(games).map(([key, game]) => (
-            <Link to={`/game/${key}`}>
+            <Link to={`/juego/${key}`}>
               <div className="home-page__content__grid__game">
                 <img src={game.images[0]} alt={game.title} />
                 <p>{game.title}</p>

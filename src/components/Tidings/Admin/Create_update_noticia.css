@@ -1,0 +1,161 @@
+/* Para ventana de noticiaEliminada */
+.modal_eliminar {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal_eliminar_content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px;
+  min-width: 320px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+  text-align: center;
+}
+.modal_eliminar_content_mensaje {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+.modal_eliminar_content_buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* Para ventana de crear y actualizar noticia */
+.modal_crear_noticia {
+  position: static;
+  width: 100%;
+  height: auto;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: auto;
+  margin-top: 30px
+}
+.modal_content {
+  background: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(178, 58, 72, 0.18);
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+.modal_content h2 {
+  margin: 0 0 1rem 0;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+.form_group {
+  display: flex;
+  flex-direction: column;
+}
+.form_group label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+.form_group input,
+.form_group textarea {
+  padding: 0.5rem 0.7rem;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  font-size: 15px;
+  background: #f9f9f9;
+  color: var(--main-color);
+  transition: border-color 0.2s;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  appearance: none;
+}
+.custom_select {
+  position: relative;
+  width: 100%;
+  user-select: none;
+}
+.custom_select_selected {
+  padding: 0.5rem 0.7rem;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  background: #f9f9f9;
+  color: var(--main-color);
+  font-size: 15px;
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+}
+.custom_select_list {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 180px;
+  overflow-y: auto;
+}
+.custom_select_option {
+  padding: 0.5rem 0.7rem;
+  cursor: pointer;
+  color: #222;
+  transition: background 0.2s, color 0.2s;
+}
+.custom_select_option:hover {
+  background: #f0f0f0;
+  color: var(--main-color);
+}
+
+.form_group textarea {
+  min-height: 40px;
+  max-height: 200px;
+  resize: vertical;
+}
+.form_group input:hover,
+.form_group textarea:hover,
+.form_group input:focus,
+.form_group textarea:focus {
+  border-color: var(--secondary-color);
+  outline: none;
+}
+.form_footer {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-top: 1.5rem;
+}
+.Create_Update_noticia_btn,
+.new_noticia_btn_volver {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s, box-shadow 0.2s;
+}
+.Create_Update_noticia_btn {
+  background: var(--main-color);
+  color: #fff;
+}
+.Create_Update_noticia_btn:hover {
+  background: var(--secondary-color);
+}
+.new_noticia_btn_volver {
+  background: #bdbdbd;
+  color: #222;
+}
+.new_noticia_btn_volver:hover {
+  background: #ddd;
+  /* color: #fff; */
+}

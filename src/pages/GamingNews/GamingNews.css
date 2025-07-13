@@ -1,5 +1,12 @@
+.news-page {
+  margin-top: 90px;
+  padding: 2em;
+}
+
 .title_noticias{
-    margin-left: 5%;
-    font-size: 2rem;
-    text-align: left;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 30px;
 }
