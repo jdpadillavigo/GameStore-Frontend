@@ -1,6 +1,5 @@
 import { Routes, Route} from 'react-router-dom'
 import { GamesProvider } from './contexts/GamesContext';
-import { NoticiasProvider } from './contexts/noticiasContext'
 
 import Navbar from './components/Navbar/Navbar'
 import Home from './pages/Home/Home'
@@ -32,7 +31,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home/>} />
             <Route path='/juegos' element={<Games />} />
-            <Route path='/noticias' element={<NoticiasProvider><News /></NoticiasProvider>} />
+            <Route path='/noticias' element={<News />} />
 
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
@@ -44,7 +43,7 @@ function App() {
 
             <Route path='/a/usuarios' element={<AdminUsers />} />
             <Route path='/a/juegos' element={<AdminGames />} />
-            <Route path='/a/noticias' element={<NoticiasProvider><AdminNews /></NoticiasProvider>} />
+            <Route path='/a/noticias' element={<AdminNews />} />
             <Route path='/a/estadisticas' element={<AdminStats />} />
           </Routes>
         </main>

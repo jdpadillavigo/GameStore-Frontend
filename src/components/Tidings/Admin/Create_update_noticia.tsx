@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { nota } from '../viewTidings'
 import './Create_update_noticia.css'
-import { listaCategoriasNoticias } from '../../../contexts/noticiasContext' 
+import { listaCategoriasNoticias } from '../../../contexts/noticiasContext'
 
 interface CrearNoticiaProps {
   onCrear?: (nueva: nota) => void
@@ -13,7 +13,7 @@ interface CrearNoticiaProps {
   modoEliminar?: boolean // Nuevo: para saber si mostrar la vista de eliminar
 }
 
-const CrearNoticia = ({
+const CrudNoticia = ({
   onCrear,
   onEditar,
   onEliminar,
@@ -24,31 +24,44 @@ const CrearNoticia = ({
 }: CrearNoticiaProps) => {
   const [form, setForm] = useState({
     title: '',
-    categoria: '',
-    autor: '',
-    redaccion: '',
+    category: '',
+    author: '',
+    redaction: '',
     image: ''
   })
+  const [showCategorias, setShowCategorias] = useState(false);
+  const categoriasRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (noticiaEditar) {
       setForm({
         title: noticiaEditar.title,
-        categoria: noticiaEditar.categoria,
-        autor: noticiaEditar.autor,
-        redaccion: noticiaEditar.redaccion,
+        category: noticiaEditar.category,
+        author: noticiaEditar.author,
+        redaction: noticiaEditar.redaction,
         image: noticiaEditar.image
       })
     } else {
       setForm({
         title: '',
-        categoria: '',
-        autor: '',
-        redaccion: '',
+        category: '',
+        author: '',
+        redaction: '',
         image: ''
       })
     }
   }, [noticiaEditar])
+
+  // Cierra el menú si se hace click fuera
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (categoriasRef.current && !categoriasRef.current.contains(event.target as Node)) {
+        setShowCategorias(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
@@ -65,13 +78,8 @@ const CrearNoticia = ({
     } else if (onCrear) {
       const nuevaNoticia: nota = {
         id: generarID,
-        title: form.title,
-        categoria: form.categoria,
-        autor: form.autor,
-        redaccion: form.redaccion,
-        image: form.image,
-        dias: Math.floor(Math.random() * 26) + 5,
-        select: false
+        ...form,
+        days: 0,
       }
       onCrear(nuevaNoticia)
     }
@@ -118,6 +126,7 @@ const CrearNoticia = ({
             <input
               name="title"
               value={form.title}
+              placeholder={"Escribe el título"}
               onChange={handleChange}
               required
               onInvalid={e => (e.currentTarget.setCustomValidity('No ingresó el titulo'))}
@@ -126,25 +135,45 @@ const CrearNoticia = ({
           </div>
           <div className="form_group">
             <label>Categoría</label>
-            <select
-              name="categoria"
-              value={form.categoria}
-              onChange={handleChange}
-              required
-              onInvalid={e => (e.currentTarget.setCustomValidity('No seleccionó la categoria'))}
-              onInput={e => (e.currentTarget.setCustomValidity(''))}
+            <div
+              className="custom_select"
+              ref={categoriasRef}
+              tabIndex={0}
             >
-              <option value="" hidden>Selecciona una categoría</option>
-              {listaCategoriasNoticias.map(cat => (
-                <option key={cat} value={cat}>{cat}</option>
-              ))}
-            </select>
+              <input
+                className="custom_select_selected"
+                type="text"
+                readOnly
+                value={form.category || ""}
+                placeholder="Selecciona una categoría"
+                onClick={() => setShowCategorias((v) => !v)}
+                style={{ cursor: "pointer" }}
+                required
+              />
+              {showCategorias && (
+                <ul className="custom_select_list">
+                  {listaCategoriasNoticias.map((cat) => (
+                    <li
+                      key={cat}
+                      className={`custom_select_option${form.category === cat ? " selected" : ""}`}
+                      onClick={() => {
+                        setForm({ ...form, category: cat });
+                        setShowCategorias(false);
+                      }}
+                    >
+                      {cat}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
           <div className="form_group">
             <label>Autor</label>
             <input
-              name="autor"
-              value={form.autor}
+              name="author"
+              value={form.author}
+              placeholder={"Escribe el autor"}
               onChange={handleChange}
               required
               onInvalid={e => (e.currentTarget.setCustomValidity('No ingresó el autor'))}
@@ -154,8 +183,9 @@ const CrearNoticia = ({
           <div className="form_group">
             <label>Redacción</label>
             <textarea
-              name="redaccion"
-              value={form.redaccion}
+              name="redaction"
+              value={form.redaction}
+              placeholder={"Escribe la redacción"}
               onChange={handleChange}
               required
               onInvalid={e => (e.currentTarget.setCustomValidity('No ingresó el redacción'))}
@@ -163,10 +193,11 @@ const CrearNoticia = ({
             />
           </div>
           <div className="form_group">
-            <label>Imagen (URL):</label>
+            <label>Imagen</label>
             <input
               name="image"
               value={form.image}
+              placeholder={"Escribe el URL de la imagen"}
               onChange={handleChange}
               required
               pattern="https://.*"
@@ -207,4 +238,4 @@ const CrearNoticia = ({
     </div>
   )
 }
-export default CrearNoticia
+export default CrudNoticia

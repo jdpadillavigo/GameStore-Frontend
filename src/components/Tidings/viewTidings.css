@@ -1,23 +1,26 @@
 .vistaNoticia {
-    display: flex;
-    align-items: flex-start;
-    box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
 }
 
 /*corresponde dentro del div noticia-container*/
 .noticia_container {
-    flex: 8 1 0;
-    margin-left: 380px;
+  flex: 8 1 0;
 }
 .noticia {
   display: flex;
   border: 2px solid #ccc;
-  border-radius: 30px;
+  border-radius: 20px;
   padding: 15px;
   margin-bottom: 25px;
   margin-right: 40px;
-  box-shadow: 0 3px 9px rgb(193, 193, 193);
-  background-color: #f9f9f9;
+  box-shadow: 0 4px 10px rgb(0, 0, 0, 0.3);
+  background: #fff;
+  transition: 0.3s all ease;
+}
+.noticia:hover {
+  transform: translateY(-2px)
 }
 .contenido_nota{
   flex: 7 1 0;
@@ -48,18 +51,17 @@
 
 /*corresponde dentro del div filter-container*/
 .filter_container {
-    flex: 2 1 0;
-    margin-right: 50px;
-    margin-bottom: 50px;
-    padding: 5px;
-    box-shadow: 0 3px 9px rgb(193, 193, 193);
-    background-color: #f9f9f9;
-    border: 2px solid #ccc;
-    border-radius: 12px;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  flex: 1 1 0;
+  padding: 30px 20px;
+  box-shadow: 0 4px 10px rgb(193, 193, 193);
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  background: #fff;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: 0.3s all ease;
 }
 .title_filter_container {
   font-weight: bold;
@@ -70,6 +72,14 @@
   justify-content: center;
   align-items: center;
 }
+.space_filter {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.space_filter a {
+  cursor: pointer;
+}
 .filter_container p {
   font-size: medium;
   font-weight: bold;
@@ -77,24 +87,20 @@
   margin: 0 0 10px 0;
 }
 .filter_container > div {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 .filter-container a {
-    color: black;
-    cursor: pointer;
-    display: flex;
-    align-items: flex-start;
-    text-align: left;
+  color: black;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
 }
 .filter_container input[type="checkbox"] {
-    width: 15px;
-    height: 15px;
-    accent-color: var(--main-color);
-    cursor: pointer;
-    margin-right: 8px;
-    vertical-align: middle;
-}
-.filter_container input[type="checkbox"]:checked {
-    outline: 2px solid var(--main-color);
-    box-shadow: 0 0 0 2px var(--main-color);
+  width: 15px;
+  height: 15px;
+  accent-color: var(--main-color);
+  cursor: pointer;
+  margin-right: 8px;
+  vertical-align: middle;
 }

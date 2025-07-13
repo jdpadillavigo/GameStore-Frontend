@@ -127,6 +127,10 @@
     flex-direction: column;
 }
 
+.catalog-page__content__filters__section input[type="checkbox"] {
+  accent-color: var(--main-color);
+}
+
 .catalog-page__content__filters__section h4 {
     margin-block: 1rem;
     font-size: var(--font-size-note);

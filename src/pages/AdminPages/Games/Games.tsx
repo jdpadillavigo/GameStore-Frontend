@@ -9,7 +9,7 @@ const Games = () => {
   const [editingGame, setEditingGame] = useState<Game | null>(null);
   const [gameToDelete, setGameToDelete] = useState<Game | null>(null);
 
-  const { games, addGame, removeGame, updateGame } = useGamesContext();
+  const { games, setGames, addGame, removeGame, updateGame } = useGamesContext();
 
   const [form, setForm] = useState({ id: "", name: "", description: "", category: "", price: "", discount: "", date: "", trailer: "", image1: "", image2: "", image3: "", image4: "", platform: "" })
 
@@ -19,12 +19,12 @@ const Games = () => {
     setShowModal(true)
   };
 
-  const openEditModal = (gameKey: string) => {
-    const game = games[gameKey]; // Obtener el juego con la clave pasada
+  const openEditModal = (gameId: string) => {
+    const game = games[gameId];
     if (game) {
-      setEditingGame(game); // Establecer el juego que estamos editando
+      setEditingGame(game);
       setForm({
-        id: gameKey,
+        id: gameId,
         name: game.title,
         description: game.description,
         category: game.category,
@@ -38,30 +38,9 @@ const Games = () => {
         image4: game.images[3],
         platform: game.platform
       });
-      setShowModal(true); // Mostrar el modal
+      setShowModal(true);
     }
   };
-  
-  
-  // (game: Game) => {
-  //   setEditingGame(game);
-  //   setForm({
-  //     id: key,
-  //     name: game.title,
-  //     description: game.description,
-  //     category: game.category,
-  //     price: String(game.base_price),
-  //     discount: String(game.discount),
-  //     date: game.release_date,
-  //     trailer: game.trailer,
-  //     image1: game.images[0],
-  //     image2: game.images[1],
-  //     image3: game.images[2],
-  //     image4: game.images[3],
-  //     platform: game.platform
-  //   });
-  //   setShowModal(true);
-  // };
 
   const openDeleteModal = (game: Game) => {
     setGameToDelete(game);
@@ -72,8 +51,9 @@ const Games = () => {
     setForm({ ...form, [e.target.name]: e.target.value })
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const updated: Game = {
+      id: form.id,
       title: form.name,
       description: form.description,
       trailer: form.trailer,
@@ -86,19 +66,43 @@ const Games = () => {
       platform: form.platform
     };
 
-    if (editingGame) {
-      updateGame(editingGame.title, updated)
+    const currentGameId = editingGame ? Object.keys(games).find(id => games[id].title === editingGame.title) : null;
+
+    if (currentGameId) {
+      if (form.id !== currentGameId) {
+        const newId = form.id;
+        const updatedGames = { ...games };
+
+        const { [currentGameId]: oldGame, ...remainingGames } = updatedGames;
+
+        updatedGames[newId] = { ...updated };
+
+        delete updatedGames[currentGameId];
+
+        await updateGame(newId, updatedGames[newId]);
+        setGames(updatedGames);
+      } else {
+        await updateGame(currentGameId, updated);
+        setGames({ ...games, [currentGameId]: updated });
+      }
     } else {
-      addGame(updated)
+      await addGame(updated);
+      setGames({ ...games, [form.id]: updated });
     }
 
-    setShowModal(false)
+    setShowModal(false);
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     if (gameToDelete) {
-      removeGame(gameToDelete.title)
-      setShowDeleteModal(false)
+      const gameId = Object.keys(games).find(id => games[id].title === gameToDelete.title);
+      
+      if (gameId) {
+        await removeGame(gameId);
+        setShowDeleteModal(false);
+      } else {
+        console.error("No se encontró la clave del juego para eliminarlo.");
+      }
     }
   };
 
@@ -126,15 +130,15 @@ const Games = () => {
               </tr>
             </thead>
             <tbody>
-              {Object.entries(games).map(([key, game]) => (
-                <tr key={key}>
+              {Object.entries(games).map(([id, game]) => (
+                <tr id={id}>
                   <td>{game.release_date}</td>
                   <td>{game.category}</td>
                   <td>{game.title}</td>
                   <td>S/. {game.base_price.toFixed(2)}</td>
                   <td>{game.discount}%</td>
                   <td className="actions">
-                    <FaEdit className="edit-icon" onClick={() => openEditModal(key)} />
+                    <FaEdit className="edit-icon" onClick={() => openEditModal(id)} />
                     <FaTrash className="delete-icon" onClick={() => openDeleteModal(game)} />
                   </td>
                 </tr>

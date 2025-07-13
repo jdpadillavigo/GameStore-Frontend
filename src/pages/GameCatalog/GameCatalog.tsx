@@ -38,7 +38,15 @@ const GameCatalog = () => {
         return { ...prev, discounts: !prev.discounts };
       }
 
-      const list = prev[type as 'categories' | 'platforms'];
+      if (type === "categories" && value) {
+        const updatedCategories = prev.categories.includes(value)
+          ? []
+          : [value];
+
+        return { ...prev, categories: updatedCategories };
+      }
+
+      const list = prev[type as 'platforms'];
       const updatedList = list.includes(value || '')
         ? list.filter((item) => item !== value)
         : [...list, value];
@@ -93,7 +101,12 @@ const GameCatalog = () => {
                 <div className='catalog-page__content__games__info'>
                   <div className='catalog-page__content__games__info__title-stars'>
                     <p>{game.title}</p>
-                    <p>Valoración: {(game.reviews.reduce((sum, review) => sum + review.stars, 0) / game.reviews.length).toFixed(1)} de 5 estrellas</p>
+                    <p>
+                      Valoración:
+                      {game.reviews.length > 0
+                        ? ` ${(game.reviews.reduce((sum, review) => sum + review.stars, 0) / game.reviews.length).toFixed(1)} de 5 estrellas`
+                        : " Desconocida"}
+                    </p>
                   </div>
                   <div className='catalog-page__content__games__info__date'>
                     <p>{game.release_date}</p>
@@ -168,7 +181,13 @@ const GameCatalog = () => {
                   max={maxPrice}
                   step={1}
                   value={priceRange}
-                  onChange={(value: [number, number]) => setPriceRange(value)}
+                  onChange={(value: number | number[]) => {
+                    if (Array.isArray(value)) {
+                      setPriceRange([value[0], value[1]]);
+                    } else {
+                      setPriceRange([value, value]);
+                    }
+                  }}
                   railStyle={{ backgroundColor: '#ccc', height: 5 }}
                   trackStyle={{ backgroundColor: 'darkred', height: 5 }}
                   handleStyle={{
@@ -190,6 +209,7 @@ const GameCatalog = () => {
               <input
                 type="checkbox"
                 id="top-sellers"
+                checked={filters.categories.includes("más vendido")}
                 onChange={() => handleCheckboxChange("categories", "más vendido")}
               />
               <label htmlFor="top-sellers">Más vendidos</label>
@@ -198,6 +218,7 @@ const GameCatalog = () => {
               <input
                 type="checkbox"
                 id="top-rated"
+                checked={filters.categories.includes("mejor valorado")}
                 onChange={() => handleCheckboxChange("categories", "mejor valorado")}
               />
               <label htmlFor="top-rated">Mejor valorados</label>
@@ -206,6 +227,7 @@ const GameCatalog = () => {
               <input
                 type="checkbox"
                 id="free"
+                checked={filters.categories.includes("gratuito")}
                 onChange={() => handleCheckboxChange("categories", "gratuito")}
               />
               <label htmlFor="free">Gratuitos</label>
@@ -214,6 +236,7 @@ const GameCatalog = () => {
               <input
                 type="checkbox"
                 id="multiplayer"
+                checked={filters.categories.includes("multijugador")}
                 onChange={() => handleCheckboxChange("categories", "multijugador")}
               />
               <label htmlFor="multiplayer">Multijugador</label>
@@ -222,6 +245,7 @@ const GameCatalog = () => {
               <input
                 type="checkbox"
                 id="early-access"
+                checked={filters.categories.includes("acceso temprano")}
                 onChange={() => handleCheckboxChange("categories", "acceso temprano")}
               />
               <label htmlFor="early-access">Acceso temprano</label>

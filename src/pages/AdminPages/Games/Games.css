@@ -36,8 +36,13 @@
 }
 
 .add-btn {
-  background-color: #007bff;
+  background-color: var(--main-color);
   color: white;
+  transition: 0.3s all ease;
+}
+
+.add-btn:hover {
+  background-color: var(--secondary-color);
 }
 
 .games-table-container__games {
@@ -78,11 +83,11 @@
 }
 
 .edit-icon:hover {
-  color: #007bff;
+  color: var(--blue-color);
 }
 
 .delete-icon:hover {
-  color: #dc3545;
+  color: var(--secondary-color);
 }
 
 /* Modal base */
@@ -147,8 +152,14 @@
 
 .modal-actions button:last-child,
 .modal-buttons .btn-danger {
-  background-color: #dc3545;
+  background-color: var(--main-color);
   color: white;
+  transition: 0.3s all ease;
+}
+
+.modal-actions button:last-child:hover,
+.modal-buttons .btn-danger:hover {
+  background-color: var(--secondary-color);
 }
 
 .modal-actions button:first-child,
