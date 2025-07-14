@@ -36,6 +36,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const isLogged = Boolean(usuario);
 
+
   useEffect(() => {
     const datosUsuario = localStorage.getItem('usuarioLogueado');
     const rolUsuario = localStorage.getItem('rol');
@@ -82,10 +83,10 @@ const Navbar = () => {
 
   const cleanText = (text: string) => {
     return text
-      .normalize("NFD")                 // separa las letras de sus acentos
-      .replace(/[\u0300-\u036f]/g, '')  // elimina los acentos
-      .replace(/\s+/g, ' ')             // reemplaza espacios/saltos de línea/tabulaciones por un espacio
-      .trim();                          // elimina espacios al inicio y al final
+      .normalize("NFD")                
+      .replace(/[\u0300-\u036f]/g, '')  
+      .replace(/\s+/g, ' ')             
+      .trim();                          
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -121,7 +122,6 @@ const Navbar = () => {
 
   const [escuchando, setEscuchando] = useState(false);
   const [micActivated, setMicActivated] = useState('');
-  // Configurar el reconocimiento de voz
 
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   const recognition = new SpeechRecognition();
@@ -133,10 +133,9 @@ const Navbar = () => {
 
   const iniciarEscuchaParaCampo = (campo : string) => {
     setMicActivated(campo);
-    setEscuchando(true);  // Indicar que el micrófono está escuchando
+    setEscuchando(true);  
     recognition.start();
 
-    // Asignar el campo directamente al reconocimiento de voz
     recognition.onresult = (event : any) => {
       let transcript = event.results[0][0].transcript;
       transcript= transcript.replace(' arroba ', '@').slice(0, transcript.length - 1);
@@ -145,18 +144,17 @@ const Navbar = () => {
 
       handleChange({ target: { value: transcript } } as React.ChangeEvent<HTMLInputElement>);
 
-      setEscuchando(false);  // Finaliza la escucha
+      setEscuchando(false);  
     };
   };
   
-  // Detener cuando finaliza el reconocimiento
   recognition.onspeechend = () => {
     recognition.stop();
     setEscuchando(false);
     setMicActivated('');
   };
   
-  // Manejar errores
+
   recognition.onerror = (event : any) => {
     console.error("Error al reconocer la voz: ", event.error);
     setEscuchando(false);

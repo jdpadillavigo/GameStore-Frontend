@@ -53,7 +53,7 @@
   font-weight: bold;
 }
 
-.no-users-message {
+.warning-message {
   position: absolute;
   top: 50%;
   margin-inline: 1.5rem;

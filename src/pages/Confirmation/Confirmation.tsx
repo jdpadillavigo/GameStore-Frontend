@@ -6,8 +6,9 @@ const Verification: React.FC = () => {
   const [confirmacionCodigo, setConfirmacionCodigo] = useState('');
   const [mensaje, setMensaje] = useState('');
   const navigate = useNavigate();
+  const BACKEND_URL = "http://localhost:5000";
 
-  const handleConfirm = (e: React.FormEvent) => {
+  const handleConfirm = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (confirmacionCodigo.trim() === '') {
@@ -15,24 +16,43 @@ const Verification: React.FC = () => {
       return;
     }
 
-    const codigoEsperado = localStorage.getItem('codigoConfirmacion');
-    const email = localStorage.getItem('emailConfirmacion');
+    const usuarioPorRegistrar = localStorage.getItem('usuarioPorRegistrar');
+    if (!usuarioPorRegistrar) {
+      setMensaje('No se encontró el usuario por registrar ❌');
+      return;
+    }
 
-    const usuarios = JSON.parse(localStorage.getItem('usuariosRegistrados') || '[]');
+    const parsedUsuario = JSON.parse(usuarioPorRegistrar);
 
-    if (confirmacionCodigo === codigoEsperado && email) {
-      const actualizados = usuarios.map((u: any) =>
-        u.email === email ? { ...u, verificado: true } : u
-      );
+    if (parsedUsuario.token.toString() === confirmacionCodigo) {
+      try {
+        const response = await fetch(`${BACKEND_URL}/register`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(parsedUsuario),
+        });
 
-      localStorage.setItem('usuariosRegistrados', JSON.stringify(actualizados));
-      localStorage.removeItem('codigoConfirmacion');
-      localStorage.removeItem('emailConfirmacion');
-      setMensaje('Código de confirmación válido ✅');
+        const data = await response.json();
 
-      setTimeout(() => {
-        navigate('/login');
-      }, 1000);
+        if (!response.ok) {
+          setMensaje(data.msg || 'Error al registrar ❌');
+          return;
+        }
+
+        setMensaje('Usuario registrado exitosamente ✅');
+        
+        localStorage.removeItem('usuarioPorRegistrar');
+
+        setTimeout(() => {
+          navigate('/login');
+        }, 1000);
+
+      } catch (error) {
+        console.error(error);
+        setMensaje('Error del servidor ❌');
+      }
     } else {
       setMensaje('Código de confirmación incorrecto ❌');
     }

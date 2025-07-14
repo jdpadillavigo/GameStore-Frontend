@@ -7,43 +7,49 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const [mensaje, setMensaje] = useState('');
   const navigate = useNavigate();
+  const BACKEND_URL = "http://localhost:5000";
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validación manual de campos vacíos
     if (email.trim() === '' || password.trim() === '') {
       setMensaje('Por favor, completa todos los campos ❗');
       return;
     }
 
-    const usuarios = JSON.parse(localStorage.getItem('usuariosRegistrados') || '[]');
-    const usuario = usuarios.find((u: any) => u.email === email);
+    try {
+      const response = await fetch(`${BACKEND_URL}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    if (!usuario) {
-      setMensaje('Usuario no registrado ❗');
-      return;
-    }
+      const data = await response.json();
 
-    if (!usuario.verificado) {
-      setMensaje('Debes verificar tu correo antes de iniciar sesión ❗');
-      return;
-    }
+      if (!response.ok) {
+        setMensaje(data.msg || 'Error al iniciar sesión ❌');
+        return;
+      }
 
-    if (usuario.contraseña === password) {
-      localStorage.setItem('usuarioLogueado', JSON.stringify(usuario));
-      localStorage.setItem('rol', usuario.rol);
       setMensaje('Inicio de sesión exitoso ✅');
+
+      localStorage.setItem('usuarioLogueado', JSON.stringify(data.usuario));
+      localStorage.setItem('rol', data.usuario.role);
+
       setTimeout(() => {
-        if (usuario.rol === 'admin') {
+        if (data.usuario.role === 'admin') {
           navigate('/a/usuarios');
         } else {
           navigate('/');
         }
         window.location.reload();
       }, 1000);
-    } else {
-      setMensaje('Correo o contraseña incorrectos ❌');
+
+    } catch (error) {
+      console.error(error);
+      setMensaje('Error del servidor ❌');
     }
   };
 

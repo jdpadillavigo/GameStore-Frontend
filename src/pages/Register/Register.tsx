@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Register.css';
@@ -12,8 +11,8 @@ const Register: React.FC = () => {
   const [mensaje, setMensaje] = useState('');
   const navigate = useNavigate();
 
-  const handleRegister = (e: React.FormEvent) => {
-    e.preventDefault(); // ← Necesario para que Enter funcione
+  const handleRegister = async (e: React.FormEvent) => {
+    e.preventDefault();
 
     if (!nombre || !email || !contraseña || !confirmar || !pais) {
       setMensaje('Por favor, completa todos los campos ❗');
@@ -25,19 +24,19 @@ const Register: React.FC = () => {
       return;
     }
 
-    const codigo = Math.floor(100000 + Math.random() * 900000).toString();
-    const rol = nombre.startsWith('Admin') ? 'admin' : 'usuario';
-    const nuevoUsuario = { nombre, email, contraseña, pais, rol, verificado: false };
-    const usuariosExistentes = JSON.parse(localStorage.getItem('usuariosRegistrados') || '[]');
+    const nuevoUsuario = {
+      name: nombre,
+      email: email,
+      password: contraseña,
+      country: pais,
+      role: nombre.trim().startsWith('Admin') ? 'admin' : 'usuario',
+      verificado: false,
+      token: Math.floor(100000 + Math.random() * 900000),
+    };
 
-    usuariosExistentes.push(nuevoUsuario);
-
-    localStorage.setItem('usuariosRegistrados', JSON.stringify(usuariosExistentes));
-    localStorage.setItem('codigoConfirmacion', codigo);
-    localStorage.setItem('emailConfirmacion', email);
-
-    alert(`Código de confirmación enviado al correo: ${codigo}`);
-    setMensaje('¡Usuario registrado exitosamente! ✅');
+    localStorage.setItem('usuarioPorRegistrar', JSON.stringify(nuevoUsuario));
+    
+    setMensaje('¡Usuario preparado para verificación! ✅');
 
     setNombre('');
     setEmail('');
@@ -47,6 +46,7 @@ const Register: React.FC = () => {
 
     setTimeout(() => {
       navigate('/verificacion');
+      alert(`Código de confirmación: ${nuevoUsuario.token}`);
     }, 1000);
   };
 
